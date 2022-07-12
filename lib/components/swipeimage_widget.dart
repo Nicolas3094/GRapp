@@ -27,7 +27,7 @@ class _SwipeImagesState extends State<SwipeImagesWidget>
       loop: false,
       scrollDirection: Axis.horizontal,
       curve: Curves.easeInBack,
-      transformer: FFAppState.getTransformer(1),
+      transformer: FFAppState.getTransformer(3),
       itemCount: widget.imagenes.length,
       itemBuilder: (context, index) =>
           Image.asset(widget.folder + widget.imagenes[index].url),

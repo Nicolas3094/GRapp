@@ -2,11 +2,11 @@ import 'package:g_mcp/Models/project.dart';
 
 import 'package:flutter/material.dart';
 import 'package:g_mcp/components/loaderspinner.dart';
-import 'package:g_mcp/components/projectwidget%20.dart';
 import 'package:g_mcp/index.dart';
 
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
+import 'cataloguewidget.dart';
 
 class ProyectsListWidget extends StatefulWidget {
   const ProyectsListWidget({Key key}) : super(key: key);
@@ -50,9 +50,9 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
               shrinkWrap: true,
               padding: EdgeInsetsDirectional.fromSTEB(
                   phone
-                      ? 20
+                      ? 0
                       : phoneland
-                          ? 40
+                          ? 0
                           : tablet
                               ? 0
                               : 40,
@@ -67,17 +67,18 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
                         PageTransition(
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
-                            reverseDuration: Duration(milliseconds: 0),
                             child: GenericPageWidget(
-                                title: _projects[index].idStructure,
-                                widg: ProjectWidget(
-                                  project: _projects[index],
+                                title: "PROJECTS",
+                                widg: CatalogueWidget(
+                                  showDescription: true,
+                                  structList: _projects,
+                                  initIndex: index,
                                 ))),
                       );
                     },
                     child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            0, 10, 0, !phone ? 40 : 40),
+                            0, 10, 0, phone ? 20 : 40),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

@@ -7,49 +7,17 @@ import '../home_page/home_page_widget.dart';
 import '../unityscreens/simple_screen.dart';
 import 'cataloguewidget.dart';
 
-const TextStyle headerstl = TextStyle(
-    fontSize: 22,
-    fontFamily: "Headingpro",
-    fontWeight: FontWeight.bold,
-    color: Colors.black);
-
 class LogoBtn extends StatelessWidget {
-  final List<PopupMenuEntry<int>> _menus = [
-    PopupMenuItem(
-      textStyle: headerstl,
-      child: Text("- HOME"),
-      value: 0,
-    ),
-    PopupMenuItem(
-      textStyle: headerstl,
-      child: Text("- BIO"),
-      value: 1,
-    ),
-    PopupMenuItem(
-      textStyle: headerstl,
-      child: Text("- CATALOGUE"),
-      value: 2,
-    ),
-    PopupMenuItem(
-      textStyle: headerstl,
-      child: Text("- PROJECTS"),
-      value: 3,
-    ),
-    PopupMenuItem(
-      textStyle: headerstl,
-      child: Text("- AR"),
-      value: 4,
-    ),
-    PopupMenuItem(
-      textStyle: headerstl,
-      child: Text("- COLLECTORS"),
-      value: 5,
-    )
-  ];
+  List<PopupMenuEntry<int>> _menus;
   final List<Widget> _widgs = [
     HomePageWidget(),
-    BiopageWidget(),
-    GenericPageWidget(title: "CATALOGUE", widg: CatalogueWidget()),
+    GenericPageWidget(title: "BIO", widg: BiopageWidget()),
+    GenericPageWidget(
+        title: "CATALOGUE",
+        widg: CatalogueWidget(
+          showDescription: false,
+          structList: FFAppState.getCatalogues(),
+        )),
     GenericPageWidget(title: "PROJECTS", widg: ProyectsListWidget()),
     SimpleScreen(),
     SimpleScreen()
@@ -67,8 +35,45 @@ class LogoBtn extends StatelessWidget {
         ? 60
         : tablet || tabletland
             ? 70
-            : 70;
+            : 40;
     final double h = w;
+    TextStyle headerstl = TextStyle(
+        fontSize: tablet || tabletland ? 22 : 16,
+        fontFamily: "Headingpro",
+        fontWeight: FontWeight.bold,
+        color: Colors.black);
+    _menus = [
+      PopupMenuItem(
+        textStyle: headerstl,
+        child: Text("- HOME"),
+        value: 0,
+      ),
+      PopupMenuItem(
+        textStyle: headerstl,
+        child: Text("- BIO"),
+        value: 1,
+      ),
+      PopupMenuItem(
+        textStyle: headerstl,
+        child: Text("- CATALOGUE"),
+        value: 2,
+      ),
+      PopupMenuItem(
+        textStyle: headerstl,
+        child: Text("- PROJECTS"),
+        value: 3,
+      ),
+      PopupMenuItem(
+        textStyle: headerstl,
+        child: Text("- AR"),
+        value: 4,
+      ),
+      PopupMenuItem(
+        textStyle: headerstl,
+        child: Text("- COLLECTORS"),
+        value: 5,
+      )
+    ];
     return popupMenu(context, h, w);
   }
 

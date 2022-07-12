@@ -52,14 +52,20 @@ class _GenericPageWidget extends State<GenericPageWidget>
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         padding: EdgeInsetsDirectional.fromSTEB(
-            80,
-            60,
-            80,
+            tablet || tabletland ? 80 : 50,
+            tablet || tabletland
+                ? 60
+                : phone
+                    ? 40
+                    : 20,
+            tablet || tabletland ? 80 : 50,
             tablet
                 ? 80
                 : tabletland
                     ? 60
-                    : 0),
+                    : phone || phoneland
+                        ? 20
+                        : 20),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -67,7 +73,15 @@ class _GenericPageWidget extends State<GenericPageWidget>
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+                  padding: EdgeInsetsDirectional.fromSTEB(
+                      0,
+                      0,
+                      0,
+                      tablet || tabletland
+                          ? 40
+                          : phone
+                              ? 35
+                              : 10),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

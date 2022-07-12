@@ -9,7 +9,7 @@ void main() async {
 
   FFAppState(); // Initialize FFAppState
 
-  runApp(MyApp());
+  runApp(MyApp());           
 }
 
 class MyApp extends StatefulWidget {

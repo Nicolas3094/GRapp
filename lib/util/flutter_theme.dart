@@ -3,8 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'flutter_util.dart';
+
 abstract class FlutterTheme {
-  static FlutterTheme of(BuildContext context) => LightModeTheme();
+  static bool _tablet;
+  static bool _tabletland;
+  static FlutterTheme of(BuildContext context) {
+    _tablet = responsiveVisibility(context: context, tablet: true);
+
+    _tabletland = responsiveVisibility(context: context, tabletLandscape: true);
+    return LightModeTheme();
+  }
 
   Color primaryColor;
   Color secondaryColor;
@@ -22,40 +31,46 @@ abstract class FlutterTheme {
         fontFamily: 'Headingpro',
         color: primaryText,
         fontWeight: FontWeight.bold,
-        fontSize: 22,
+        fontSize: _tablet || _tabletland ? 24 : 18,
       );
   TextStyle get title2 => TextStyle(
         fontFamily: 'Headingpro',
         color: secondaryText,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.italic,
-        fontSize: 22,
+        fontSize: _tablet || _tabletland ? 24 : 18,
       );
   TextStyle get subtitle1 => TextStyle(
         fontFamily: 'QuattrocentroSans',
         color: primaryText,
         fontWeight: FontWeight.bold,
-        fontSize: 22,
+        fontSize: _tablet || _tabletland ? 24 : 18,
       );
   TextStyle get subtitle2 => TextStyle(
         fontFamily: 'QuattrocentroSans',
         color: secondaryText,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.italic,
-        fontSize: 22,
+        fontSize: _tablet || _tabletland ? 22 : 16,
       );
   TextStyle get bodyText1 => TextStyle(
         fontFamily: 'QuattrocentroSans',
         color: primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: 18,
+        fontSize: _tablet || _tabletland ? 18 : 11,
       );
   TextStyle get bodyText2 => TextStyle(
         fontFamily: 'QuattrocentroSans',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontStyle: FontStyle.italic,
-        fontSize: 18,
+        fontSize: _tablet || _tabletland ? 18 : 11,
+      );
+  TextStyle get bodyText3 => TextStyle(
+        fontFamily: 'QuattrocentroSans',
+        color: Colors.black,
+        fontWeight: FontWeight.normal,
+        fontSize: _tablet || _tabletland ? 22 : 12,
       );
 }
 
