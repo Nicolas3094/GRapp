@@ -17,6 +17,7 @@ class FFAppState {
   static List<Project> _projects;
   static List<Catalogue> _catalogues;
   static BioInfo _bio;
+  static bool _firstSplash = false;
 
   static final _transformers = [
     AccordionTransformer(),
@@ -47,6 +48,14 @@ class FFAppState {
   set english(bool _value) {
     _english = _value;
     prefs.setBool('ff_English', _value);
+  }
+
+  static void setFirstSplash() {
+    _firstSplash = true;
+  }
+
+  static bool getFirstSplash() {
+    return _firstSplash;
   }
 
   static Future<List<Project>> readJsonProjects() async {

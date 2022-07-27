@@ -18,7 +18,7 @@ class _BiopageWidgetState extends State<BiopageWidget> {
     bool phoneland =
         responsiveVisibility(context: context, phoneLanspace: true);
 
-    double ln = phone || phoneland ? 200 : 300;
+    double ln = phone || phoneland ? 250 : 375;
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterTheme.of(context).primaryBtnText,

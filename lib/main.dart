@@ -28,8 +28,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     FFAppState.readJsonBio().then((value) => FFAppState.setBio(value));
-    Future.delayed(Duration(milliseconds: 3000),
-        () => setState(() => displaySplashImage = true));
     super.initState();
   }
 
@@ -61,16 +59,6 @@ class _MyAppState extends State<MyApp> {
         ],
         theme: ThemeData(brightness: Brightness.light),
         themeMode: _themeMode,
-        home: !displaySplashImage
-            ? Container(
-                width: 400,
-                height: 400,
-                color: Colors.white,
-                child: Center(
-                    child: Image.asset(
-                  'assets/images/GABRIEGIRANDO.gif',
-                  fit: BoxFit.fitWidth,
-                )))
-            : HomePageWidget());
+        home: HomePageWidget());
   }
 }
