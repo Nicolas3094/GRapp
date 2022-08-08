@@ -1,7 +1,6 @@
 // ignore_for_file: overridden_fields, annotate_overrides
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'flutter_util.dart';
 
@@ -98,23 +97,13 @@ extension TextStyleHelper on TextStyle {
     TextDecoration decoration,
     double lineHeight,
   }) =>
-      useGoogleFonts
-          ? GoogleFonts.getFont(
-              fontFamily,
-              color: color ?? this.color,
-              fontSize: fontSize ?? this.fontSize,
-              fontWeight: fontWeight ?? this.fontWeight,
-              fontStyle: fontStyle ?? this.fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-            )
-          : copyWith(
-              fontFamily: fontFamily,
-              color: color,
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-            );
+      copyWith(
+        fontFamily: fontFamily,
+        color: color,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        decoration: decoration,
+        height: lineHeight,
+      );
 }

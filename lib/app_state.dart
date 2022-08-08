@@ -3,7 +3,6 @@ import 'package:g_mcp/Models/bio.dart';
 import 'package:g_mcp/Models/catalogue.dart';
 import 'package:g_mcp/Models/imagen.dart';
 import 'package:g_mcp/Models/project.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:g_mcp/transformer/transformers.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
@@ -32,23 +31,10 @@ class FFAppState {
     return _instance;
   }
 
-  FFAppState._internal() {
-    initializePersistedState();
-  }
-
-  Future initializePersistedState() async {
-    prefs = await SharedPreferences.getInstance();
-    _english = prefs.getBool('ff_English') ?? _english;
-  }
-
-  SharedPreferences prefs;
+  FFAppState._internal() {}
 
   bool _english = true;
   bool get english => _english;
-  set english(bool _value) {
-    _english = _value;
-    prefs.setBool('ff_English', _value);
-  }
 
   static void setFirstSplash() {
     _firstSplash = true;

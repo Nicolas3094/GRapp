@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_unity_widget/flutter_unity_widget.dart';
+//import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:g_mcp/util/flutter_util.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import '../components/backbtn.dart';
@@ -17,13 +17,13 @@ class _SimpleScreenState extends State<SimpleScreen> {
   static final GlobalKey<ScaffoldState> _scaffoldKey =
       GlobalKey<ScaffoldState>();
 
-  UnityWidgetController _unityWidgetController;
+  //UnityWidgetController _unityWidgetController;
   bool loading = true;
   @override
   void initState() {
     super.initState();
     Future.delayed(
-        Duration(milliseconds: 3000),
+        Duration(milliseconds: 5000),
         () => setState((() {
               loading = false;
               if (!FFAppState.getFirstSplash() && Platform.isIOS) {
@@ -34,7 +34,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
 
   @override
   void dispose() {
-    _unityWidgetController.dispose();
+    //_unityWidgetController.dispose();
     super.dispose();
   }
 
@@ -44,19 +44,19 @@ class _SimpleScreenState extends State<SimpleScreen> {
         key: _scaffoldKey,
         body: Stack(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: UnityWidget(
-                onUnityCreated: _onUnityCreated,
-                onUnityMessage: onUnityMessage,
-                onUnitySceneLoaded: onUnitySceneLoaded,
-                // webUrl: 'http://localhost:6080',
-                useAndroidViewSurface: false,
-                borderRadius: BorderRadius.all(Radius.circular(70)),
-                placeholder: LoaderSpinner(),
-              ),
-            ),
+            //Container(
+            //width: MediaQuery.of(context).size.width,
+            //height: MediaQuery.of(context).size.height,
+            //child:UnityWidget(
+            // onUnityCreated: _onUnityCreated,
+            //onUnityMessage: onUnityMessage,
+            //onUnitySceneLoaded: onUnitySceneLoaded,
+            // webUrl: 'http://localhost:6080',
+            //useAndroidViewSurface: true,
+            //borderRadius: BorderRadius.all(Radius.circular(70)),
+            //placeholder: LoaderSpinner(),
+            //),
+            //),
             PointerInterceptor(
                 child: Positioned(
               top: 0,
@@ -109,30 +109,30 @@ class _SimpleScreenState extends State<SimpleScreen> {
   }
 
   void onUnityMessage(message) {
-    // print('Received message from unity: ${message.toString()}');
+    print('Received message from unity: ${message.toString()}');
   }
 
-  void onUnitySceneLoaded(SceneLoaded scene) {
-    //print('Received scene loaded from unity: ${scene.name}');
-    //print('Received scene loaded from unity buildIndex: ${scene.buildIndex}');
-  }
+  // void onUnitySceneLoaded(SceneLoaded scene) {
+  //   print('Received scene loaded from unity: ${scene.name}');
+  //   print('Received scene loaded from unity buildIndex: ${scene.buildIndex}');
+  // }
 
   // Callback that connects the created controller to the unity controller
-  void _onUnityCreated(UnityWidgetController controller) {
-    this._unityWidgetController = controller;
-    if (FFAppState.getFirstSplash()) {
-      senToUnityScene("resume");
+  //void _onUnityCreated(UnityWidgetController controller) {
+  // this._unityWidgetController = controller;
+  // if (FFAppState.getFirstSplash()) {
+  //   senToUnityScene("resume");
 
-      senToUnityScene("loader");
-    }
-  }
+  //   senToUnityScene("loader");
+  // }
+  // }
 
 // Communcation from Flutter to Unity
   void senToUnityScene(String key) {
-    _unityWidgetController.postMessage(
-      'ExitController',
-      'ReloadGame',
-      key,
-    );
+    // _unityWidgetController.postMessage(
+    //   'ExitController',
+    //   'ReloadGame',
+    //  key,
+    // );
   }
 }

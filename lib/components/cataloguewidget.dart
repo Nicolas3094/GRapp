@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:g_mcp/Models/infostructure.dart';
 import 'package:g_mcp/Models/project.dart';
@@ -198,8 +197,5 @@ class _CatalogueWidget extends State<CatalogueWidget> {
     return Image.asset(path);
   }
 
-  Widget cachedImg(String path) => CachedNetworkImage(
-      imageUrl: path,
-      fit: BoxFit.cover,
-      placeholder: (context, url) => LoaderSpinner());
+ 
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:g_mcp/components/loaderspinner.dart';
 import 'util/flutter_util.dart';
-import 'util/internationalization.dart';
 import 'index.dart';
 
 void main() async {
@@ -29,6 +29,11 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     FFAppState.readJsonBio().then((value) => FFAppState.setBio(value));
     super.initState();
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      setState(() {
+        displaySplashImage = true;
+      });
+    });
   }
 
   @override
@@ -47,7 +52,6 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Gabriel Rico Estudio',
         localizationsDelegates: [
-          FFLocalizationsDelegate(),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
@@ -59,6 +63,11 @@ class _MyAppState extends State<MyApp> {
         ],
         theme: ThemeData(brightness: Brightness.light),
         themeMode: _themeMode,
-        home: HomePageWidget());
+        home: !displaySplashImage
+            ? LoaderSpinner(
+                h: 200,
+                w: 200,
+              )
+            : HomePageWidget());
   }
 }

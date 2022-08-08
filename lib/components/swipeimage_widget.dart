@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:g_mcp/Models/imagen.dart';
-import 'package:g_mcp/components/loaderspinner.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
 import '../util/flutter_util.dart';
 import 'package:flutter/material.dart';
@@ -33,15 +31,4 @@ class _SwipeImagesState extends State<SwipeImagesWidget>
           Image.asset(widget.folder + widget.imagenes[index].url),
     );
   }
-
-  Widget cachedImg(String path) => CachedNetworkImage(
-        imageUrl: path,
-        fit: BoxFit.contain,
-        placeholder: (context, url) => Container(
-            height: 50,
-            width: 50,
-            child: LoaderSpinner(
-                color: Color.fromRGBO(0, 0, 0, 1), w: 50.0, h: 50.0)),
-        errorWidget: (context, error, stacTrace) => Icon(Icons.error),
-      );
 }

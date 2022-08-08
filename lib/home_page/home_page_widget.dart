@@ -60,7 +60,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     fit: BoxFit.cover)),
             child: Center(
               child: _load
-                  ? LoaderSpinner()
+                  ? LoaderSpinner(
+                      h: 200,
+                      w: 200,
+                    )
                   : Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,

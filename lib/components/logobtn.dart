@@ -7,6 +7,7 @@ import '../home_page/home_page_widget.dart';
 import '../unityscreens/simple_screen.dart';
 import 'cataloguewidget.dart';
 
+// ignore: must_be_immutable
 class LogoBtn extends StatelessWidget {
   List<PopupMenuEntry<int>> _menus;
   final List<Widget> _widgs = [
