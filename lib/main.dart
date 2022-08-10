@@ -61,8 +61,8 @@ class _MyAppState extends State<MyApp> {
         themeMode: _themeMode,
         home: !displaySplashImage
             ? LoaderSpinner(
-                h: 200,
-                w: 200,
+                h: 70,
+                w: 70,
               )
             : HomePageWidget());
   }
