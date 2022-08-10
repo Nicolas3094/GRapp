@@ -46,72 +46,73 @@ class _GenericPageWidget extends State<GenericPageWidget>
     tabletland = responsiveVisibility(context: context, tabletLandscape: true);
 
     return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterTheme.of(context).primaryBtnText,
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsetsDirectional.fromSTEB(
-            tablet || tabletland ? 80 : 50,
-            tablet || tabletland
-                ? 60
-                : phone
-                    ? 40
-                    : 20,
-            tablet || tabletland ? 80 : 50,
-            tablet
-                ? 80
-                : tabletland
+        key: scaffoldKey,
+        backgroundColor: FlutterTheme.of(context).primaryBtnText,
+        body: SafeArea(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            padding: EdgeInsetsDirectional.fromSTEB(
+                tablet || tabletland ? 80 : 50,
+                tablet || tabletland
                     ? 60
-                    : phone || phoneland
-                        ? 20
-                        : 20),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Column(
+                    : phone
+                        ? 10
+                        : 20,
+                tablet || tabletland ? 80 : 50,
+                tablet
+                    ? 80
+                    : tabletland
+                        ? 60
+                        : phone || phoneland
+                            ? 20
+                            : 20),
+            child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(
-                      0,
-                      0,
-                      0,
-                      tablet || tabletland
-                          ? 40
-                          : phone
-                              ? 35
-                              : 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      BackBtn(),
-                      Center(
-                        child: LogoBtn(),
-                      )
-                    ],
-                  ),
-                ),
-                Row(
+                Column(
                   mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                      child: Text(
-                        "${widget.title}",
-                        style: FlutterTheme.of(context).title1,
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          0,
+                          0,
+                          0,
+                          tablet || tabletland
+                              ? 40
+                              : phone
+                                  ? 35
+                                  : 10),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          BackBtn(),
+                          Center(
+                            child: LogoBtn(),
+                          )
+                        ],
                       ),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          child: Text(
+                            "${widget.title}",
+                            style: FlutterTheme.of(context).title1,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
+                Expanded(child: Container(child: widget.widg)),
               ],
             ),
-            Expanded(child: Container(child: widget.widg)),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

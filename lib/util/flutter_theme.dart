@@ -30,33 +30,33 @@ abstract class FlutterTheme {
         fontFamily: 'Headingpro',
         color: primaryText,
         fontWeight: FontWeight.bold,
-        fontSize: _tablet || _tabletland ? 24 : 18,
+        fontSize: _tablet || _tabletland ? 24 : 16,
       );
   TextStyle get title2 => TextStyle(
         fontFamily: 'Headingpro',
         color: secondaryText,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.italic,
-        fontSize: _tablet || _tabletland ? 24 : 18,
+        fontSize: _tablet || _tabletland ? 24 : 16,
       );
   TextStyle get subtitle1 => TextStyle(
         fontFamily: 'QuattrocentroSans',
         color: primaryText,
         fontWeight: FontWeight.bold,
-        fontSize: _tablet || _tabletland ? 24 : 18,
+        fontSize: _tablet || _tabletland ? 24 : 16,
       );
   TextStyle get subtitle2 => TextStyle(
         fontFamily: 'QuattrocentroSans',
         color: secondaryText,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.italic,
-        fontSize: _tablet || _tabletland ? 22 : 16,
+        fontSize: _tablet || _tabletland ? 22 : 14,
       );
   TextStyle get bodyText1 => TextStyle(
         fontFamily: 'QuattrocentroSans',
         color: primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: _tablet || _tabletland ? 18 : 11,
+        fontSize: _tablet || _tabletland ? 18 : 10,
       );
   TextStyle get bodyText2 => TextStyle(
         fontFamily: 'QuattrocentroSans',

@@ -3,12 +3,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:g_mcp/components/loaderspinner.dart';
 import 'util/flutter_util.dart';
 import 'index.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   FFAppState(); // Initialize FFAppState
-
   runApp(MyApp());
 }
 
@@ -22,16 +21,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale;
+  final Future<FirebaseApp> _fbapp = Firebase.initializeApp();
   ThemeMode _themeMode = ThemeMode.system;
   bool displaySplashImage = false;
   @override
   void initState() {
     FFAppState.readJsonBio().then((value) => FFAppState.setBio(value));
     super.initState();
-    Future.delayed(const Duration(milliseconds: 1500), () {
-      setState(() {
-        displaySplashImage = true;
+
+    _fbapp.whenComplete(() {
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        setState(() {
+          displaySplashImage = true;
+        });
       });
     });
   }
@@ -41,7 +43,6 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
-  void setLocale(Locale value) => setState(() => _locale = value);
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
       });
@@ -55,11 +56,6 @@ class _MyAppState extends State<MyApp> {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
-        ],
-        locale: _locale,
-        supportedLocales: const [
-          Locale('en', ''),
-          Locale('es', ''),
         ],
         theme: ThemeData(brightness: Brightness.light),
         themeMode: _themeMode,

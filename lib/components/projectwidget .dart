@@ -18,7 +18,7 @@ class _ProjectWidget extends State<ProjectWidget> {
   final double fontitle2 = 26;
   bool _tablet;
   bool _tabletl;
-  final double fontsz = 18;
+  final double fontsz = 1;
   @override
   Widget build(BuildContext context) {
     setState(() {
@@ -55,17 +55,6 @@ class _ProjectWidget extends State<ProjectWidget> {
               textAlign: TextAlign.justify,
             ),
           ),
-        Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(
-                0, _tablet || _tabletl ? 10 : 10, 0, 0),
-            child: InkWell(
-              onTap: () => launchURL(project.web),
-              child: Text(
-                "${project.web}",
-                style: FlutterTheme.of(context).bodyText1,
-                textAlign: TextAlign.justify,
-              ),
-            )),
       ],
     );
   }
