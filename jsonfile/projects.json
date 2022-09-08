@@ -64,6 +64,9 @@
             "web3":"Synopsis of the exhibition video https://vimeo.com/534635107",
             "web4":" ",
             "images": [
+                {
+                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FI%20MAY%20USE%20AN%20ELECTRIC%20DRILL%2F11.jpg?alt=media&token=2f54c4b9-0a9e-4a77-9c1a-d81166b415b0"
+                },
 
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FI%20MAY%20USE%20AN%20ELECTRIC%20DRILL%2F1.jpg?alt=media&token=26c52caa-bc55-4721-9232-0bd7d75594e5"
@@ -93,10 +96,6 @@
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FI%20MAY%20USE%20AN%20ELECTRIC%20DRILL%2F9.jpg?alt=media&token=03e18b15-db1b-46a7-a2e4-5e1a9058c327"
                 }
-                ,
-                {
-                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FI%20MAY%20USE%20AN%20ELECTRIC%20DRILL%2F11.jpg?alt=media&token=2f54c4b9-0a9e-4a77-9c1a-d81166b415b0"
-                }
                
             ]
         },
@@ -122,13 +121,13 @@
             "web4":"Press https://www.jornada.com.mx/ultimas/cultura/2020/10/14/manana-inicia-inestimable-azar-la-14-bienal-de-femsa-en-michoacan-6358.html",
             "images": [
                 {
+                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FNO%20SIGNALS%20CAN%20TRAVEL%2F3.jpg?alt=media&token=834960a6-d170-484f-96d0-d08f76596204"
+                },
+                {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FNO%20SIGNALS%20CAN%20TRAVEL%2F1.jpg?alt=media&token=1034cd8a-82c9-4378-ba8c-22b4e499b654"
                 },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FNO%20SIGNALS%20CAN%20TRAVEL%2F2.jpg?alt=media&token=dbf2ce02-cf6c-4dbb-afeb-1864496049b4"
-                },
-                {
-                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FNO%20SIGNALS%20CAN%20TRAVEL%2F3.jpg?alt=media&token=834960a6-d170-484f-96d0-d08f76596204"
                 },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FNO%20SIGNALS%20CAN%20TRAVEL%2F4.jpg?alt=media&token=23dc81ba-6700-4ae3-91fa-e42173641a58"
@@ -201,7 +200,7 @@
             "lugar":"@ Lille, France, 2019",
             "subtitulo":"Curated by Ingrid Brochard",
             "cuerpo":"An exhibition conceived by Ingrid Brochard, founder of the Mobile Museum, as part of the “Eldorado” thematic edition of lille3000, with works by Guglielmo Achille Cavellini, Tacita Dean, Kendell Geers, Rodney Graham, Cécile Hartmann, Bouchra Khalili, Friedrich Kunath, Teresa Margolles, Gabriel Rico, Sam Samore, Ida Tursic & Wilfried Mille, Christophe Vigouroux and Danh Vo.",
-            "web":"http://artsplastiques.discipline.ac-lille.fr/documents/mumo2-goldenhour-dossierdepresse-web.pdf",
+            "web":"https://artsplastiques.discipline.ac-lille.fr/documents/mumo2-goldenhour-dossierdepresse-web.pdf",
             "tit1":"“the new form of a myth”",
             "bod1":"The intention of this piece is to construct a mythological being from the El Dorado uncertain location and mysticism that surrounds this myth; a being that is composed of the body and carved in stone, which could well be related to many South American tribes and the material used to repre- sent their gods.\nThe honeycomb body represents the importance of the transi- tion between life and death, honey has always been linked to mummification and is considered a sacred food and because of its color, is related to gold. The extremities are made of bones, material of which we are all made and the representation of the body's essence. The coca plant has always played an important role in Ande- an cultures, both for ritual purposes in the relationship between men and nature, as a psychoactive agent to induce ceremonial trances, as energy for work, for barter between products, as a digestive, and for analgesic and healing purposes in medical interventions.\n\nWhen we think of Eldorado, we know that it doesn't exist. And yet this does not prevent us from believing in it. Because we all have an Eldorado in us, it is the precious part of our desire. In Voltaire's Candide (a philosophical tale published in 1759), Candide and Cacambo contemplate with wonder a new world that appears to them the opposite of what they know:",
             "tit2":"“What is this country, unknown to all the rest of the earth, and where all nature is of a kind so different from ours? It is probably the country where everything is fine: for there must absolutely be one of this kind. “",
@@ -231,7 +230,7 @@
             "lugar":"@ Rashid Karami International Fair, Tripoli, Lebanon, 2018",
             "subtitulo":"Curated by Karina El Helou (STUDIOCUR/ART) & Anissa Touati",
             "cuerpo":"Organised by non-profit organisations BeMA and STUDIOCUR/ART.",
-            "web":"http://tripoliniemeyer2018.com",
+            "web":"https://tripoliniemeyer2018.com",
             "tit1":"“The prodigal son”",
             "bod1":"At the beginning, myths and legends explained life through the major natural cycles and legends. Daily life was therefore punctuated by annual rituals to activate those cycles, mainly related to agriculture and solar or lunar calendars represented by corresponding deities. The cosmogony was also considered through the prism of legends, gods and myths.\n\nThis intervention proposes man as a center in which his practical and mystical knowledge gravitate around him.The title of this piece refers to the ability to decipher divinity through knowledge, in it I suppose the possibility of observing the night sky in two geographical points on planet Earth (Lebanon and Mexico) as a meeting point and principle for an aesthetic dialogue in which the two cultures can coexist and complete each other.\n\nFrom the historical point of view it is indisputable that the ancient cultures that flourished in the territory that we define today as the Middle East and Mesoamerica, they could see the same stars in the sky, the difference was only the names with which they were named, for example the Pleiades the Olmecs called them “Tianquiztli” which means -the market- and the Sumerians called them “Mul-Mul” which means -The stars-, like these we can find many examples. This practical fact postulates heaven as a channel through which all human connect with others, which through its observation can be defined at the same time and therefore our life cycle and it is through this absolute influence that the stars have had and will continue to have on the human that influence, so I decided to take them as the basis for this piece.\nIn this piece, the symbolism is very important and it is related to the projection of human in the heart of the very center of the cosmos, postulating him as “The prodigal son of creation” which has access to celestial knowledge and through which he acquires the ability to the creation of new knowledge and matter.\n\nThrough contemporary art, the run-down concrete structures of the Rashid Karami Fair in Tripoli conceived by Oscar Niemeyer, considered one of the most important legacies of modernist architecture in the Middle East, were placed in dialogue with the citadel of Tripoli, a monument to layers of history. The two locations current states provoked reflections, in the context of the exhibition, on cyclical time and the cycles of collapse.\nThe notion of cyclical time, common to past civilizations, is now considered archaic, for according to Romanian intellectual Mircea Eliade, modern societies have a linear understanding of time. This contemporary understanding considers progress as its only possible outcome and therefore does not take into account repeated cycles of collapse.\nThe contemplation of the cyclical life and death of civilisations can be traced back to the medieval Tunisian-born historian Ibn Khaldoun, who suggested that historical cycles function in a loop, starting as Umran Badaoui (bedouin civilisation) evolving into Umran Hadari (urban civilisation) before collapsing. Recent studies by American historian Joseph Tainter on the collapse of complex societies, such as the ancient Egyptians, Greeks and Mayans, show that there are several possible causes for their downfall, including natural disasters, wars, and epidemics. But one theory can be singled out. When a society becomes highly stratified, it is more likely to fall, as the cost of maintaining it is high.\n\nIn the post-modern world (although the sociologist Bruno Latour has suggested in the title of his book that 'we have never been modern') scientists affirm that since the beginning of the anthropocene era, our future decline will be caused by an impending ecological disaster due to global warming. If human beings, nature, and even history function cyclically, it's possible to think about the limits of progress and the costs that entails.\n\n The exhibition presented 20 projects in total, including 11 commissioned artworks as well as 9 selected works by artists from Lebanon and Mexico. The meeting of these two art scenes allowed for the exchange of geographical perspectives on the theme. This project included residencies in Beirut by Edgardo Aragon, Fritzia Irizar and Gabriel Rico at BAR-Beirut Art Residency, and in Guadalajara by Marwan Rechmaoui and Stephanie Saadé at PAOS GDL residency.",
             "tit2":"Karina El Helou",
@@ -276,13 +275,13 @@
             "web4":" ",
             "images": [
                 {
+                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FROOFTOP%20PLAYGROUND%2F3.jpg?alt=media&token=3bc69975-4f0a-4461-a94d-d372fd06deb1"
+                },
+                {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FROOFTOP%20PLAYGROUND%2F1.jpg?alt=media&token=aff3026c-e4ca-4412-83cc-b6f2195e878c"
                 },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FROOFTOP%20PLAYGROUND%2F2.jpg?alt=media&token=6f77cb44-e7c8-4c75-ab20-1e28ab86d677"
-                },
-                {
-                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FROOFTOP%20PLAYGROUND%2F3.jpg?alt=media&token=3bc69975-4f0a-4461-a94d-d372fd06deb1"
                 },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FROOFTOP%20PLAYGROUND%2F4.jpg?alt=media&token=41604feb-fb5c-476a-ae63-a14d58c3950c"
@@ -325,7 +324,9 @@
             "web3":"View of the exhibition https://www.perrotin.com/artists/Gabriel_Rico/296/view-of-the-exhibition-proximidad-at-the-power-station-2017/10000014302",
             "web4":"Press https://www.dallasnews.com/arts-entertainment/visual-arts/2017/09/01/edgy-exchange-program-see-what-happens-when-a-dallas-and-a-guadalajara-artist-push-the-boundaries/",
             "images": [
-                
+                {
+                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FPROXIMIDAD%2F9.jpg?alt=media&token=ed6f1c69-af5b-4b56-9a50-63f76c72756b"
+                },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FPROXIMIDAD%2F1.jpg?alt=media&token=a032ac68-b540-48f8-b093-fecf046a1dd6"
                 },
@@ -349,9 +350,6 @@
                 },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FPROXIMIDAD%2F8.jpg?alt=media&token=9acbba5c-8f1b-47c4-8e6d-c8d228d7a0d0"
-                },
-                {
-                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FPROXIMIDAD%2F9.jpg?alt=media&token=ed6f1c69-af5b-4b56-9a50-63f76c72756b"
                 },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FPROXIMIDAD%2F10.jpg?alt=media&token=ff666ba8-d831-4a51-895d-2f01ea322f99"
@@ -383,8 +381,9 @@
             "web4":" ",
             "web":"https://news.asu.edu/20170530-creativity-artist-uses-taxidermy-bones-and-more-bring-exhibit-life",
             "images": [
-                
-               
+                {
+                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FDEAD%20DEAD%20LIVE%20DEAD%2F5.jpg?alt=media&token=aea87564-7183-41d2-988a-10b59dc0db84"
+                },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FDEAD%20DEAD%20LIVE%20DEAD%2F1.jpg?alt=media&token=82ba0316-4c61-4e4e-80dd-b3dd368a2be0"
                 },
@@ -396,9 +395,6 @@
                 },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FDEAD%20DEAD%20LIVE%20DEAD%2F4.jpg?alt=media&token=b9e158f9-5283-476f-b6a9-2b9719f4471d"
-                },
-                {
-                    "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FDEAD%20DEAD%20LIVE%20DEAD%2F5.jpg?alt=media&token=aea87564-7183-41d2-988a-10b59dc0db84"
                 },
                 {
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FDEAD%20DEAD%20LIVE%20DEAD%2F6.jpg?alt=media&token=8a868b7b-61f9-4880-b85b-b8cabe22bfc0"
@@ -577,7 +573,6 @@
             "web3":" ",
             "web4":" ",
             "images": [
-               
                 {
 
                     "url":"https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-4762b.appspot.com/o/proyectos%2FCOUP%20DE%20VILLE%2F1.jpg?alt=media&token=67f1c585-ed26-4dca-bb54-d929ae3e4426"

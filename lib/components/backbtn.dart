@@ -8,6 +8,7 @@ class BackBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       iconSize: size,
+      padding: EdgeInsets.zero,
       onPressed: () async => await Navigator.pop(context, true),
       icon: const Icon(Icons.arrow_back_sharp),
       color: cl,

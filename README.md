@@ -1,6 +1,6 @@
 # Gabriel Rico Estudio App
 
-Aplicación de Gabriel Rico version 1.0.
+Aplicación de Gabriel Rico version 1.6.6
 
 
 ## IMPORTANTE:
@@ -25,28 +25,94 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 
 Por el momento, se hace este paso al final. No se puede emular con dicha librería pero sí se puede utilizar dispositivos locales.
 
-# Reiniciar IOS por problema de Flutter-Unity-Framework
-
+# Detalles Android
 Limpiar poryecto de flutter
 
 ```
 flutter clean
 ```
 
-En carpeta ios/
+android/settings.gradle
 
 ```
-pod deintegrate
-pod cache clean --all
+include ':app'
+include ":unityLibrary"
+project(":unityLibrary").projectDir = file("./unityLibrary")
+
+def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
+def properties = new Properties()
+
+assert localPropertiesFile.exists()
+localPropertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+
+def flutterSdkPath = properties.getProperty("flutter.sdk")
+assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
+apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+
+
+include ":unityLibrary"
+project(":unityLibrary").projectDir = file("./unityLibrary")
+
+```
+agregar en android/local.properties
+
+```
+ndk.dir=C:\\Program Files\\Unity\\Hub\\Editor\\2021.3.8f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\NDK
 ```
 
-De nuevo en carpeta de proyecto /
+android/app/build.gradle
+
 ```
-flutter pub get
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+def keystoreProperties = new Properties() //Para keystore
+   def keystorePropertiesFile = rootProject.file('key.properties')
+   if (keystorePropertiesFile.exists()) {
+       keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+   }
+android{
+    ...
+        defaultConfig {
+        applicationId "com.VorticeVR.GabrielRico"
+        minSdkVersion 24
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+    signingConfigs {
+       release {
+           keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
+           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+           storePassword keystoreProperties['storePassword']
+       }
+   }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+        debug {
+           signingConfig signingConfigs.debug
+        }
+        profile {
+            signingConfig signingConfigs.debug
+        }
+        innerTest {
+            matchingFallbacks = ['debug', 'release']
+        }
+    }
 ```
 
-En ios/
+IMPORTANTE para 2021> de Unity version, quitar en android/unityLibrary/build.gradle:
 ```
-pod install
-pod update
+commandLineArgs.add("--enable-debugger")
+    commandLineArgs.add("--profiler-report")
+    commandLineArgs.add("--profiler-output-file=" + workingDir + "/build/il2cpp_"+ abi + "_" + configuration + "/il2cpp_conv.traceevents")
 ```
+
+Configurar icono y splash image.
+storePassword=ibanez30
+keyPassword=ibanez30
+keyAlias=upload
+storeFile=A:\\Documents\\key\\flutter\\grDenver\\upload-keystore.jks

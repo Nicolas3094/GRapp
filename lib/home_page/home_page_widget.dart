@@ -1,8 +1,8 @@
-import 'package:g_mcp/components/loaderspinner.dart';
 import 'package:g_mcp/index.dart';
 
 import '../components/cataloguewidget.dart';
 import '../components/proyects_list_widget.dart';
+import '../unityscreens/arpage.dart';
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
   bool tabletland;
   bool phone;
   bool phoneland;
-  bool _load = true;
   double _shdw = 0;
 
   @override
@@ -31,12 +30,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
     if (FFAppState.getCatalogues() == null) {
       FFAppState.readJsonCatalogues()
-          .then((value) => {FFAppState.setCatalogues(value)})
-          .whenComplete(() => setState(() => _load = false));
-    } else {
-      setState(() {
-        _load = false;
-      });
+          .then((value) => {FFAppState.setCatalogues(value)});
     }
   }
 
@@ -65,7 +59,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/images/mural_reduccion.gif'),
-                        fit: BoxFit.contain)),
+                        fit: BoxFit.fitHeight)),
                 child: Stack(
                   children: [
                     CreatBtn(
@@ -74,14 +68,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             : tabletland
                                 ? 0.044
                                 : phone
-                                    ? 0.12
+                                    ? 0.05
                                     : 0,
                         tablet
                             ? 0.23
                             : phoneland
                                 ? 0.4
                                 : phone
-                                    ? 0.225
+                                    ? 0.09
                                     : 0.34,
                         "",
                         tablet
@@ -89,23 +83,24 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             : tabletland
                                 ? 160
                                 : phone
-                                    ? 80
+                                    ? 100
                                     : 70,
                         tablet
                             ? 150
                             : tabletland
                                 ? 120
                                 : phone
-                                    ? 80
+                                    ? 100
                                     : 50,
                         100,
                         GenericPageWidget(
-                            title: "PROJECTS", widg: ProyectsListWidget())),
+                            title: "PROJECTS & EXHIBITIONS",
+                            widg: ProyectsListWidget())),
                     CreatBtn(
                         tablet
                             ? 0.54
                             : phone
-                                ? 0.52
+                                ? 0.54
                                 : tabletland
                                     ? 0.55
                                     : 0.49,
@@ -128,7 +123,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 ? 60
                                 : tabletland
                                     ? 120
-                                    : 70,
+                                    : 100,
                         100,
                         GenericPageWidget(
                           title: "BIO",
@@ -136,72 +131,75 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         )),
                     CreatBtn(
                         tablet
-                            ? 0.83
+                            ? 0.8
                             : tabletland
                                 ? 0.815
                                 : phone
-                                    ? 0.734
+                                    ? 0.81
                                     : 0.75,
                         tablet
-                            ? 0.267
+                            ? 0.2
                             : tabletland
                                 ? 0.36
                                 : phone
-                                    ? 0.255
+                                    ? 0.15
                                     : 0.405,
                         "",
                         tablet
-                            ? 100
+                            ? 140
                             : phone
-                                ? 50
+                                ? 80
                                 : 60,
                         tablet
-                            ? 120
+                            ? 150
                             : tabletland
                                 ? 100
                                 : phone
-                                    ? 50
+                                    ? 80
                                     : 50,
                         100,
-                        SimpleScreen()),
+                        GenericPageWidget(
+                          title: "AR EXPERIENCES",
+                          widg: ARPageWidget(),
+                        )),
                     CreatBtn(
                         tablet
                             ? 0.785
                             : tabletland
                                 ? 0.77
                                 : phone
-                                    ? 0.7
+                                    ? 0.77
                                     : 0.7,
                         tablet
                             ? 0.675
                             : tabletland
                                 ? 0.594
                                 : phone
-                                    ? 0.66
+                                    ? 0.76
                                     : 0.55,
                         "WEB",
-                        tablet || tabletland ? 60 : 35,
-                        tablet || tabletland ? 60 : 35,
+                        tablet || tabletland ? 80 : 55,
+                        tablet || tabletland ? 80 : 55,
                         100,
                         BiopageWidget()),
                     CreatBtn(
                         tablet
-                            ? 0.785
+                            ? 0.36
                             : tabletland
                                 ? 0.77
                                 : phone
-                                    ? 0.38
+                                    ? 0.36
                                     : 0.3,
                         tablet
-                            ? 0.675
+                            ? 0.6
                             : tabletland
                                 ? 0.594
                                 : phone
-                                    ? 0.6
+                                    ? 0.65
                                     : 0.53,
                         "INSTAGRAM",
-                        tablet || tabletland ? 60 : 40,
-                        tablet || tabletland ? 60 : 40,
+                        tablet || tabletland ? 90 : 60,
+                        tablet || tabletland ? 90 : 60,
                         100,
                         BiopageWidget()),
                     createDownBtn(
@@ -210,7 +208,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             : tabletland
                                 ? 0.11
                                 : phone
-                                    ? 0.18
+                                    ? 0.10
                                     : 0.11,
                         tablet
                             ? 0.525
@@ -223,14 +221,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         tablet
                             ? 250
                             : phone
-                                ? 110
+                                ? 160
                                 : 100,
                         tablet
                             ? 220
                             : phoneland
                                 ? 70
                                 : phone
-                                    ? 110
+                                    ? 140
                                     : 80,
                         100,
                         GenericPageWidget(
@@ -240,32 +238,35 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 structList: FFAppState.getCatalogues()))),
                     createDownBtn(
                         tablet
-                            ? 0.305
+                            ? 0.3
                             : tabletland
                                 ? 0.3
                                 : phone
-                                    ? 0.33
+                                    ? 0.3
                                     : 0.27,
                         tablet
-                            ? 0.325
+                            ? 0.3
                             : phoneland
                                 ? 0.425
                                 : phone
-                                    ? 0.28
+                                    ? 0.2
                                     : 0.4,
                         "",
                         tablet
                             ? 80
                             : phoneland
                                 ? 50
-                                : 60,
+                                : 70,
                         tablet
                             ? 100
                             : phoneland
                                 ? 50
-                                : 60,
+                                : 70,
                         100,
-                        SimpleScreen())
+                        GenericPageWidget(
+                          title: "AR EXPERIENCES",
+                          widg: ARPageWidget(),
+                        ))
                   ],
                 ),
               ),
@@ -288,8 +289,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
               onPressed: () async => txt == "WEB"
                   ? await launchURL('https://gabrielrico.com/')
                   : txt == "INSTAGRAM"
-                      ? await launchURL(
-                          'https://www.instagram.com/gabrielricoestudio/')
+                      ? await launchURL('https://gabrielrico.com/')
                       : await Navigator.push(context,
                           MaterialPageRoute(builder: ((context) => widg))),
               options: FFButtonOptions(

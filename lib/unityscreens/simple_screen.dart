@@ -7,8 +7,9 @@ import '../components/loaderspinner.dart';
 import 'dart:io';
 
 class SimpleScreen extends StatefulWidget {
-  SimpleScreen({Key key}) : super(key: key);
+  final int sceneID;
 
+  SimpleScreen({Key key, this.sceneID}) : super(key: key);
   @override
   _SimpleScreenState createState() => _SimpleScreenState();
 }
@@ -25,8 +26,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
     Future.delayed(
         Duration(milliseconds: 5000),
         () => setState((() {
-              loading = false;
-              if (!FFAppState.getFirstSplash() && Platform.isIOS) {
+              if (!FFAppState.getFirstSplash()) {
                 FFAppState.setFirstSplash();
               }
             })));
@@ -51,7 +51,6 @@ class _SimpleScreenState extends State<SimpleScreen> {
                 onUnityCreated: _onUnityCreated,
                 onUnityMessage: onUnityMessage,
                 onUnitySceneLoaded: onUnitySceneLoaded,
-                //webUrl: 'http://localhost:6080',
                 useAndroidViewSurface: true,
                 borderRadius: BorderRadius.all(Radius.circular(70)),
                 placeholder: LoaderSpinner(),
@@ -92,7 +91,16 @@ class _SimpleScreenState extends State<SimpleScreen> {
                               Text("Reset")
                             ],
                           ),
-                          onTap: () => senToUnityScene("loader")),
+                          onTap: () {
+                            senToUnityScene("loader");
+                            Future.delayed(const Duration(milliseconds: 500),
+                                () {
+                              _unityWidgetController.postMessage(
+                                  "ExitController",
+                                  "SetScene",
+                                  widget.sceneID.toString());
+                            });
+                          }),
                     ],
                   )),
             )),
@@ -109,12 +117,17 @@ class _SimpleScreenState extends State<SimpleScreen> {
   }
 
   void onUnityMessage(message) {
-    print('Received message from unity: ${message.toString()}');
+    Future.delayed(const Duration(milliseconds: 500), () {
+      _unityWidgetController.postMessage(
+          "ExitController", "SetScene", widget.sceneID.toString());
+    });
   }
 
   void onUnitySceneLoaded(SceneLoaded scene) {
-    print('Received scene loaded from unity: ${scene.name}');
-    print('Received scene loaded from unity buildIndex: ${scene.buildIndex}');
+    Future.delayed(const Duration(milliseconds: 500), () {
+      _unityWidgetController.postMessage(
+          "ExitController", "SetScene", widget.sceneID.toString());
+    });
   }
 
   // Callback that connects the created controller to the unity controller
@@ -125,6 +138,10 @@ class _SimpleScreenState extends State<SimpleScreen> {
 
       senToUnityScene("loader");
     }
+    Future.delayed(const Duration(milliseconds: 500), () {
+      _unityWidgetController.postMessage(
+          "ExitController", "SetScene", widget.sceneID.toString());
+    });
   }
 
 //Communcation from Flutter to Unity

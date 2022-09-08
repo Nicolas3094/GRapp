@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:g_mcp/components/loaderspinner.dart';
 import 'util/flutter_util.dart';
 import 'index.dart';
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final Future<FirebaseApp> _fbapp = Firebase.initializeApp();
+  //final Future<FirebaseApp> _fbapp = Firebase.initializeApp();
   ThemeMode _themeMode = ThemeMode.system;
   bool displaySplashImage = false;
   @override
@@ -29,13 +29,13 @@ class _MyAppState extends State<MyApp> {
     FFAppState.readJsonBio().then((value) => FFAppState.setBio(value));
     super.initState();
 
-    _fbapp.whenComplete(() {
-      Future.delayed(const Duration(milliseconds: 1500), () {
-        setState(() {
-          displaySplashImage = true;
-        });
+    //_fbapp.whenComplete(() {
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      setState(() {
+        displaySplashImage = true;
       });
     });
+    // });
   }
 
   @override
@@ -61,8 +61,8 @@ class _MyAppState extends State<MyApp> {
         themeMode: _themeMode,
         home: !displaySplashImage
             ? LoaderSpinner(
-                h: 70,
-                w: 70,
+                h: 129,
+                w: 129,
               )
             : HomePageWidget());
   }
