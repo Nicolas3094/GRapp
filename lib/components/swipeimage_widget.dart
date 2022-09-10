@@ -29,8 +29,10 @@ class _SwipeImagesState extends State<SwipeImagesWidget>
       curve: Curves.easeInBack,
       transformer: FFAppState.getTransformer(3),
       itemCount: widget.imagenes.length,
-      itemBuilder: (context, index) =>
-          Image.asset(widget.folder + widget.imagenes[index].url),
+      itemBuilder: (context, index) => InteractiveViewer(
+          minScale: 0.5,
+          maxScale: 4,
+          child: Image.asset(widget.folder + widget.imagenes[index].url)),
     );
   }
 

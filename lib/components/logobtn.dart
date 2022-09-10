@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:g_mcp/components/proyects_list_widget.dart';
 import '../biopage/biopage_widget.dart';
 import '../genericpage/genericpage_widget.dart';
+import '../unityscreens/arpage.dart';
 import '../util/flutter_util.dart';
 import '../home_page/home_page_widget.dart';
-import '../unityscreens/simple_screen.dart';
 import 'cataloguewidget.dart';
 
 class LogoBtn extends StatelessWidget {
@@ -18,9 +18,16 @@ class LogoBtn extends StatelessWidget {
           showDescription: false,
           structList: FFAppState.getCatalogues(),
         )),
-    GenericPageWidget(title: "PROJECTS", widg: ProyectsListWidget()),
-    SimpleScreen(),
-    SimpleScreen()
+    GenericPageWidget(
+        title: "PROJECTS & EXHIBITIONS", widg: ProyectsListWidget()),
+    GenericPageWidget(
+      title: "AR EXPERIENCES",
+      widg: ARPageWidget(),
+    ),
+    GenericPageWidget(
+      title: "AR EXPERIENCES",
+      widg: ARPageWidget(),
+    )
   ];
   @override
   Widget build(BuildContext context) {
@@ -87,8 +94,8 @@ class LogoBtn extends StatelessWidget {
           context, MaterialPageRoute(builder: (context) => _widgs[value])),
       child: Image.asset(
         'assets/images/GR_LOGO.png',
-        width: w,
-        height: h,
+        width: w * 0.9,
+        height: h * 0.9,
         fit: BoxFit.cover,
       ),
       itemBuilder: (context) => _menus);

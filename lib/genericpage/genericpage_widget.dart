@@ -52,14 +52,22 @@ class _GenericPageWidget extends State<GenericPageWidget>
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         padding: EdgeInsetsDirectional.fromSTEB(
-            tablet || tabletland ? 80 : 50,
-            tablet || tabletland
+            tablet //start
+                ? 80
+                : tabletland
+                    ? 40
+                    : 30,
+            tablet || tabletland //top
                 ? 60
                 : phone
                     ? 40
                     : 20,
-            tablet || tabletland ? 80 : 50,
-            tablet
+            tablet //end
+                ? 100
+                : tabletland
+                    ? 40
+                    : 40,
+            tablet //bottom
                 ? 80
                 : tabletland
                     ? 60
@@ -83,10 +91,12 @@ class _GenericPageWidget extends State<GenericPageWidget>
                               ? 35
                               : 10),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      BackBtn(),
+                      BackBtn(
+                        size: 38,
+                      ),
                       Center(
                         child: LogoBtn(),
                       )
@@ -98,7 +108,11 @@ class _GenericPageWidget extends State<GenericPageWidget>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          tablet || tabletland ? 15 : 10,
+                          0,
+                          0,
+                          tablet || tabletland ? 40 : 10),
                       child: Text(
                         "${widget.title}",
                         style: FlutterTheme.of(context).title1,
@@ -108,7 +122,10 @@ class _GenericPageWidget extends State<GenericPageWidget>
                 ),
               ],
             ),
-            Expanded(child: Container(child: widget.widg)),
+            Expanded(
+                child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                    child: Container(child: widget.widg))),
           ],
         ),
       ),

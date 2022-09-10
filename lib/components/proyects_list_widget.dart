@@ -55,7 +55,7 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
                           ? 0
                           : tablet
                               ? 0
-                              : 40,
+                              : 0,
                   MediaQuery.of(context).size.height * 0.05,
                   0,
                   20),
@@ -68,7 +68,7 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
                             type: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
                             child: GenericPageWidget(
-                                title: "PROJECTS",
+                                title: "PROJECTS & EXHIBITIONS",
                                 widg: CatalogueWidget(
                                   showDescription: true,
                                   structList: _projects,

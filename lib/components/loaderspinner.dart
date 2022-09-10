@@ -43,7 +43,7 @@ class _LoaderSpinner extends State<LoaderSpinner>
         ),
         builder: (BuildContext context, Widget _widget) {
           return Transform.rotate(
-            angle: animationController.value * 6.3,
+            angle: (-1) * animationController.value * 6.3,
             child: _widget,
           );
         },

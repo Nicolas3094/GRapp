@@ -13,7 +13,7 @@ class ProjectWidget extends StatefulWidget {
 }
 
 class _ProjectWidget extends State<ProjectWidget> {
-  final String name = "PROJECTS";
+  final String name = "PROJECTS & EXHIBITIONS";
   final double fontitle = 32;
   final double fontitle2 = 26;
   bool _tablet;
@@ -55,17 +55,6 @@ class _ProjectWidget extends State<ProjectWidget> {
               textAlign: TextAlign.justify,
             ),
           ),
-        Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(
-                0, _tablet || _tabletl ? 10 : 10, 0, 0),
-            child: InkWell(
-              onTap: () => launchURL(project.web),
-              child: Text(
-                "${project.web}",
-                style: FlutterTheme.of(context).bodyText1,
-                textAlign: TextAlign.justify,
-              ),
-            )),
       ],
     );
   }
@@ -122,6 +111,9 @@ class _ProjectWidget extends State<ProjectWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Container(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                child: boldTitle(project.title)),
             if (project.tit1 != " ") boldTitle(project.tit1),
             if (project.bod1 != " ") bodyInf(project.bod1),
             if (project.tit2 != " ") boldTitle(project.tit2),
@@ -130,10 +122,6 @@ class _ProjectWidget extends State<ProjectWidget> {
             if (project.bod3 != " ") bodyInf(project.bod3),
             if (project.tit4 != " ") boldTitle(project.tit4),
             if (project.bod4 != " ") bodyInf(project.bod4),
-            if (project.web1 != " ") checkWeb(project.web1),
-            if (project.web2 != " ") checkWeb(project.web2),
-            if (project.web3 != " ") checkWeb(project.web3),
-            if (project.web4 != " ") checkWeb(project.web4),
           ],
         ));
   }
