@@ -1,0 +1,54 @@
+[        {
+            "title": "When there were more donkeys than icosahedrons",
+            "dir":"assets/images/proyectosar/1/",
+            "lugar":"@ Max Goelitz Gallery, Munich, Germany - 2022",
+            "subtitulo":" ",
+            "cuerpo":"HOW TO RUN THE EXPERIENCE",
+            "web":" ",
+            "tit1":"1. Stand on the entrace mat",
+            "bod1":" ",
+            "tit2":"2. Direct the device to the mat and slowly rotate the camera so it can identify the ground",
+            "bod2":" ",
+            "tit3":"3. Once the AR experience starts, you can walk through the gallery",
+            "bod3":" ",
+            "tit4":"Do not turn the device from vertical to horizonal (or visceversa) once the AR experience has begun. It may affect the floor reading",
+            "bod4":" ",
+            "web1":" ",
+            "web2":" ",
+            "web3":" ",
+            "web4":" ",
+            "images": [
+
+                {
+                    "url":"1.jpeg"
+                }
+            ]
+        },
+        {
+            "title": "La inclusión de mi raza",
+            "dir":"assets/images/proyectosar/2/",
+            "lugar":"@ Tail Tracks Plaza, Denver, USA - 2022",
+            "subtitulo":"presented by the Biennial of the Americas with artistic direction by \nBlack Cube Nomadic Art Museum",
+            "cuerpo":"HOW TO RUN THE EXPERIENCE",
+            "web":" ",
+            "tit1":"1. Stand on the Start mark on the ground outside of the shipping container",
+            "bod1":" ",
+            "tit2":"2. Direct the device to the mat and slowly rotate the camera so it can identify the ground",
+            "bod2":" ",
+            "tit3":"3. Once the AR experience starts, you can walk through the totems on the plaza",
+            "bod3":" ",
+            "tit4":"Do not turn the device from vertical to horizonal (or visceversa) once the AR experience has begun. It may affect the floor reading",
+            "bod4":" ",
+            "web1":" ",
+            "web2":" ",
+            "web3":" ",
+            "web4":" ",
+            "images": [
+
+                {
+                    "url":"1.png"
+                }
+               
+            ]
+        }
+]
