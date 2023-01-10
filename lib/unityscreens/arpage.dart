@@ -144,20 +144,27 @@ class _ARPageWidget extends State<ARPageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 40),
+                    padding: EdgeInsetsDirectional.fromSTEB(
+                        0,
+                        tablet || tabletland ? 40 : 20,
+                        0,
+                        tablet || tabletland ? 40 : 20),
                     child: boldTitle(project.title),
                   ),
                   Container(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+                    padding: EdgeInsetsDirectional.fromSTEB(
+                        0, 0, 0, tablet || tabletland ? 40 : 20),
                     child: boldSubTitle(project.cuerpo),
                   ),
                   if (project.tit1 != " ") bodyInf(project.tit1),
                   if (project.tit2 != " ") bodyInf(project.tit2),
                   if (project.tit3 != " ") bodyInf(project.tit3),
-                  if (project.tit4 != " ")
+                  if (project.tit4 != " ") bodyInf(project.tit4),
+                  if (project.bod4 != " ")
                     Container(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                      child: bodyBld(project.tit4),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          0, tablet || tabletland ? 40 : 20, 0, 0),
+                      child: bodyBld(project.bod4),
                     )
                 ],
               ),

@@ -170,10 +170,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           ? 70
                                           : 50,
                               100,
-                              GenericPageWidget(
-                                title: "AR EXPERIENCES",
-                                widg: ARPageWidget(),
-                              )),
+                              SimpleScreen(sceneID: 3)),
                           CreatBtn(
                               tablet
                                   ? 0.785

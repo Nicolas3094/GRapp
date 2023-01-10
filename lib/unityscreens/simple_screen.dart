@@ -119,14 +119,13 @@ class _SimpleScreenState extends State<SimpleScreen> {
   }
 
   void onUnityMessage(message) {
-    print('Received message from unity: mssg');
     Future.delayed(const Duration(milliseconds: 500), () {
       _unityWidgetController.postMessage(
           "ExitController", "SetScene", widget.sceneID.toString());
     });
   }
 
-  void onUnitySceneLoaded(SceneLoaded scene) {
+  void onUnitySceneLoaded(scene) {
     Future.delayed(const Duration(milliseconds: 500), () {
       _unityWidgetController.postMessage(
           "ExitController", "SetScene", widget.sceneID.toString());
