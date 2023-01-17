@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:g_mcp/Models/project.dart';
+import '../Models/imagen.dart';
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
 
 class ProjectWidget extends StatefulWidget {
   final Project project;
   final int numText;
-  const ProjectWidget({Key key, this.project, this.numText}) : super(key: key);
+  final int index;
+  const ProjectWidget({Key key, this.project, this.numText, this.index})
+      : super(key: key);
 
   @override
   _ProjectWidget createState() => _ProjectWidget();
@@ -14,11 +17,14 @@ class ProjectWidget extends StatefulWidget {
 
 class _ProjectWidget extends State<ProjectWidget> {
   final String name = "PROJECTS & EXHIBITIONS";
+  List<List<Imagen>> _dataimagen = [];
+
   final double fontitle = 32;
   final double fontitle2 = 26;
   bool _tablet;
   bool _tabletl;
   final double fontsz = 18;
+
   @override
   Widget build(BuildContext context) {
     setState(() {
@@ -34,27 +40,48 @@ class _ProjectWidget extends State<ProjectWidget> {
   }
 
   Widget principalInfo(BuildContext context, Project project, bool bold) {
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 60, 0),
           child: Text(
-            "${project.titulo}",
+            "${project.year}",
             style: FlutterTheme.of(context).bodyText1.override(
                 fontStyle: bold ? FontStyle.normal : FontStyle.italic,
                 fontWeight: bold ? FontWeight.bold : FontWeight.normal),
             textAlign: TextAlign.left,
           ),
         ),
-        if (project.cuerpo != " ")
-          Container(
-            child: Text(
-              "${project.cuerpo}",
-              style: FlutterTheme.of(context).bodyText1,
-              textAlign: TextAlign.justify,
-            ),
-          ),
+        Flexible(
+            child: Container(
+                width: 552,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      (widget.index + 1).toString() + ". " + "${project.title}",
+                      overflow: TextOverflow.clip,
+                      style: FlutterTheme.of(context).bodyText1,
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "${project.year_place}",
+                      overflow: TextOverflow.clip,
+                      style: FlutterTheme.of(context).bodyText1,
+                      textAlign: TextAlign.left,
+                    ),
+                    Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Text(
+                          "${project.dataENG}",
+                          overflow: TextOverflow.clip,
+                          style: FlutterTheme.of(context).bodyText1,
+                          textAlign: TextAlign.left,
+                        )),
+                  ],
+                ))),
       ],
     );
   }
@@ -114,14 +141,8 @@ class _ProjectWidget extends State<ProjectWidget> {
             Container(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                 child: boldTitle(project.title)),
-            if (project.tit1 != " ") boldTitle(project.tit1),
-            if (project.bod1 != " ") bodyInf(project.bod1),
-            if (project.tit2 != " ") boldTitle(project.tit2),
-            if (project.bod2 != " ") bodyInf(project.bod2),
-            if (project.tit3 != " ") boldTitle(project.tit3),
-            if (project.bod3 != " ") bodyInf(project.bod3),
-            if (project.tit4 != " ") boldTitle(project.tit4),
-            if (project.bod4 != " ") bodyInf(project.bod4),
+            boldTitle(project.title),
+            bodyInf(project.descriptionENG),
           ],
         ));
   }

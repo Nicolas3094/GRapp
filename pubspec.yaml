@@ -74,39 +74,75 @@ flutter:
   assets:
     - assets/fonts/Heading_pro/
     - assets/fonts/QuattrocentoSans/
+    - assets/fonts/Ingram/
+    - assets/fonts/Neue-haas-grotesk/
+
     - assets/images/
     - assets/images/proyectosar/1/
     - assets/images/proyectosar/2/
+    - assets/images/proyectosar/3/
 
 
-    - assets/images/catalogo/BW43_La_causa_y_el_efecto/
+    - assets/images/catalogo/CAN YOU SMELL MATHS/golden arrow/
+    - assets/images/catalogo/CAN YOU SMELL MATHS/pink deer/
+    - assets/images/catalogo/CAN YOU SMELL MATHS/watermelon oryx/
+
+
     - assets/images/catalogo/Changetheobvious/
     - assets/images/catalogo/Crudelitatem/
     - assets/images/catalogo/DEMOCRITUS/
-    - assets/images/catalogo/EXCESSIVEBUTTER/
-    - assets/images/catalogo/IHAVEANTICIPATEDYOUII/
-    - assets/images/catalogo/NIMBLE/
-    - assets/images/catalogo/REDUCCIIONMURALIV/
-    - assets/images/catalogo/THATTHATISIS/
-    - assets/images/catalogo/THEORDINARYOFGOD/
-    - assets/images/catalogo/THETASTEOFSUPERLATIVE/
+    - assets/images/catalogo/EXCESSIVEBUTTER/X/
+    - assets/images/catalogo/EXCESSIVEBUTTER/Gallery Proof/
+
+    - assets/images/catalogo/IHAVEANTICIPATEDYOUII/II/
+    - assets/images/catalogo/IHAVEANTICIPATEDYOUII/III/
+    - assets/images/catalogo/IHAVEANTICIPATEDYOUII/V/
+
+    - assets/images/catalogo/NIMBLE/I/
+    - assets/images/catalogo/NIMBLE/IV/
+    - assets/images/catalogo/NIMBLE/VIII/
+    - assets/images/catalogo/NIMBLE/X/
+    - assets/images/catalogo/NIMBLE/XI/
+
+    - assets/images/catalogo/REDUCCIIONMURALIV/IV/
+    - assets/images/catalogo/REDUCCIIONMURALIV/X/
+
+    - assets/images/catalogo/THATTHATISIS/I/
+    - assets/images/catalogo/THATTHATISIS/II/
+    - assets/images/catalogo/THATTHATISIS/III/
+
     - assets/images/catalogo/Because_nothing/
-    
-    - assets/images/proyectos/COUP DE VILLE/
-    - assets/images/proyectos/CYCLES OF COLLAPSING/
-    - assets/images/proyectos/DEAD DEAD LIVE DEAD/
-    - assets/images/proyectos/GOLDEN HOUR/
-    - assets/images/proyectos/I MAY USE AN ELECTRIC DRILL/
-    - assets/images/proyectos/ICA/
-    - assets/images/proyectos/LA CUCHARA Y EL LADRILLO/
-    - assets/images/proyectos/NO SIGNALS CAN TRAVEL/
-    - assets/images/proyectos/ROOFTOP PLAYGROUND/
-    - assets/images/proyectos/THE DISCIPLINE OF THE CAVE/
-    - assets/images/proyectos/VIS VIVA/
-    - assets/images/proyectos/PROXIMIDAD/
+    - assets/images/catalogo/TO BE PRESERVED/
+    - assets/images/catalogo/SECCION AUREA/
+    - assets/images/catalogo/MUTILS UTILE/
+    - assets/images/catalogo/LAS COSAS QUE NOS PERTENECEN/CANDLE/
+    - assets/images/catalogo/LAS COSAS QUE NOS PERTENECEN/PARACHUTE/
+
+    - assets/images/catalogo/JUDICIS/
+    - assets/images/catalogo/THE SUN HAS BEEN REDUCED IN SIZE/
+    - assets/images/catalogo/FROM PITAGORAS TO PENROSE/
+    - assets/images/catalogo/FISH BEGIN TO STINK BY THE HEAD/Mirror sphere/
+    - assets/images/catalogo/FISH BEGIN TO STINK BY THE HEAD/Tsar Bomb/
+
+    - assets/images/proyectos/1. COUP DE VILLE/
+    - assets/images/proyectos/2. LA CUCHARA Y EL LADRILLO/
+    - assets/images/proyectos/3. VIS VIVA/
+    - assets/images/proyectos/4. DEAD DEAD LIVE DEAD/
+    - assets/images/proyectos/5. PROXIMIDAD/
+    - assets/images/proyectos/6. ROOFTOP PLAYGROUND/
+    - assets/images/proyectos/7. CYCLES OF COLLAPSING/
+    - assets/images/proyectos/8. GOLDEN HOUR/
+    - assets/images/proyectos/9. THE DISCIPLINE OF THE CAVE/
+    - assets/images/proyectos/10. NO SIGNALS CAN TRAVEL/
+    - assets/images/proyectos/11. I MAY USE AN ELECTRIC DRILL/
+    - assets/images/proyectos/12. Unity in Variety/
+    - assets/images/proyectos/13. HEY LOOK AT ME/
+    - assets/images/proyectos/14. La inclusion de mi raza/
+    - assets/images/proyectos/15. AN ANIMAL I AM/
 
     - jsonfile/
   fonts:
+    
     - family: QuattrocentroSans
       fonts:
         - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-Regular.ttf
@@ -158,3 +194,51 @@ flutter:
         - asset: assets/fonts/Heading_pro/Heading-Pro-Heavy-Italic-trial.ttf
           weight: 900
           style: italic
+
+    - family: Neue Haas Grotesk
+      fonts:
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-15UltTh.ttf
+          weight: 100
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-16UltThIt.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-25Th.ttf
+          weight: 200
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-26ThIt.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-35XLt.ttf
+          weight: 300
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-36XLtIt.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-45Lt.ttf
+          weight: 500
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-46LtIt.ttf
+          weight: 500
+          style: italic    
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-55Rg.ttf
+          weight: 600
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-56It.ttf
+          weight: 600
+          style: italic       
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-65Md.ttf
+          weight: 700
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-66MdIt.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-75Bd.ttf
+          weight: 800
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-76BdIt.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-95Blk.ttf
+          weight: 900
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-96BlkIt.ttf
+          weight: 900
+          style: italic
+
+    - family: Ingram
+      fonts:
+        - asset: assets/fonts/Ingram/Ingram-Mono-Regular.otf
+          weight: 500

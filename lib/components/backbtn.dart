@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:g_mcp/util/flutter_util.dart';
+
+import '../util/flutter_theme.dart';
 
 class BackBtn extends StatelessWidget {
   final double size;
@@ -7,12 +8,20 @@ class BackBtn extends StatelessWidget {
   BackBtn({this.size = 32, this.cl = Colors.black});
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      iconSize: size,
-      onPressed: () async => await Navigator.pop(context, true),
-      icon: const Icon(Icons.arrow_back_sharp),
-      color: cl,
-    );
+    return Row(children: [
+      IconButton(
+        iconSize: size,
+        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 0, 20),
+        constraints: BoxConstraints(),
+        onPressed: () async => await Navigator.pop(context, true),
+        icon: Image.asset("assets/images/Frame.png"),
+        color: cl,
+      ),
+      Container(
+        padding: EdgeInsetsDirectional.fromSTEB(19.64, 20, 0, 20),
+        child: Text("Back", style: FlutterTheme.of(context).title1),
+      )
+    ]);
   }
 }
 //await Navigator.pop(context, true);

@@ -28,16 +28,15 @@ abstract class FlutterTheme {
   Color lineColor;
 
   TextStyle get title1 => TextStyle(
-        fontFamily: 'Headingpro',
+        fontFamily: 'Neue Haas Grotesk',
         color: primaryText,
-        fontWeight: FontWeight.bold,
-        fontSize: _tablet || _tabletland ? 24 : 18,
+        fontWeight: FontWeight.w400,
+        fontSize: _tablet || _tabletland ? 14 : 14,
       );
   TextStyle get title2 => TextStyle(
-        fontFamily: 'Headingpro',
+        fontFamily: 'Neue Haas Grotesk',
         color: secondaryText,
-        fontWeight: FontWeight.bold,
-        fontStyle: FontStyle.italic,
+        fontWeight: FontWeight.w500,
         fontSize: _tablet || _tabletland ? 24 : 18,
       );
   TextStyle get subtitle1 => TextStyle(
@@ -54,17 +53,16 @@ abstract class FlutterTheme {
         fontSize: _tablet || _tabletland ? 22 : 16,
       );
   TextStyle get bodyText1 => TextStyle(
-        fontFamily: 'QuattrocentroSans',
+        fontFamily: 'Ingram',
         color: primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: _tablet || _tabletland ? 18 : 11,
+        fontSize: _tablet || _tabletland ? 14 : 14,
       );
   TextStyle get bodyText2 => TextStyle(
-        fontFamily: 'QuattrocentroSans',
+        fontFamily: 'Ingram',
         color: Colors.black,
         fontWeight: FontWeight.normal,
-        fontStyle: FontStyle.italic,
-        fontSize: _tablet || _tabletland ? 18 : 11,
+        fontSize: _tablet || _tabletland ? 8 : 8,
       );
   TextStyle get bodyText3 => TextStyle(
         fontFamily: 'QuattrocentroSans',

@@ -1,5 +1,6 @@
 import 'package:g_mcp/util/flutter_util.dart';
-import '../components/logobtn.dart';
+import '../components/appbar.dart';
+
 import '../components/backbtn.dart';
 import '../util/flutter_theme.dart';
 import 'package:flutter/material.dart';
@@ -46,89 +47,40 @@ class _GenericPageWidget extends State<GenericPageWidget>
     tabletland = responsiveVisibility(context: context, tabletLandscape: true);
 
     return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterTheme.of(context).primaryBtnText,
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsetsDirectional.fromSTEB(
-            tablet //start
-                ? 80
-                : tabletland
-                    ? 40
-                    : 30,
-            tablet || tabletland //top
-                ? 60
-                : phone
-                    ? 40
-                    : 20,
-            tablet //end
-                ? 100
-                : tabletland
-                    ? 40
-                    : 40,
-            tablet //bottom
-                ? 80
-                : tabletland
-                    ? 60
-                    : phone || phoneland
+        key: scaffoldKey,
+        appBar: BarApp(scaffoldKey: scaffoldKey),
+        backgroundColor: FlutterTheme.of(context).primaryBtnText,
+        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(
+            child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                padding: EdgeInsetsDirectional.fromSTEB(
+                    tablet //start
                         ? 20
-                        : 20),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(
-                      0,
-                      0,
-                      0,
-                      tablet || tabletland
-                          ? 40
-                          : phone
-                              ? 35
-                              : 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      BackBtn(
-                        size: 38,
-                      ),
-                      Center(
-                        child: LogoBtn(),
-                      )
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          tablet || tabletland ? 15 : 10,
-                          0,
-                          0,
-                          tablet || tabletland ? 40 : 10),
-                      child: Text(
-                        "${widget.title}",
-                        style: FlutterTheme.of(context).title1,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Expanded(
-                child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                    child: Container(child: widget.widg))),
-          ],
-        ),
-      ),
-    );
+                        : tabletland
+                            ? 20
+                            : 14,
+                    tablet || tabletland //top
+                        ? 20
+                        : phone
+                            ? 40
+                            : 20,
+                    tablet //end
+                        ? 20
+                        : tabletland
+                            ? 40
+                            : 40,
+                    tablet //bottom
+                        ? 0
+                        : tabletland
+                            ? 20
+                            : phone || phoneland
+                                ? 14
+                                : 20),
+                child: widget.widg),
+          ),
+          BackBtn()
+        ]));
   }
 }

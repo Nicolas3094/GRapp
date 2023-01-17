@@ -40,34 +40,10 @@ class _DataCategoryWidgetState extends State<DataCategoryWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
           child: Text(
-            "${widget.actualCatg.data}",
+            "${widget.actualCatg.descriptionENG}",
             style: FlutterTheme.of(context).bodyText1,
           ),
-        ),
-        if (widget.actualCatg.info1 != " ")
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-            child: Text(
-              "${widget.actualCatg.info1}",
-              style: FlutterTheme.of(context).bodyText1,
-            ),
-          ),
-        if (widget.actualCatg.info2 != " ")
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-            child: Text(
-              "${widget.actualCatg.info2}",
-              style: FlutterTheme.of(context).bodyText1,
-            ),
-          ),
-        if (widget.actualCatg.info3 != " ")
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-            child: Text(
-              "${widget.actualCatg.info3}",
-              style: FlutterTheme.of(context).bodyText1,
-            ),
-          ),
+        )
       ],
     );
   }

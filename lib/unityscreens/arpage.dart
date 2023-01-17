@@ -1,11 +1,13 @@
 import 'package:g_mcp/Models/project.dart';
 
 import 'package:flutter/material.dart';
-import 'package:g_mcp/components/loaderspinner.dart';
 import 'package:g_mcp/index.dart';
+import 'package:g_mcp/unityscreens/single_ar_page.dart';
 
+import '../components/loaderspinner.dart';
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
+import 'simple_screen.dart';
 
 class ARPageWidget extends StatefulWidget {
   const ARPageWidget({Key key}) : super(key: key);
@@ -46,158 +48,71 @@ class _ARPageWidget extends State<ARPageWidget> {
         if (data.hasError) {
           return Center(child: Text("Error: ${data.error}"));
         } else if (data.hasData) {
+          int len;
           _arprojects = data.data as List<Project>;
-          return ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: _arprojects.length,
-              shrinkWrap: true,
-              padding:
-                  EdgeInsetsDirectional.fromSTEB(tablet ? 5 : 0, 10, 0, 20),
-              itemBuilder: (context, index) {
-                return InkWell(
-                    onTap: () async {
-                      await showDataAlert(_arprojects[index]);
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                            type: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                            child: SimpleScreen(
-                              sceneID: index + 1,
-                            )),
-                      );
-                    },
-                    child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0, 10, 0, phone ? 20 : 40),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              alignment: Alignment.bottomLeft,
+          len = _arprojects.length;
+          List<int> _items = List.generate(len, (i) => i);
+
+          return Wrap(
+            spacing: 11,
+            runSpacing: 11,
+            direction: Axis.horizontal,
+            alignment: WrapAlignment.start,
+            children: [
+              for (var i in _items)
+                Container(
+                  width: MediaQuery.of(context).size.width / 6,
+                  height: MediaQuery.of(context).size.height / 4,
+                  child: InkWell(
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                              child: GenericPageWidget(
+                                title: "AR",
+                                widg: SingleARPageWidget(
+                                  structt: _arprojects[i],
+                                  initIndex: 3 - i,
+                                ),
+                              )),
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                              child: Image.asset(_arprojects[i].dir + "1.jpg")),
+                          Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                              width: MediaQuery.of(context).size.width *
-                                  (tablet ? 0.4 : 0.6),
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(_arprojects[index].dir +
-                                          (index == 0 ? "1.jpeg" : "1.png")))),
-                            ),
-                            Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: Text("${_arprojects[index].title}",
-                                    style: FlutterTheme.of(context)
-                                        .title1
-                                        .override(
-                                            fontStyle: FontStyle.italic,
-                                            fontSize: tablet ? 22 : 14))),
-                            Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
-                                child: Text(
-                                  "${_arprojects[index].lugar}",
-                                  style: FlutterTheme.of(context)
-                                      .bodyText1
-                                      .override(fontWeight: FontWeight.bold),
-                                )),
-                            if (_arprojects[index].subtitulo != " ")
-                              Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
-                                  child: Text("${_arprojects[index].subtitulo}",
-                                      style: FlutterTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                              fontStyle: FontStyle.italic)))
-                          ],
-                        )));
-              });
+                                  EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),
+                              child: Row(
+                                children: [
+                                  Text((i + 1).toString() + ".",
+                                      style:
+                                          FlutterTheme.of(context).bodyText2),
+                                  Text("(${_arprojects[i].year})",
+                                      style:
+                                          FlutterTheme.of(context).bodyText2),
+                                ],
+                              )),
+                          Flexible(
+                              child: Text(
+                            "${_arprojects[i].title}",
+                            style: FlutterTheme.of(context).bodyText2,
+                            overflow: TextOverflow.fade,
+                          )),
+                        ],
+                      )),
+                ),
+            ],
+          );
         } else {
           return LoaderSpinner();
         }
       },
     );
   }
-
-  Future<void> showDataAlert(Project project) => showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: Color.fromARGB(230, 255, 255, 255),
-          contentPadding:
-              EdgeInsets.only(top: pad, bottom: pad, left: pad, right: pad),
-          content: Container(
-            height: tablet || tabletland
-                ? MediaQuery.of(context).size.width * 0.6
-                : MediaQuery.of(context).size.height * 0.35,
-            width: MediaQuery.of(context).size.width *
-                (tablet || tabletland ? 0.55 : 0.6),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    padding: EdgeInsetsDirectional.fromSTEB(
-                        0,
-                        tablet || tabletland ? 40 : 20,
-                        0,
-                        tablet || tabletland ? 40 : 20),
-                    child: boldTitle(project.title),
-                  ),
-                  Container(
-                    padding: EdgeInsetsDirectional.fromSTEB(
-                        0, 0, 0, tablet || tabletland ? 40 : 20),
-                    child: boldSubTitle(project.cuerpo),
-                  ),
-                  if (project.tit1 != " ") bodyInf(project.tit1),
-                  if (project.tit2 != " ") bodyInf(project.tit2),
-                  if (project.tit3 != " ") bodyInf(project.tit3),
-                  if (project.tit4 != " ") bodyInf(project.tit4),
-                  if (project.bod4 != " ")
-                    Container(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          0, tablet || tabletland ? 40 : 20, 0, 0),
-                      child: bodyBld(project.bod4),
-                    )
-                ],
-              ),
-            ),
-          ),
-        );
-      });
-  Widget boldTitle(String dat) => Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-      child: Text("${dat}",
-          textAlign: TextAlign.justify,
-          style: FlutterTheme.of(context).title1.override(
-              fontStyle: FontStyle.italic, fontSize: tablet ? 22 : 14)));
-  Widget boldSubTitle(String dat) => Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-      child: Text("${dat}",
-          textAlign: TextAlign.justify,
-          style: FlutterTheme.of(context).bodyText1.override(
-              fontWeight: FontWeight.bold, fontSize: tablet ? 18 : 14)));
-  Widget bodyInf(String dat) => Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 1.5, 0, 10),
-      child: Text(
-        "${dat}",
-        textAlign: TextAlign.justify,
-        style: FlutterTheme.of(context).bodyText1,
-      ));
-  Widget bodyBld(String dat) => Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 1.5, 0, 10),
-      child: Text(
-        "${dat}",
-        textAlign: TextAlign.justify,
-        style: FlutterTheme.of(context)
-            .bodyText1
-            .override(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
-      ));
 }
