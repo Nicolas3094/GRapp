@@ -75,7 +75,7 @@ class _ProjectWidget extends State<ProjectWidget> {
                     Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                         child: Text(
-                          "${project.dataENG}",
+                          "${FFLocalizations.of(context).locale.languageCode == "es" ? project.dataESP : project.dataENG}",
                           overflow: TextOverflow.clip,
                           style: FlutterTheme.of(context).bodyText1,
                           textAlign: TextAlign.left,
@@ -142,7 +142,9 @@ class _ProjectWidget extends State<ProjectWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                 child: boldTitle(project.title)),
             boldTitle(project.title),
-            bodyInf(project.descriptionENG),
+            bodyInf(FFLocalizations.of(context).locale.languageCode == "es"
+                ? project.descriptionESP
+                : project.descriptionENG),
           ],
         ));
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../util/flutter_theme.dart';
+import '../util/internationalization.dart';
 
 class BackBtn extends StatelessWidget {
   final double size;
@@ -19,10 +20,12 @@ class BackBtn extends StatelessWidget {
       ),
       Container(
         padding: EdgeInsetsDirectional.fromSTEB(19.64, 20, 0, 20),
-        child: Text("Back", style: FlutterTheme.of(context).title1),
+        child: Text(
+            FFLocalizations.of(context).locale.languageCode == "es"
+                ? "Atrás"
+                : "Back",
+            style: FlutterTheme.of(context).title1),
       )
     ]);
   }
 }
-//await Navigator.pop(context, true);
-

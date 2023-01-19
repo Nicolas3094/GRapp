@@ -46,273 +46,56 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '4vb80p5u': {
       'en': 'Home',
-      'es': '',
+      'es': 'Inicio',
     },
   },
-  // BIOPAGE
+  // Projects
   {
-    'z43j2gsn': {
-      'en': 'Home',
-      'es': '',
+    'Projects': {
+      'en': 'Projects',
+      'es': 'Proyectos',
     },
   },
-  // CATcero
+  // Catalogue
   {
     'w1j9xq7t': {
-      'en': 'Home',
-      'es': '',
+      'en': 'Catalogue',
+      'es': 'Catalogo',
     },
   },
-  // CATceroImgs
+  // Bio
   {
     'rx0220np': {
-      'en': 'Home',
-      'es': '',
+      'en': 'Bio',
+      'es': 'Bio',
     },
   },
-  // CAT1
+  // AR
   {
     'v4b9xhzw': {
-      'en': 'Home',
-      'es': '',
+      'en': 'AR',
+      'es': 'AR',
     },
   },
-  // CAT2
+  // Collectors
   {
     'ozkeslzw': {
-      'en': 'Home',
-      'es': '',
+      'en': 'Collectors',
+      'es': 'Coleccionistas',
     },
   },
-  // CAT3
+  // Press
   {
     '7qqisvlq': {
-      'en': 'Home',
-      'es': '',
+      'en': 'Press',
+      'es': 'Prensa',
     },
   },
-  // CAT4
+  // Contact
   {
     'a7yefkbw': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT5
-  {
-    '55rjbm0a': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT6
-  {
-    '7qsb5rgd': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT7
-  {
-    'iozu4xeb': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT8
-  {
-    '6bc77o6t': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT9
-  {
-    'fdn1gjgi': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT10
-  {
-    'zkx5tiqg': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT11
-  {
-    'je44hh82': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT1Imgs
-  {
-    'nq2m240y': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT2Imgs
-  {
-    'ctcnzuk0': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT3Img
-  {
-    'e0jbxxxq': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT4Img
-  {
-    'rd6pshyz': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT5Img
-  {
-    'yd6tqxdg': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT6Img
-  {
-    '6uarzjsh': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT7Img
-  {
-    'acoxa0fn': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT8Img
-  {
-    'jxr63bv3': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT9Img
-  {
-    'sbidsodv': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT10Img
-  {
-    'hobrtn1g': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // CAT11Img
-  {
-    'ohx1msah': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJECTSPG
-  {
-    'zimjlqc6': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ0Imgs
-  {
-    'k8r6lk7u': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ1Imgs
-  {
-    'n0hkerc2': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ2Imgs
-  {
-    'q47l5wyg': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ3Imgs
-  {
-    'fpt6b4we': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ4Imgs
-  {
-    'm7aze9v1': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ5Imgs
-  {
-    'd19rhzns': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ6Img
-  {
-    'kz544sx4': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ7Imgs
-  {
-    'f5wq4qyi': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ8Imgs
-  {
-    '6mqw5rsk': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ9Imgs
-  {
-    'mk2udxos': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ10Imgs
-  {
-    'sedtgjl7': {
-      'en': 'Home',
-      'es': '',
-    },
-  },
-  // PROJ11Imgs
-  {
-    '1fpcn3mm': {
-      'en': 'Home',
-      'es': '',
+      'en': 'Contact',
+      'es': 'Contacto',
     },
   },
 ].reduce((a, b) => a..addAll(b));

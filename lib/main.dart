@@ -6,7 +6,6 @@ import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   FFAppState(); // Initialize FFAppState
 
   runApp(MyApp());
@@ -29,6 +28,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     FFAppState.readJsonBio().then((value) => FFAppState.setBio(value));
     super.initState();
+
+    _locale = Locale.fromSubtags(languageCode: "en");
   }
 
   @override

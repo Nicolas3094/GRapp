@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:g_mcp/Models/infostructure.dart';
 import 'package:g_mcp/Models/project.dart';
-import 'package:g_mcp/components/projectwidget%20.dart';
 import 'package:g_mcp/index.dart';
 import '../components/loaderspinner.dart';
 import '../util/flutter_theme.dart';
@@ -17,9 +16,7 @@ class SingleARPageWidget extends StatefulWidget {
 }
 
 class _SingleARPageWidget extends State<SingleARPageWidget> {
-  bool _loading = true;
   int lenimgs;
-  String _name;
   @override
   void initState() {
     super.initState();
@@ -52,7 +49,9 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
         Flexible(
             child: Container(
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
-          child: Text(struct.dataENG),
+          child: Text(FFLocalizations.of(context).locale.languageCode == "es"
+              ? struct.dataESP
+              : struct.dataENG),
         )),
         Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
@@ -61,7 +60,9 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 navBtn(
-                    "EXPERIENCE",
+                    FFLocalizations.of(context).locale.languageCode == "es"
+                        ? "EXPERIENCIA"
+                        : "EXPERIENCE",
                     SimpleScreen(
                       sceneID: widget.initIndex,
                     ),

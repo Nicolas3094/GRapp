@@ -53,68 +53,81 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
     tabletland = responsiveVisibility(context: context, tabletLandscape: true);
     return Scaffold(
-      key: _scaffoldKey,
-      appBar: BarApp(scaffoldKey: _scaffoldKey),
-      drawer: Drawer(
-          child: Padding(
-              padding:
-                  EdgeInsetsDirectional.fromSTEB(20, !phoneland ? 40 : 0, 0, 0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MenuW.Home(context),
-                    MenuW.Projects(context),
-                    MenuW.Catalogue(context),
-                    MenuW.Bio(context),
-                    MenuW.Web(context),
-                    MenuW.AR(context),
-                    MenuW.Collectors(context),
-                    MenuW.Press(context),
-                    Container(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                    ),
-                    MenuW.Lang(context),
-                    MenuW.Instagram(context),
-                    MenuW.Contact(context)
-                  ],
-                ),
-              ))),
-      body: Center(
+        key: _scaffoldKey,
+        appBar: BarApp(scaffoldKey: _scaffoldKey),
+        drawer: Drawer(
+            child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(
+                    20, !phoneland ? 40 : 0, 0, 0),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      MenuW.Home(context),
+                      MenuW.Projects(context),
+                      MenuW.Catalogue(context),
+                      MenuW.Bio(context),
+                      MenuW.Web(context),
+                      MenuW.AR(context),
+                      MenuW.Collectors(context),
+                      MenuW.Press(context),
+                      Container(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                      ),
+                      MenuW.Lang(context),
+                      MenuW.Instagram(context),
+                      MenuW.Contact(context)
+                    ],
+                  ),
+                ))),
+        body: Center(
+            child: tablet || tabletland
+                ? homewidg(context)
+                : SingleChildScrollView(child: homewidg(context))));
+  }
+
+  Widget homewidg(BuildContext context) => Expanded(
         child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
             color: Colors.white,
             child: Center(
               child: _load
                   ? LoaderSpinner()
                   : Container(
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
+                      height: MediaQuery.of(context).size.height *
+                          (tablet || tabletland
+                              ? 1
+                              : phone
+                                  ? 1.4
+                                  : 1),
                       decoration: BoxDecoration(
                           image: DecorationImage(
+                              alignment: Alignment.topCenter,
                               image: AssetImage(
                                   'assets/images/${tablet || tabletland ? "menutablet2.jpg" : "menuiphone.jpg"}'),
                               fit: tablet || tabletland
                                   ? BoxFit.fitHeight
-                                  : BoxFit.fitHeight)),
+                                  : phone
+                                      ? BoxFit.fitWidth
+                                      : BoxFit.fitHeight)),
                       child: Stack(
                         children: [
                           CreatBtn(
                               tablet
-                                  ? 0.154
+                                  ? 0.164
                                   : tabletland
-                                      ? 0.14
+                                      ? 0.16
                                       : phone
-                                          ? 0.07
+                                          ? 0.17
                                           : 0.03,
                               tablet
                                   ? 0.1
                                   : phoneland
                                       ? 0.42
                                       : phone
-                                          ? 0.17
+                                          ? 0.1
                                           : 0.27,
                               "",
                               tablet
@@ -122,15 +135,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   : tabletland
                                       ? 190
                                       : phone
-                                          ? 130
+                                          ? 140
                                           : 70,
                               tablet
-                                  ? 380
+                                  ? 400
                                   : tabletland
-                                      ? 180
+                                      ? 340
                                       : phone
-                                          ? 180
-                                          : 80,
+                                          ? 250
+                                          : 120,
                               100,
                               GenericPageWidget(
                                   title: "PROJECTS & EXHIBITIONS",
@@ -139,16 +152,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   ))),
                           CreatBtn(
                               tablet
-                                  ? 0.34
+                                  ? 0.38
                                   : phone
-                                      ? 0.3
+                                      ? 0.5
                                       : tabletland
                                           ? 0.35
-                                          : 0.25,
+                                          : 0.335,
                               tablet
                                   ? 0.36
                                   : phone
-                                      ? 0.225
+                                      ? 0.16
                                       : tabletland
                                           ? 0.435
                                           : 0.44,
@@ -156,15 +169,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               phoneland
                                   ? 50
                                   : tablet
-                                      ? 170
-                                      : 120,
+                                      ? 200
+                                      : 140,
                               tablet
                                   ? 230
                                   : phoneland
                                       ? 60
                                       : tabletland
-                                          ? 140
-                                          : 130,
+                                          ? 220
+                                          : 170,
                               100,
                               GenericPageWidget(
                                 title: "BIO",
@@ -174,59 +187,69 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               tablet
                                   ? 0.69
                                   : tabletland
-                                      ? 0.65
+                                      ? 0.69
                                       : phone
-                                          ? 0.75
-                                          : 0.69,
+                                          ? 1.15
+                                          : 0.8,
                               tablet
                                   ? 0.37
                                   : tabletland
-                                      ? 0.42
+                                      ? 0.44
                                       : phone
-                                          ? 0.399
+                                          ? 0.379
                                           : 0.475,
                               "Collectors",
                               tablet
-                                  ? 180
+                                  ? 210
                                   : phone
-                                      ? 90
-                                      : 50,
+                                      ? 120
+                                      : phoneland
+                                          ? 50
+                                          : 150,
                               tablet
-                                  ? 180
+                                  ? 250
                                   : tabletland
-                                      ? 140
+                                      ? 180
                                       : phone
-                                          ? 80
+                                          ? 120
                                           : 50,
                               100,
-                              null),
+                              HomePageWidget()),
                           CreatBtn(
                               tablet
-                                  ? 0.5
+                                  ? 0.55
                                   : tabletland
-                                      ? 0.4
+                                      ? 0.47
                                       : phone
-                                          ? 0.57
-                                          : 0.41,
+                                          ? 0.64
+                                          : 0.5,
                               tablet
-                                  ? 0.64
+                                  ? 0.68
                                   : tabletland
-                                      ? 0.56
+                                      ? 0.58
                                       : phone
-                                          ? 0.55
+                                          ? 0.45
                                           : 0.5,
                               "WEB",
-                              tablet || tabletland ? 200 : 45,
-                              tablet || tabletland ? 400 : 105,
+                              tablet || tabletland
+                                  ? 200
+                                  : phone
+                                      ? 160
+                                      : 45,
+                              tablet || tabletland
+                                  ? 400
+                                  : phone
+                                      ? 370
+                                      : 105,
                               100,
                               BiopageWidget()),
                           createDownBtn(
                               tablet
                                   ? 0.21
                                   : tabletland
-                                      ? 0.21
+                                      ? 0.2
                                       : phone
-                                          ? 0.2
+                                          ? 0.3
                                           : 0.18,
                               tablet
                                   ? 0.625
@@ -239,15 +262,17 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               tablet
                                   ? 280
                                   : phone
-                                      ? 90
-                                      : 50,
+                                      ? 150
+                                      : phoneland
+                                          ? 50
+                                          : 200,
                               tablet
-                                  ? 250
+                                  ? 300
                                   : phoneland
                                       ? 70
                                       : phone
-                                          ? 120
-                                          : 180,
+                                          ? 200
+                                          : 240,
                               100,
                               GenericPageWidget(
                                   title: "CATALOGUE",
@@ -258,28 +283,32 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               tablet
                                   ? 0.6
                                   : tabletland
-                                      ? 0.6
+                                      ? 0.56
                                       : phone
-                                          ? 0.61
-                                          : 0.6,
+                                          ? 0.95
+                                          : 0.64,
                               tablet
                                   ? 0.1
                                   : phoneland
                                       ? 0.435
                                       : phone
-                                          ? 0.25
+                                          ? 0.12
                                           : 0.25,
                               "",
                               tablet
-                                  ? 200
+                                  ? 220
                                   : phoneland
-                                      ? 60
-                                      : 100,
+                                      ? 50
+                                      : phone
+                                          ? 130
+                                          : 220,
                               tablet
-                                  ? 200
+                                  ? 250
                                   : phoneland
                                       ? 60
-                                      : 120,
+                                      : phone
+                                          ? 150
+                                          : 230,
                               100,
                               GenericPageWidget(
                                 title: "AR EXPERIENCES",
@@ -289,10 +318,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       ),
                     ),
             )),
-      ),
-    );
-  }
-
+      );
   Widget CreatBtn(double top, double left, String txt, double w, double h,
           double botpad, Widget widg) =>
       Positioned(

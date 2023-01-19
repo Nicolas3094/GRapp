@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:g_mcp/Models/menus.dart';
 import 'package:g_mcp/components/proyects_list_widget.dart';
+import 'package:g_mcp/main.dart';
 
 import '../biopage/biopage_widget.dart';
 import '../genericpage/genericpage_widget.dart';
+import '../home_page/home_page_widget.dart';
 import '../unityscreens/arpage.dart';
-import '../unityscreens/simple_screen.dart';
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
 
@@ -67,6 +68,7 @@ class _BarApp extends State<BarApp> {
     bool tabletland =
         responsiveVisibility(context: context, tabletLandscape: true);
     context = context;
+
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
@@ -82,7 +84,7 @@ class _BarApp extends State<BarApp> {
                 children: [
                   MenuW.Home(context),
                   navBtn(
-                      "01 Projects",
+                      "01 " + FFLocalizations.of(context).getText("Projects"),
                       GenericPageWidget(
                           title: "PROJECTS & EXHIBITIONS",
                           widg: ProyectsListWidget(
@@ -90,7 +92,7 @@ class _BarApp extends State<BarApp> {
                           )),
                       context),
                   navBtn(
-                      "02 Catalogue",
+                      "02 " + FFLocalizations.of(context).getText("w1j9xq7t"),
                       GenericPageWidget(
                           title: "CATALOGUE",
                           widg: ProyectsListWidget(
@@ -98,7 +100,7 @@ class _BarApp extends State<BarApp> {
                           )),
                       context),
                   navBtn(
-                      "03 Bio",
+                      "03 " + FFLocalizations.of(context).getText("rx0220np"),
                       GenericPageWidget(
                         title: "BIO",
                         widg: BiopageWidget(),
@@ -112,8 +114,14 @@ class _BarApp extends State<BarApp> {
                         widg: ARPageWidget(),
                       ),
                       context),
-                  navBtn("06 Collectors", SimpleScreen(sceneID: 3), context),
-                  navBtn("07 Press", (null), context),
+                  navBtn(
+                      "06 " + FFLocalizations.of(context).getText("ozkeslzw"),
+                      HomePageWidget(),
+                      context),
+                  navBtn(
+                      "07 " + FFLocalizations.of(context).getText("7qqisvlq"),
+                      HomePageWidget(),
+                      context),
                 ],
               ))
           : Container(
@@ -127,14 +135,23 @@ class _BarApp extends State<BarApp> {
                 ],
               )),
       actions: [
-        if (tablet || tabletland) actBtn("ESP/ENG", () => null, context),
+        if (tablet || tabletland)
+          actBtn(
+              "ESP/ENG",
+              () => MyApp.of(context).setLocale(Locale.fromSubtags(
+                  languageCode:
+                      FFLocalizations.of(context).locale.languageCode == "es"
+                          ? "en"
+                          : "es")),
+              context),
         if (tablet || tabletland)
           navBtnLink("Instagram",
               "https://www.instagram.com/galerieperrotin/?hl=es-la", context),
         if (tablet || tabletland)
           Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-              child: actBtn("Contact", () => null, context))
+              child: actBtn(FFLocalizations.of(context).getText("a7yefkbw"),
+                  () => null, context))
       ],
     );
   }
