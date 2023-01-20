@@ -69,7 +69,11 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
                     context)
               ],
             )),
-        Container(child: Image.asset(struct.dir + "1.jpg")),
+        Expanded(
+            flex: 4,
+            child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: Image.asset(struct.dir + "1.jpg"))),
       ],
     );
   }

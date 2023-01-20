@@ -25,7 +25,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-        Duration(milliseconds: 3000),
+        Duration(milliseconds: 5000),
         () => setState((() {
               loading = false;
               if (!FFAppState.getFirstSplash() && Platform.isIOS) {

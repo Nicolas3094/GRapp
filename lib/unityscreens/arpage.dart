@@ -83,8 +83,10 @@ class _ARPageWidget extends State<ARPageWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Container(
-                              child: Image.asset(_arprojects[i].dir + "1.jpg")),
+                          Expanded(
+                              child: Container(
+                                  child: Image.asset(
+                                      _arprojects[i].dir + "1.jpg"))),
                           Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),

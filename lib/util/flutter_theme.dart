@@ -31,7 +31,7 @@ abstract class FlutterTheme {
         fontFamily: 'Neue Haas Grotesk',
         color: primaryText,
         fontWeight: FontWeight.w400,
-        fontSize: _tablet || _tabletland ? 14 : 14,
+        fontSize: _tablet || _tabletland ? 12 : 14,
       );
   TextStyle get title2 => TextStyle(
         fontFamily: 'Neue Haas Grotesk',
