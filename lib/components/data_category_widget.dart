@@ -40,7 +40,7 @@ class _DataCategoryWidgetState extends State<DataCategoryWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
           child: Text(
-            "${FFLocalizations.of(context).locale.languageCode == "es" ? widget.actualCatg.descriptionESP : widget.actualCatg.descriptionENG}",
+            "${FFLocalizations.of(context).locale.languageCode == "es" ? widget.actualCatg.dataESP : widget.actualCatg.dataESP}",
             style: FlutterTheme.of(context).bodyText1,
           ),
         )

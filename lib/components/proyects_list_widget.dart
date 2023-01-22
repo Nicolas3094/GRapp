@@ -117,10 +117,14 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                  child: Image.asset((widget.isProject
-                                          ? _projects[i].dir
-                                          : _catalogues[i].dir) +
-                                      "1.jpg")),
+                                  child: Image.asset(
+                                (widget.isProject
+                                        ? _projects[i].dir
+                                        : _catalogues[i].dir) +
+                                    "1.jpg",
+                                cacheHeight: 100,
+                                cacheWidth: 100,
+                              )),
                               Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 13, 0, 0),

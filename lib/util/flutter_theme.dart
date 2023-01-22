@@ -56,7 +56,7 @@ abstract class FlutterTheme {
         fontFamily: 'Ingram',
         color: primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: _tablet || _tabletland ? 14 : 14,
+        fontSize: _tablet || _tabletland ? 14 : 7,
       );
   TextStyle get bodyText2 => TextStyle(
         fontFamily: 'Ingram',

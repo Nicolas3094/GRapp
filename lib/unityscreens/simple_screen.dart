@@ -119,14 +119,14 @@ class _SimpleScreenState extends State<SimpleScreen> {
   }
 
   void onUnityMessage(message) {
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       _unityWidgetController.postMessage(
           "ExitController", "SetScene", widget.sceneID.toString());
     });
   }
 
   void onUnitySceneLoaded(scene) {
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       _unityWidgetController.postMessage(
           "ExitController", "SetScene", widget.sceneID.toString());
     });
