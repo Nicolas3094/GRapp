@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:g_mcp/components/loaderspinner.dart';
-import 'util/flutter_util.dart';
-import 'index.dart';
-//import 'package:firebase_core/firebase_core.dart';
+import 'package:g_mcp/services/catalogue_service.dart';
 
-Future<void> main() async {
+import 'components/loaderspinner.dart';
+import 'util/flutter_util.dart';
+import 'util/internationalization.dart';
+import 'index.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   FFAppState(); // Initialize FFAppState
+
   runApp(MyApp());
 }
 
@@ -21,21 +30,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  //final Future<FirebaseApp> _fbapp = Firebase.initializeApp();
+  Future<List<String>> futureFiles;
+
+  Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
   bool displaySplashImage = false;
+
+  _asyncMethod() async {}
+
   @override
   void initState() {
     FFAppState.readJsonBio().then((value) => FFAppState.setBio(value));
+    _asyncMethod();
     super.initState();
-
-    //_fbapp.whenComplete(() {
-    Future.delayed(const Duration(milliseconds: 1500), () {
-      setState(() {
-        displaySplashImage = true;
-      });
-    });
-    // });
+    _locale = Locale.fromSubtags(languageCode: "en");
   }
 
   @override
@@ -43,6 +51,7 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
+  void setLocale(Locale value) => setState(() => _locale = value);
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
       });
@@ -53,17 +62,18 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Gabriel Rico Estudio',
         localizationsDelegates: [
+          FFLocalizationsDelegate(),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
+        locale: _locale,
+        supportedLocales: const [
+          Locale('en', ''),
+          Locale('es', ''),
+        ],
         theme: ThemeData(brightness: Brightness.light),
         themeMode: _themeMode,
-        home: !displaySplashImage
-            ? LoaderSpinner(
-                h: 129,
-                w: 129,
-              )
-            : HomePageWidget());
+        home: HomePageWidget());
   }
 }

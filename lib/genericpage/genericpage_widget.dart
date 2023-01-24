@@ -1,5 +1,7 @@
 import 'package:g_mcp/util/flutter_util.dart';
-import '../components/logobtn.dart';
+import '../Models/menus.dart';
+import '../components/appbar.dart';
+
 import '../components/backbtn.dart';
 import '../util/flutter_theme.dart';
 import 'package:flutter/material.dart';
@@ -46,83 +48,67 @@ class _GenericPageWidget extends State<GenericPageWidget>
     tabletland = responsiveVisibility(context: context, tabletLandscape: true);
 
     return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterTheme.of(context).primaryBtnText,
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsetsDirectional.fromSTEB(
-            tablet || tabletland ? 80 : 30,
-            tablet || tabletland
-                ? 60
-                : phone
-                    ? 40
-                    : 40,
-            tablet || tabletland ? 100 : 40,
-            tablet
-                ? 80
-                : tabletland
-                    ? 60
-                    : phone || phoneland
-                        ? 20
-                        : 20),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(
-                      0,
-                      0,
-                      0,
-                      tablet || tabletland
-                          ? 40
-                          : phone
-                              ? 35
-                              : 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        key: scaffoldKey,
+        appBar: BarApp(scaffoldKey: scaffoldKey),
+        backgroundColor: FlutterTheme.of(context).primaryBtnText,
+        drawer: Drawer(
+            child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(
+                    20, !phoneland ? 40 : 0, 0, 0),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      BackBtn(
-                        size: 38,
+                      MenuW.Home(context),
+                      MenuW.Projects(context),
+                      MenuW.Catalogue(context),
+                      MenuW.Bio(context),
+                      MenuW.Web(context),
+                      MenuW.AR(context),
+                      MenuW.Collectors(context),
+                      MenuW.Press(context),
+                      Container(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                       ),
-                      LogoBtn(),
+                      MenuW.Lang(context),
+                      MenuW.Instagram(context),
+                      MenuW.Contact(context)
                     ],
                   ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
-                      child: Text(
-                        "${widget.title}",
-                        style: FlutterTheme.of(context).title1,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Expanded(
-                child: Container(
-                    padding: EdgeInsetsDirectional.fromSTEB(
-                        10,
-                        phone
+                ))),
+        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(
+            child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                padding: EdgeInsetsDirectional.fromSTEB(
+                    tablet //start
+                        ? 20
+                        : tabletland
                             ? 20
-                            : phoneland
-                                ? 0
-                                : 20,
-                        0,
-                        0),
-                    child: widget.widg)),
-          ],
-        ),
-      ),
-    );
+                            : 14,
+                    tablet || tabletland //top
+                        ? 20
+                        : phone
+                            ? 40
+                            : 20,
+                    tablet //end
+                        ? 20
+                        : tabletland
+                            ? 40
+                            : 40,
+                    tablet //bottom
+                        ? 0
+                        : tabletland
+                            ? 20
+                            : phone || phoneland
+                                ? 14
+                                : 20),
+                child: widget.widg),
+          ),
+          BackBtn()
+        ]));
   }
 }

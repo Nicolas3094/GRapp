@@ -1,6 +1,13 @@
+import 'dart:ffi';
+
 abstract class InfoStructure {
   String idStructure;
   String title;
+  int year;
   String dir;
-  List<dynamic> images;
+  String dataENG;
+  String dataESP;
+  String descriptionENG;
+  String descriptionESP;
+  List<String> images;
 }

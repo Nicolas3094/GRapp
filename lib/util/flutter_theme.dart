@@ -1,6 +1,7 @@
 // ignore_for_file: overridden_fields, annotate_overrides
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'flutter_util.dart';
 
@@ -27,43 +28,41 @@ abstract class FlutterTheme {
   Color lineColor;
 
   TextStyle get title1 => TextStyle(
-        fontFamily: 'Headingpro',
+        fontFamily: 'Neue Haas Grotesk',
         color: primaryText,
-        fontWeight: FontWeight.bold,
-        fontSize: _tablet || _tabletland ? 24 : 16,
+        fontWeight: FontWeight.w400,
+        fontSize: _tablet || _tabletland ? 12 : 14,
       );
   TextStyle get title2 => TextStyle(
-        fontFamily: 'Headingpro',
+        fontFamily: 'Neue Haas Grotesk',
         color: secondaryText,
-        fontWeight: FontWeight.bold,
-        fontStyle: FontStyle.italic,
-        fontSize: _tablet || _tabletland ? 24 : 16,
+        fontWeight: FontWeight.w500,
+        fontSize: _tablet || _tabletland ? 24 : 18,
       );
   TextStyle get subtitle1 => TextStyle(
         fontFamily: 'QuattrocentroSans',
         color: primaryText,
         fontWeight: FontWeight.bold,
-        fontSize: _tablet || _tabletland ? 24 : 16,
+        fontSize: _tablet || _tabletland ? 24 : 18,
       );
   TextStyle get subtitle2 => TextStyle(
         fontFamily: 'QuattrocentroSans',
         color: secondaryText,
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.italic,
-        fontSize: _tablet || _tabletland ? 22 : 14,
+        fontSize: _tablet || _tabletland ? 22 : 16,
       );
   TextStyle get bodyText1 => TextStyle(
-        fontFamily: 'QuattrocentroSans',
+        fontFamily: 'Ingram',
         color: primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: _tablet || _tabletland ? 18 : 10,
+        fontSize: _tablet || _tabletland ? 14 : 7,
       );
   TextStyle get bodyText2 => TextStyle(
-        fontFamily: 'QuattrocentroSans',
+        fontFamily: 'Ingram',
         color: Colors.black,
         fontWeight: FontWeight.normal,
-        fontStyle: FontStyle.italic,
-        fontSize: _tablet || _tabletland ? 18 : 11,
+        fontSize: _tablet || _tabletland ? 8 : 8,
       );
   TextStyle get bodyText3 => TextStyle(
         fontFamily: 'QuattrocentroSans',
@@ -97,13 +96,23 @@ extension TextStyleHelper on TextStyle {
     TextDecoration decoration,
     double lineHeight,
   }) =>
-      copyWith(
-        fontFamily: fontFamily,
-        color: color,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        decoration: decoration,
-        height: lineHeight,
-      );
+      useGoogleFonts
+          ? GoogleFonts.getFont(
+              fontFamily,
+              color: color ?? this.color,
+              fontSize: fontSize ?? this.fontSize,
+              fontWeight: fontWeight ?? this.fontWeight,
+              fontStyle: fontStyle ?? this.fontStyle,
+              decoration: decoration,
+              height: lineHeight,
+            )
+          : copyWith(
+              fontFamily: fontFamily,
+              color: color,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+              fontStyle: fontStyle,
+              decoration: decoration,
+              height: lineHeight,
+            );
 }

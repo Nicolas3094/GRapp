@@ -111,6 +111,9 @@ commandLineArgs.add("--enable-debugger")
     commandLineArgs.add("--profiler-output-file=" + workingDir + "/build/il2cpp_"+ abi + "_" + configuration + "/il2cpp_conv.traceevents")
 ```
 
+-keep class com.unity3d.plugin.UnityAndroidPermissions** { *; }
+
+
 Configurar icono y splash image.
 storePassword=ibanez30
 keyPassword=ibanez30

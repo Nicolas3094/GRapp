@@ -3,6 +3,7 @@ import 'package:g_mcp/Models/bio.dart';
 import 'package:g_mcp/Models/catalogue.dart';
 import 'package:g_mcp/Models/imagen.dart';
 import 'package:g_mcp/Models/project.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:g_mcp/transformer/transformers.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
@@ -15,8 +16,8 @@ class FFAppState {
   static const String _BIOTPATH = "jsonfile/bioinfo.json";
 
   static final FFAppState _instance = FFAppState._internal();
-  static List<Project> _projects;
-  static List<Catalogue> _catalogues;
+  static List<Project> _projects = <Project>[];
+  static List<Catalogue> _catalogues = <Catalogue>[];
   static List<Project> _projectsar;
 
   static BioInfo _bio;
@@ -35,10 +36,23 @@ class FFAppState {
     return _instance;
   }
 
-  FFAppState._internal() {}
+  FFAppState._internal() {
+    initializePersistedState();
+  }
+
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _english = prefs.getBool('ff_English') ?? _english;
+  }
+
+  SharedPreferences prefs;
 
   bool _english = true;
   bool get english => _english;
+  set english(bool _value) {
+    _english = _value;
+    prefs.setBool('ff_English', _value);
+  }
 
   static void setFirstSplash() {
     _firstSplash = true;
@@ -68,6 +82,14 @@ class FFAppState {
 
   static void setProjects(List<Project> futurePorject) {
     _projects = futurePorject;
+  }
+
+  static void addProject(Project obj) {
+    _projects.add(obj);
+  }
+
+  static void addCatalogue(Catalogue obj) {
+    _catalogues.add(obj);
   }
 
   static void setARProjects(List<Project> futurePorject) {
@@ -116,3 +138,13 @@ class FFAppState {
     return;
   }
 }
+/*
+LatLng _latLngFromString(String val) {
+  if (val == null) {
+    return null;
+  }
+  final split = val.split(',');
+  final lat = double.parse(split.first);
+  final lng = double.parse(split.last);
+  return LatLng(lat, lng);
+}*/

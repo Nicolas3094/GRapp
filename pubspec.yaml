@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.1.2+12
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -29,11 +29,11 @@ dependencies:
   #auto_size_text: 3.0.0
   cached_network_image: 3.1.0+1
   font_awesome_flutter: 10.1.0
-  #google_fonts: 2.2.0
+  google_fonts: 2.2.0
   intl: 0.17.0
-  #json_annotation: ^4.3.0
+  json_annotation: ^4.3.0
   page_transition: 2.0.4
-  #shared_preferences: 2.0.11
+  shared_preferences: 2.0.11
   #smooth_page_indicator: 1.0.0+2
   timeago: 3.1.0
   url_launcher: 6.0.15
@@ -43,6 +43,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
   pointer_interceptor: ^0.9.3+2
+  json_path: ^0.4.2
+  firebase_core: ^2.4.1
+  cloud_firestore: ^4.3.1
+  firebase_storage: ^11.0.10
 
 dev_dependencies:
   build_runner: ^2.0.0
@@ -67,12 +71,17 @@ flutter:
   assets:
     - assets/fonts/Heading_pro/
     - assets/fonts/QuattrocentoSans/
+    - assets/fonts/Ingram/
+    - assets/fonts/Neue-haas-grotesk/
+
     - assets/images/
     - assets/images/proyectosar/1/
     - assets/images/proyectosar/2/
+    - assets/images/proyectosar/3/
 
     - jsonfile/
   fonts:
+    
     - family: QuattrocentroSans
       fonts:
         - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-Regular.ttf
@@ -124,3 +133,51 @@ flutter:
         - asset: assets/fonts/Heading_pro/Heading-Pro-Heavy-Italic-trial.ttf
           weight: 900
           style: italic
+
+    - family: Neue Haas Grotesk
+      fonts:
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-15UltTh.ttf
+          weight: 100
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-16UltThIt.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-25Th.ttf
+          weight: 200
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-26ThIt.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-35XLt.ttf
+          weight: 300
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-36XLtIt.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-45Lt.ttf
+          weight: 500
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-46LtIt.ttf
+          weight: 500
+          style: italic    
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-55Rg.ttf
+          weight: 600
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-56It.ttf
+          weight: 600
+          style: italic       
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-65Md.ttf
+          weight: 700
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-66MdIt.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-75Bd.ttf
+          weight: 800
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-76BdIt.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-95Blk.ttf
+          weight: 900
+        - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-96BlkIt.ttf
+          weight: 900
+          style: italic
+
+    - family: Ingram
+      fonts:
+        - asset: assets/fonts/Ingram/Ingram-Mono-Regular.otf
+          weight: 500

@@ -1,11 +1,15 @@
+import 'package:g_mcp/components/appbar.dart';
+import 'package:g_mcp/components/loaderspinner.dart';
 import 'package:g_mcp/index.dart';
+import 'package:g_mcp/services/project_service.dart';
 
-import '../components/cataloguewidget.dart';
+import '../Models/menus.dart';
 import '../components/proyects_list_widget.dart';
 import '../unityscreens/arpage.dart';
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
 import 'package:flutter/material.dart';
+import '../components/appbar.dart';
 
 import '../util/flutter_widgets.dart';
 
@@ -22,16 +26,23 @@ class _HomePageWidgetState extends State<HomePageWidget>
   bool tabletland;
   bool phone;
   bool phoneland;
+  bool _load = false;
   double _shdw = 0;
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
-
-    if (FFAppState.getCatalogues() == null) {
+    print("loaded");
+    print(ProjectService.getProjects().length);
+    /*if (FFAppState.getCatalogues() == null) {
       FFAppState.readJsonCatalogues()
-          .then((value) => {FFAppState.setCatalogues(value)});
-    }
+          .then((value) => {FFAppState.setCatalogues(value)})
+          .whenComplete(() => setState(() => _load = false));
+    } else {
+      setState(() {
+        _load = false;
+      });
+    }*/
   }
 
   @override
@@ -44,86 +55,130 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
     tabletland = responsiveVisibility(context: context, tabletLandscape: true);
     return Scaffold(
-      body: Center(
-        child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/MenuFondo.jpg'),
-                    fit: BoxFit.cover)),
-            child: Center(
-              child: Container(
+        key: _scaffoldKey,
+        appBar: BarApp(scaffoldKey: _scaffoldKey),
+        drawer: Drawer(
+            child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(
+                    20, !phoneland ? 40 : 0, 0, 0),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      MenuW.Home(context),
+                      MenuW.Projects(context),
+                      MenuW.Catalogue(context),
+                      MenuW.Bio(context),
+                      MenuW.Web(context),
+                      MenuW.AR(context),
+                      MenuW.Collectors(context),
+                      MenuW.Press(context),
+                      Container(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                      ),
+                      MenuW.Lang(context),
+                      MenuW.Instagram(context),
+                      MenuW.Contact(context)
+                    ],
+                  ),
+                ))),
+        body: Center(
+            child: tablet || tabletland
+                ? homewidg(context)
+                : SingleChildScrollView(child: homewidg(context))));
+  }
+
+  Widget homewidg(BuildContext context) => Container(
+      color: Colors.white,
+      child: Center(
+        child: _load
+            ? LoaderSpinner()
+            : Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height *
+                    (tablet || tabletland
+                        ? 1
+                        : phone
+                            ? 1.4
+                            : 1),
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/mural_reduccion.gif'),
-                        fit: BoxFit.fitHeight)),
+                        alignment: Alignment.topCenter,
+                        image: AssetImage(
+                            'assets/images/${tablet || tabletland ? "menutablet2.jpg" : "menuiphone.jpg"}'),
+                        fit: tablet || tabletland
+                            ? BoxFit.fitHeight
+                            : phone
+                                ? BoxFit.fitWidth
+                                : BoxFit.fitHeight)),
                 child: Stack(
                   children: [
                     CreatBtn(
                         tablet
-                            ? 0.054
+                            ? 0.164
                             : tabletland
-                                ? 0.044
+                                ? 0.16
                                 : phone
-                                    ? 0.05
-                                    : 0,
+                                    ? 0.17
+                                    : 0.03,
                         tablet
-                            ? 0.23
+                            ? 0.1
                             : phoneland
-                                ? 0.4
+                                ? 0.42
                                 : phone
-                                    ? 0.09
-                                    : 0.34,
+                                    ? 0.1
+                                    : 0.27,
                         "",
                         tablet
-                            ? 190
+                            ? 210
                             : tabletland
-                                ? 160
+                                ? 190
                                 : phone
-                                    ? 100
+                                    ? 140
                                     : 70,
                         tablet
-                            ? 150
+                            ? 400
                             : tabletland
-                                ? 120
+                                ? 340
                                 : phone
-                                    ? 100
-                                    : 50,
+                                    ? 250
+                                    : 120,
                         100,
                         GenericPageWidget(
                             title: "PROJECTS & EXHIBITIONS",
-                            widg: ProyectsListWidget())),
+                            widg: ProyectsListWidget(
+                              isProject: true,
+                            ))),
                     CreatBtn(
                         tablet
-                            ? 0.54
+                            ? 0.38
                             : phone
-                                ? 0.54
+                                ? 0.5
                                 : tabletland
-                                    ? 0.55
-                                    : 0.49,
+                                    ? 0.35
+                                    : 0.335,
                         tablet
-                            ? 0.455
+                            ? 0.36
                             : phone
-                                ? 0.435
+                                ? 0.16
                                 : tabletland
-                                    ? 0.475
-                                    : 0.468,
+                                    ? 0.435
+                                    : 0.44,
                         "",
                         phoneland
-                            ? 70
+                            ? 50
                             : tablet
-                                ? 120
-                                : 70,
+                                ? 200
+                                : 140,
                         tablet
-                            ? 180
+                            ? 230
                             : phoneland
                                 ? 60
                                 : tabletland
-                                    ? 120
-                                    : 100,
+                                    ? 220
+                                    : 170,
                         100,
                         GenericPageWidget(
                           title: "BIO",
@@ -131,137 +186,130 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         )),
                     CreatBtn(
                         tablet
-                            ? 0.8
+                            ? 0.69
                             : tabletland
-                                ? 0.815
+                                ? 0.69
                                 : phone
-                                    ? 0.81
-                                    : 0.75,
+                                    ? 1.15
+                                    : 0.8,
                         tablet
-                            ? 0.2
+                            ? 0.37
                             : tabletland
-                                ? 0.36
+                                ? 0.44
                                 : phone
-                                    ? 0.15
-                                    : 0.405,
-                        "",
+                                    ? 0.379
+                                    : 0.475,
+                        "Collectors",
                         tablet
-                            ? 140
+                            ? 210
                             : phone
-                                ? 80
-                                : 60,
+                                ? 120
+                                : phoneland
+                                    ? 50
+                                    : 150,
                         tablet
-                            ? 150
+                            ? 250
                             : tabletland
-                                ? 100
+                                ? 180
                                 : phone
-                                    ? 80
+                                    ? 120
                                     : 50,
                         100,
-                        GenericPageWidget(
-                          title: "AR EXPERIENCES",
-                          widg: ARPageWidget(),
-                        )),
+                        HomePageWidget()),
                     CreatBtn(
                         tablet
-                            ? 0.785
+                            ? 0.55
                             : tabletland
-                                ? 0.77
+                                ? 0.47
                                 : phone
-                                    ? 0.77
-                                    : 0.7,
+                                    ? 0.64
+                                    : 0.5,
                         tablet
-                            ? 0.675
+                            ? 0.68
                             : tabletland
-                                ? 0.594
+                                ? 0.58
                                 : phone
-                                    ? 0.76
-                                    : 0.55,
+                                    ? 0.45
+                                    : 0.5,
                         "WEB",
-                        tablet || tabletland ? 80 : 55,
-                        tablet || tabletland ? 80 : 55,
-                        100,
-                        BiopageWidget()),
-                    CreatBtn(
-                        tablet
-                            ? 0.36
-                            : tabletland
-                                ? 0.77
-                                : phone
-                                    ? 0.36
-                                    : 0.3,
-                        tablet
-                            ? 0.6
-                            : tabletland
-                                ? 0.594
-                                : phone
-                                    ? 0.65
-                                    : 0.53,
-                        "INSTAGRAM",
-                        tablet || tabletland ? 90 : 60,
-                        tablet || tabletland ? 90 : 60,
+                        tablet || tabletland
+                            ? 200
+                            : phone
+                                ? 160
+                                : 45,
+                        tablet || tabletland
+                            ? 400
+                            : phone
+                                ? 370
+                                : 105,
                         100,
                         BiopageWidget()),
                     createDownBtn(
                         tablet
-                            ? 0.11
+                            ? 0.21
                             : tabletland
-                                ? 0.11
+                                ? 0.2
                                 : phone
-                                    ? 0.10
-                                    : 0.11,
+                                    ? 0.3
+                                    : 0.18,
                         tablet
-                            ? 0.525
+                            ? 0.625
                             : tabletland
-                                ? 0.5
+                                ? 0.57
                                 : phone
                                     ? 0.53
                                     : 0.505,
                         "",
                         tablet
-                            ? 250
+                            ? 280
                             : phone
-                                ? 160
-                                : 100,
+                                ? 150
+                                : phoneland
+                                    ? 50
+                                    : 200,
                         tablet
-                            ? 220
+                            ? 300
                             : phoneland
                                 ? 70
                                 : phone
-                                    ? 140
-                                    : 80,
+                                    ? 200
+                                    : 240,
                         100,
                         GenericPageWidget(
                             title: "CATALOGUE",
-                            widg: CatalogueWidget(
-                                showDescription: false,
-                                structList: FFAppState.getCatalogues()))),
+                            widg: ProyectsListWidget(
+                              isProject: false,
+                            ))),
                     createDownBtn(
                         tablet
-                            ? 0.3
+                            ? 0.6
                             : tabletland
-                                ? 0.3
+                                ? 0.56
                                 : phone
-                                    ? 0.3
-                                    : 0.27,
+                                    ? 0.95
+                                    : 0.64,
                         tablet
-                            ? 0.3
+                            ? 0.1
                             : phoneland
-                                ? 0.425
+                                ? 0.435
                                 : phone
-                                    ? 0.2
-                                    : 0.4,
+                                    ? 0.12
+                                    : 0.25,
                         "",
                         tablet
-                            ? 80
+                            ? 220
                             : phoneland
                                 ? 50
-                                : 70,
+                                : phone
+                                    ? 130
+                                    : 220,
                         tablet
-                            ? 100
+                            ? 250
                             : phoneland
-                                ? 50
-                                : 70,
+                                ? 60
+                                : phone
+                                    ? 150
+                                    : 230,
                         100,
                         GenericPageWidget(
                           title: "AR EXPERIENCES",
@@ -270,11 +318,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   ],
                 ),
               ),
-            )),
-      ),
-    );
-  }
-
+      ));
   Widget CreatBtn(double top, double left, String txt, double w, double h,
           double botpad, Widget widg) =>
       Positioned(
@@ -303,7 +347,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
               showLoadingIndicator: true)
         ]),
       );
-
   Widget createDownBtn(double top, double left, String txt, double w, double h,
           double botpad, Widget widg) =>
       Positioned(
@@ -327,5 +370,35 @@ class _HomePageWidgetState extends State<HomePageWidget>
             style: FlutterTheme.of(context).title1,
           ),
         ]),
+      );
+
+  Widget actBtn(String name, Function fn, BuildContext context) => TextButton(
+        style: ButtonStyle(),
+        onPressed: fn,
+        child: Text(
+          name,
+          style: FlutterTheme.of(context).title2,
+        ),
+      );
+  Widget navBtn(String name, Widget fn, BuildContext context) => TextButton(
+        onPressed: (() => Navigator.push(
+            context, MaterialPageRoute(builder: ((context) => fn)))),
+        child: Text(name, style: FlutterTheme.of(context).title2),
+      );
+
+  Widget navBtnLink(String name, String url, BuildContext context) =>
+      TextButton(
+        onPressed: (() => launchURL(url).then((value) => null)),
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(
+              const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0)),
+          textStyle: MaterialStateProperty.all(
+            const TextStyle(),
+          ),
+        ),
+        child: Text(
+          name,
+          style: FlutterTheme.of(context).title2,
+        ),
       );
 }
