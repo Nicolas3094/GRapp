@@ -33,6 +33,12 @@ abstract class FlutterTheme {
         fontWeight: FontWeight.w400,
         fontSize: _tablet || _tabletland ? 12 : 14,
       );
+  TextStyle get navBar => TextStyle(
+        fontFamily: 'Neue Haas Grotesk',
+        color: primaryText,
+        fontWeight: FontWeight.w400,
+        fontSize: _tablet || _tabletland ? 12 : 32,
+      );
   TextStyle get title2 => TextStyle(
         fontFamily: 'Neue Haas Grotesk',
         color: secondaryText,
@@ -56,19 +62,19 @@ abstract class FlutterTheme {
         fontFamily: 'Ingram',
         color: primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: _tablet || _tabletland ? 14 : 7,
+        fontSize: _tablet || _tabletland ? 14 : 10,
       );
   TextStyle get bodyText2 => TextStyle(
         fontFamily: 'Ingram',
         color: Colors.black,
         fontWeight: FontWeight.normal,
-        fontSize: _tablet || _tabletland ? 8 : 8,
+        fontSize: _tablet || _tabletland ? 8 : 6,
       );
   TextStyle get bodyText3 => TextStyle(
-        fontFamily: 'QuattrocentroSans',
+        fontFamily: 'Neue Haas Grotesk',
         color: Colors.black,
         fontWeight: FontWeight.normal,
-        fontSize: _tablet || _tabletland ? 22 : 12,
+        fontSize: _tablet || _tabletland ? 22 : 14,
       );
 }
 

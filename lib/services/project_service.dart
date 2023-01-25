@@ -41,7 +41,7 @@ class ProjectService {
       return indexA.compareTo(indexB);
     });
 
-    return _projects;
+    return _projects.reversed.toList();
   }
 
   static Future<void> fetchFirebase() async {

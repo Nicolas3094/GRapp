@@ -61,8 +61,8 @@ class _ARPageWidget extends State<ARPageWidget> {
             children: [
               for (var i in _items)
                 Container(
-                  width: MediaQuery.of(context).size.width / 6,
-                  height: MediaQuery.of(context).size.height / 4,
+                  width: MediaQuery.of(context).size.width * (0.4),
+                  height: MediaQuery.of(context).size.height * (0.4),
                   child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -83,10 +83,8 @@ class _ARPageWidget extends State<ARPageWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Expanded(
-                              child: Container(
-                                  child: Image.asset(
-                                      _arprojects[i].dir + "1.jpg"))),
+                          Container(
+                              child: Image.asset(_arprojects[i].dir + "1.jpg")),
                           Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),

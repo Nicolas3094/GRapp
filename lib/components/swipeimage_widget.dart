@@ -37,11 +37,9 @@ class _SwipeImagesState extends State<SwipeImagesWidget>
         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
         itemBuilder: (context, index) {
           if (index == len) {
-            return Flexible(
-                child: Container(
-                    child: widget.project != null
-                        ? projectText()
-                        : catalogueText()));
+            return Container(
+                child:
+                    widget.project != null ? projectText() : catalogueText());
           }
           return Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),

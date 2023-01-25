@@ -28,6 +28,7 @@
 .packages
 .pubstec.lock
 .analysis_options.yaml
+.release-keystore.jks.old
 .pub-cache/
 .pub/
 /build/

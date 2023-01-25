@@ -53,6 +53,7 @@ class _CatalogueWidget extends State<CatalogueWidget> {
           child: _name == "catalogue"
               ? DataCategoryWidget(
                   actualCatg: widget.structList,
+                  index: index,
                 )
               : ProjectWidget(
                   project: widget.structList,

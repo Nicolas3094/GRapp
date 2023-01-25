@@ -24,7 +24,7 @@ class MenuW {
         child: Text(
           name,
           textAlign: TextAlign.left,
-          style: FlutterTheme.of(context).title1,
+          style: FlutterTheme.of(context).navBar,
         ),
       );
   static Widget navBtn(String name, Widget fn, BuildContext context) =>
@@ -32,23 +32,17 @@ class MenuW {
         onPressed: (() => Navigator.push(
             context, MaterialPageRoute(builder: ((context) => fn)))),
         child: Text(name,
-            textAlign: TextAlign.left, style: FlutterTheme.of(context).title1),
+            textAlign: TextAlign.left, style: FlutterTheme.of(context).navBar),
       );
 
   static Widget navBtnLink(String name, String url, BuildContext context) =>
       TextButton(
         onPressed: (() => launchURL(url).then((value) => null)),
-        style: ButtonStyle(
-          padding: MaterialStateProperty.all(
-              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0)),
-          textStyle: MaterialStateProperty.all(
-            const TextStyle(),
-          ),
-        ),
+        style: ButtonStyle(),
         child: Text(
           name,
           textAlign: TextAlign.left,
-          style: FlutterTheme.of(context).title1,
+          style: FlutterTheme.of(context).navBar,
         ),
       );
   static Widget Home(BuildContext context) => navBtn(
@@ -102,7 +96,7 @@ class MenuW {
               ? "en"
               : "es")),
       context);
-  static Widget Instagram(BuildContext context) => navBtnLink("   Instagram",
+  static Widget Instagram(BuildContext context) => navBtnLink("Instagram",
       "https://www.instagram.com/galerieperrotin/?hl=es-la", context);
   static Widget Contact(BuildContext context) => actBtn(
       FFLocalizations.of(context).getText("a7yefkbw"), () => null, context);

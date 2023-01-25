@@ -3,6 +3,7 @@ import '../Models/menus.dart';
 import '../components/appbar.dart';
 
 import '../components/backbtn.dart';
+import '../components/drawer_custom.dart';
 import '../util/flutter_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -51,33 +52,7 @@ class _GenericPageWidget extends State<GenericPageWidget>
         key: scaffoldKey,
         appBar: BarApp(scaffoldKey: scaffoldKey),
         backgroundColor: FlutterTheme.of(context).primaryBtnText,
-        drawer: Drawer(
-            child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(
-                    20, !phoneland ? 40 : 0, 0, 0),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      MenuW.Home(context),
-                      MenuW.Projects(context),
-                      MenuW.Catalogue(context),
-                      MenuW.Bio(context),
-                      MenuW.Web(context),
-                      MenuW.AR(context),
-                      MenuW.Collectors(context),
-                      MenuW.Press(context),
-                      Container(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                      ),
-                      MenuW.Lang(context),
-                      MenuW.Instagram(context),
-                      MenuW.Contact(context)
-                    ],
-                  ),
-                ))),
+        drawer: DrawerWidget(scaffoldKey: scaffoldKey),
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(
             child: Container(

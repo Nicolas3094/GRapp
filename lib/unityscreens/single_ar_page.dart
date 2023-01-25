@@ -42,17 +42,17 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
           width: MediaQuery.of(context).size.width,
           child: principalInfo(context, struct, false),
         ),
-        Flexible(
-            child: Container(
+        Container(
+          height: 360,
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
           child: Text(FFLocalizations.of(context).locale.languageCode == "es"
               ? struct.dataESP
               : struct.dataENG),
-        )),
+        ),
         Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
             child: Row(
@@ -102,7 +102,7 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 60, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 40, 0),
           child: Text(
             "${project.year.toString()}",
             style: FlutterTheme.of(context).bodyText1.override(

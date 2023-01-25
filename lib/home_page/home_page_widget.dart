@@ -4,6 +4,7 @@ import 'package:g_mcp/index.dart';
 import 'package:g_mcp/services/project_service.dart';
 
 import '../Models/menus.dart';
+import '../components/drawer_custom.dart';
 import '../components/proyects_list_widget.dart';
 import '../unityscreens/arpage.dart';
 import '../util/flutter_theme.dart';
@@ -32,17 +33,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
   @override
   void initState() {
     super.initState();
-    print("loaded");
-    print(ProjectService.getProjects().length);
-    /*if (FFAppState.getCatalogues() == null) {
-      FFAppState.readJsonCatalogues()
-          .then((value) => {FFAppState.setCatalogues(value)})
-          .whenComplete(() => setState(() => _load = false));
-    } else {
-      setState(() {
-        _load = false;
-      });
-    }*/
   }
 
   @override
@@ -57,37 +47,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
     return Scaffold(
         key: _scaffoldKey,
         appBar: BarApp(scaffoldKey: _scaffoldKey),
-        drawer: Drawer(
-            child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(
-                    20, !phoneland ? 40 : 0, 0, 0),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      MenuW.Home(context),
-                      MenuW.Projects(context),
-                      MenuW.Catalogue(context),
-                      MenuW.Bio(context),
-                      MenuW.Web(context),
-                      MenuW.AR(context),
-                      MenuW.Collectors(context),
-                      MenuW.Press(context),
-                      Container(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                      ),
-                      MenuW.Lang(context),
-                      MenuW.Instagram(context),
-                      MenuW.Contact(context)
-                    ],
-                  ),
-                ))),
-        body: Center(
-            child: tablet || tabletland
-                ? homewidg(context)
-                : SingleChildScrollView(child: homewidg(context))));
+        drawer: DrawerWidget(scaffoldKey: _scaffoldKey),
+        body: tablet || tabletland
+            ? homewidg(context)
+            : SingleChildScrollView(child: homewidg(context)));
   }
 
   Widget homewidg(BuildContext context) => Container(
