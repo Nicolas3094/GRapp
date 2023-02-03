@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:g_mcp/Models/project.dart';
-import '../Models/imagen.dart';
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
 
@@ -17,21 +16,14 @@ class ProjectWidget extends StatefulWidget {
 
 class _ProjectWidget extends State<ProjectWidget> {
   final String name = "PROJECTS & EXHIBITIONS";
-  List<List<Imagen>> _dataimagen = [];
 
   final double fontitle = 32;
   final double fontitle2 = 26;
-  bool _tablet;
-  bool _tabletl;
+
   final double fontsz = 18;
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      _tablet = responsiveVisibility(context: context, tablet: true);
-      _tabletl = responsiveVisibility(context: context, tabletLandscape: true);
-    });
-
     return widget.numText == 0
         ? principalInfo(context, widget.project, false)
         : widget.numText == 1
@@ -47,8 +39,8 @@ class _ProjectWidget extends State<ProjectWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 60, 0),
           child: Text(
             "${project.year}",
-            style: FlutterTheme.of(context).bodyText1.override(
-                fontStyle: bold ? FontStyle.normal : FontStyle.italic,
+            style: FlutterTheme.of(context).bodyText2.override(
+                fontStyle: FontStyle.normal,
                 fontWeight: bold ? FontWeight.bold : FontWeight.normal),
             textAlign: TextAlign.left,
           ),
@@ -61,15 +53,15 @@ class _ProjectWidget extends State<ProjectWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      (widget.index + 1).toString() + ". " + "${project.title}",
+                      "${widget.index < 9 ? '0' : ''}${widget.index + 1}. ${project.title}",
                       overflow: TextOverflow.clip,
-                      style: FlutterTheme.of(context).bodyText1,
+                      style: FlutterTheme.of(context).bodyText2,
                       textAlign: TextAlign.left,
                     ),
                     Text(
                       "${project.year_place.replaceAll("\\n", "\n")}",
                       overflow: TextOverflow.clip,
-                      style: FlutterTheme.of(context).bodyText1,
+                      style: FlutterTheme.of(context).bodyText2,
                       textAlign: TextAlign.left,
                     ),
                     Padding(
@@ -77,7 +69,7 @@ class _ProjectWidget extends State<ProjectWidget> {
                         child: Text(
                           "${FFLocalizations.of(context).locale.languageCode == "es" ? project.dataESP.replaceAll("\\n", "\n") : project.dataENG.replaceAll("\\n", "\n")}",
                           overflow: TextOverflow.clip,
-                          style: FlutterTheme.of(context).bodyText1,
+                          style: FlutterTheme.of(context).bodyText2,
                           textAlign: TextAlign.left,
                         )),
                   ],
@@ -148,19 +140,4 @@ class _ProjectWidget extends State<ProjectWidget> {
           ],
         ));
   }
-
-  Widget VerticalView(BuildContext context, Project project) => Column(
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-                    child: principalInfo(context, project, false)),
-              )
-            ],
-          ),
-        ],
-      );
 }

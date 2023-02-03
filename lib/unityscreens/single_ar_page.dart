@@ -47,11 +47,14 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
           child: principalInfo(context, struct, false),
         ),
         Container(
-          height: 360,
+          height: 260,
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
-          child: Text(FFLocalizations.of(context).locale.languageCode == "es"
-              ? struct.dataESP
-              : struct.dataENG),
+          child: Text(
+            FFLocalizations.of(context).locale.languageCode == "es"
+                ? struct.dataESP
+                : struct.dataENG,
+            style: FlutterTheme.of(context).bodyText3,
+          ),
         ),
         Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
@@ -70,7 +73,6 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
               ],
             )),
         Expanded(
-            flex: 4,
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 child: Image.asset(struct.dir + "1.jpg"))),
@@ -119,7 +121,7 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      (widget.initIndex).toString() + ". " + "${project.title}",
+                      "0${widget.initIndex}. ${project.title}",
                       overflow: TextOverflow.clip,
                       style: FlutterTheme.of(context).bodyText1,
                       textAlign: TextAlign.left,

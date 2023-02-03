@@ -1,3 +1,4 @@
+import 'package:g_mcp/Models/Description.dart';
 import 'package:g_mcp/Models/project.dart';
 
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:g_mcp/unityscreens/single_ar_page.dart';
 import '../components/loaderspinner.dart';
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
-import 'simple_screen.dart';
 
 class ARPageWidget extends StatefulWidget {
   const ARPageWidget({Key key}) : super(key: key);
@@ -18,21 +18,26 @@ class ARPageWidget extends StatefulWidget {
 
 class _ARPageWidget extends State<ARPageWidget> {
   List<Project> _arprojects;
+  Description _descriptionAR = null;
   bool phone;
   bool tablet;
   bool tabletland;
-  bool load = false;
+  bool load = true;
   double pad;
   void initState() {
+    _asyncMethod();
     super.initState();
+  }
+
+  _asyncMethod() async {
+    _descriptionAR = await FFAppState.readJsonARDescription();
     if (FFAppState.getARProjects() == null) {
-      FFAppState.readJsonARProjects().then((value) {
-        FFAppState.setARProjects(value);
-        _arprojects = value;
-      });
+      _arprojects = await FFAppState.readJsonARProjects();
+      FFAppState.setARProjects(_arprojects);
     } else {
       _arprojects = FFAppState.getARProjects();
     }
+    setState(() => load = false);
   }
 
   @override
@@ -40,8 +45,55 @@ class _ARPageWidget extends State<ARPageWidget> {
     phone = responsiveVisibility(context: context, phone: true);
     tabletland = responsiveVisibility(context: context, tabletLandscape: true);
     tablet = responsiveVisibility(context: context, tablet: true);
-    pad = tablet || tabletland ? 40.0 : 30.0;
+    return load
+        ? LoaderSpinner()
+        : phone || tablet
+            ? verticalView()
+            : horizontalView();
+  }
 
+  Widget horizontalView() => SingleChildScrollView(
+          child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+            if (_descriptionAR != null)
+              Container(
+                  width: MediaQuery.of(context).size.width / 3,
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                  child: Text(
+                    FFLocalizations.of(context).locale.languageCode == "es"
+                        ? _descriptionAR.descriptionESP
+                        : _descriptionAR.descriptionENG,
+                    style: FlutterTheme.of(context).bodyText2,
+                  )),
+            Container(
+                width: (MediaQuery.of(context).size.width / 2),
+                height: MediaQuery.of(context).size.height,
+                child: BuilderImages())
+          ]));
+
+  Widget verticalView() => SingleChildScrollView(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+            if (_descriptionAR != null)
+              Container(
+                  width: phone ? MediaQuery.of(context).size.width : 632,
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                  child: Text(
+                    FFLocalizations.of(context).locale.languageCode == "es"
+                        ? _descriptionAR.descriptionESP
+                        : _descriptionAR.descriptionENG,
+                    style: FlutterTheme.of(context).bodyText2,
+                  )),
+            Container(
+                width: phone ? MediaQuery.of(context).size.width : 632,
+                child: BuilderImages())
+          ]));
+
+  Widget BuilderImages() {
     return FutureBuilder(
       future: FFAppState.readJsonARProjects(),
       builder: (context, data) {
@@ -54,15 +106,35 @@ class _ARPageWidget extends State<ARPageWidget> {
           List<int> _items = List.generate(len, (i) => i);
 
           return Wrap(
-            spacing: 11,
-            runSpacing: 11,
+            spacing: tablet
+                ? 10
+                : tabletland
+                    ? 1
+                    : phone
+                        ? 1
+                        : 10,
+            runSpacing: 1,
             direction: Axis.horizontal,
             alignment: WrapAlignment.start,
             children: [
               for (var i in _items)
                 Container(
-                  width: MediaQuery.of(context).size.width * (0.4),
-                  height: MediaQuery.of(context).size.height * (0.4),
+                  width: MediaQuery.of(context).size.width *
+                      (tablet
+                          ? 0.17
+                          : tabletland
+                              ? 0.2
+                              : phone
+                                  ? 0.4
+                                  : 0.14),
+                  height: MediaQuery.of(context).size.height *
+                      (tablet
+                          ? 0.25
+                          : tabletland
+                              ? 0.4
+                              : phone
+                                  ? 0.3
+                                  : 0.6),
                   child: InkWell(
                       onTap: () async {
                         await Navigator.push(
@@ -84,13 +156,16 @@ class _ARPageWidget extends State<ARPageWidget> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                              child: Image.asset(_arprojects[i].dir + "1.jpg")),
+                              height: i == 0 || i == 2 ? 202 : 144,
+                              child: Image.asset(
+                                _arprojects[i].dir + "1.jpg",
+                              )),
                           Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),
                               child: Row(
                                 children: [
-                                  Text((i + 1).toString() + ".",
+                                  Text("0${i + 1}",
                                       style:
                                           FlutterTheme.of(context).bodyText2),
                                   Text("(${_arprojects[i].year.toString()})",

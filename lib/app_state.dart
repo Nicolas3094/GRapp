@@ -7,13 +7,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:g_mcp/transformer/transformers.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
+import 'package:rxdart/rxdart.dart';
+
+import 'Models/Description.dart';
 
 class FFAppState {
+  static final subject = BehaviorSubject<String>();
+
   static const String _PROJECTPATH = "jsonfile/projects.json";
   static const String _PROJECTARPATH = "jsonfile/arprojects.json";
 
   static const String _CATALOGUETPATH = "jsonfile/catginfo.json";
   static const String _BIOTPATH = "jsonfile/bioinfo.json";
+  static const String _ARPATH = "jsonfile/ar_description.json";
 
   static final FFAppState _instance = FFAppState._internal();
   static List<Project> _projects = <Project>[];
@@ -21,7 +27,11 @@ class FFAppState {
   static List<Project> _projectsar;
 
   static BioInfo _bio;
+  static Description _arDescription;
+
   static bool _firstSplash = false;
+
+  static int _indx = 0;
 
   static final _transformers = [
     AccordionTransformer(),
@@ -54,6 +64,11 @@ class FFAppState {
     prefs.setBool('ff_English', _value);
   }
 
+  static void setIDx(int i) {
+    _indx = i;
+  }
+
+  static int getIDx() => _indx;
   static void setFirstSplash() {
     _firstSplash = true;
   }
@@ -108,6 +123,12 @@ class FFAppState {
     return BioInfo.fromJson(dat);
   }
 
+  static Future<Description> readJsonARDescription() async {
+    final jsondata = await rootBundle.loadString(_ARPATH);
+    final dat = json.decode(jsondata);
+    return Description.fromJson(dat);
+  }
+
   static List<Catalogue> getCatalogues() => _catalogues;
 
   static void setCatalogues(List<Catalogue> futureCatalogues) {
@@ -118,6 +139,7 @@ class FFAppState {
     _bio = bio;
   }
 
+  static Description getARDescription() => _arDescription;
   static BioInfo getBio() => _bio;
 
   static PageTransformer getTransformer(int index) => _transformers[index];
@@ -138,13 +160,3 @@ class FFAppState {
     return;
   }
 }
-/*
-LatLng _latLngFromString(String val) {
-  if (val == null) {
-    return null;
-  }
-  final split = val.split(',');
-  final lat = double.parse(split.first);
-  final lng = double.parse(split.last);
-  return LatLng(lat, lng);
-}*/

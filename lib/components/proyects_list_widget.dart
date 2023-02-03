@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:g_mcp/Models/catalogue.dart';
 import 'package:g_mcp/Models/infostructure.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
@@ -29,17 +26,16 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
 
   _asyncMethod() async {
     if (widget.isProject) {
-      if (ProjectService.getProjects().length == 0) {
-        await ProjectService.fetchFirebase();
-      }
-      setState(() => _structures = ProjectService.getProjects());
+      await ProjectService.isLoading();
+      setState(() => displaySplashImage = false);
+      _structures = ProjectService.getProjects();
     } else {
-      if (CatalogueService.getCatalogues().length == 0) {
-        await CatalogueService.fetchFirebase();
+      var response = await CatalogueService.isLoading();
+      if (!response) {
+        setState(() => displaySplashImage = false);
+        _structures = CatalogueService.getCatalogues();
       }
-      setState(() => _structures = CatalogueService.getCatalogues());
     }
-    setState(() => displaySplashImage = false);
   }
 
   void initState() {
@@ -50,12 +46,11 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
   }
 
   double phone_project_condition(int index) {
-    return (index == 2 ||
-            index == 3 ||
-            index == 6 ||
-            index == 7 ||
+    return (index == 4 ||
+            index == 5 ||
             index == 12 ||
-            index == 13)
+            index == 13 ||
+            index == 14)
         ? 1
         : 1.7;
   }
@@ -63,22 +58,34 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
   double phone_catalogue_condition(int index) {
     return (index == 2 ||
             index == 3 ||
-            index == 6 ||
-            index == 7 ||
+            index == 4 ||
+            index == 5 ||
             index == 8 ||
             index == 9 ||
-            index == 12 ||
-            index == 13 ||
-            index == 16 ||
+            index == 14 ||
+            index == 15 ||
             index == 17 ||
-            index == 18 ||
+            index == 16 ||
             index == 19 ||
+            index == 18 ||
             index == 22 ||
             index == 23 ||
             index == 24 ||
-            index == 25)
+            index == 25 ||
+            index == 26 ||
+            index == 27 ||
+            index == 28 ||
+            index == 29)
         ? 2
         : 1.1;
+  }
+
+  double tablet_project_condition(int index) {
+    return (index == 12 || index == 13 || index == 14) ? 1 : 1.8;
+  }
+
+  double tablet_catalogue_condition(int index) {
+    return (index == 25) ? 1 : 2;
   }
 
   @override
@@ -97,11 +104,20 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
                     ? widget.isProject
                         ? phone_project_condition(index)
                         : phone_catalogue_condition(index)
-                    : 1),
+                    : widget.isProject
+                        ? tablet_project_condition(index)
+                        : tablet_catalogue_condition(index)),
             crossAxisSpacing: 10,
             mainAxisSpacing: 5,
-            crossAxisCount: 2,
-            itemCount: _structures.length,
+            crossAxisCount: phone || phoneland
+                ? 2
+                : tablet
+                    ? 4
+                    : 7,
+            itemCount:
+                widget.isProject ? _structures.length : _structures.length,
+            addAutomaticKeepAlives: false,
+            addRepaintBoundaries: false,
             itemBuilder: (_, i) {
               return InkWell(
                   onTap: () async {
@@ -131,7 +147,8 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),
                           child: Row(
                             children: [
-                              Text((i + 1).toString() + ".",
+                              Text(
+                                  "${i < 9 ? '0' : ''}${_structures[i].order}.",
                                   style: FlutterTheme.of(context).bodyText2),
                               Text("(${_structures[i].year.toString()})",
                                   style: FlutterTheme.of(context).bodyText2),
@@ -141,7 +158,6 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
                           child: Text(
                         "${_structures[i].title}",
                         style: FlutterTheme.of(context).bodyText2,
-                        overflow: TextOverflow.clip,
                       )),
                     ],
                   ));

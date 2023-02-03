@@ -10,6 +10,7 @@ class SimpleScreen extends StatefulWidget {
   final int sceneID;
 
   SimpleScreen({Key key, this.sceneID}) : super(key: key);
+
   @override
   _SimpleScreenState createState() => _SimpleScreenState();
 }
@@ -24,11 +25,9 @@ class _SimpleScreenState extends State<SimpleScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-        Duration(milliseconds: 5000),
+        Duration(milliseconds: 4000),
         () => setState((() {
-              if (!FFAppState.getFirstSplash()) {
-                FFAppState.setFirstSplash();
-              }
+              loading = false;
             })));
   }
 
@@ -104,7 +103,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
                     ],
                   )),
             )),
-            if (loading && !FFAppState.getFirstSplash())
+            if (loading)
               Container(
                   color: Colors.white,
                   width: MediaQuery.of(context).size.width,
@@ -117,34 +116,36 @@ class _SimpleScreenState extends State<SimpleScreen> {
   }
 
   void onUnityMessage(message) {
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       _unityWidgetController.postMessage(
           "ExitController", "SetScene", widget.sceneID.toString());
     });
   }
 
-  void onUnitySceneLoaded(SceneLoaded scene) {
-    Future.delayed(const Duration(milliseconds: 500), () {
+  void onUnitySceneLoaded(scene) {
+    Future.delayed(const Duration(milliseconds: 100), () {
       _unityWidgetController.postMessage(
           "ExitController", "SetScene", widget.sceneID.toString());
     });
   }
 
-  // Callback that connects the created controller to the unity controller
   void _onUnityCreated(UnityWidgetController controller) {
     this._unityWidgetController = controller;
     if (FFAppState.getFirstSplash()) {
+      print("entra");
       senToUnityScene("resume");
 
       senToUnityScene("loader");
+    } else {
+      FFAppState.setFirstSplash();
     }
-    Future.delayed(const Duration(milliseconds: 500), () {
+
+    Future.delayed(const Duration(milliseconds: 400), () {
       _unityWidgetController.postMessage(
           "ExitController", "SetScene", widget.sceneID.toString());
     });
   }
 
-//Communcation from Flutter to Unity
   void senToUnityScene(String key) {
     _unityWidgetController.postMessage(
       'ExitController',

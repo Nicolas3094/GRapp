@@ -1,7 +1,5 @@
 import 'package:firebase_storage/firebase_storage.dart';
 
-import '../Models/firebase_file.dart';
-
 class FirebaseApi {
   static final FirebaseStorage storage = FirebaseStorage.instance;
 

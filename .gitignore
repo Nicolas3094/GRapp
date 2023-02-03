@@ -43,6 +43,7 @@ unity/*
 
 # Web related
 lib/generated_plugin_registrant.dart
+lib/firebase_options.dart
 
 # Symbolication related
 app.*.symbols

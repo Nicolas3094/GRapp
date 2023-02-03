@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:g_mcp/components/loaderspinner.dart';
 import 'package:g_mcp/services/catalogue_service.dart';
-
-import 'components/loaderspinner.dart';
+import 'package:g_mcp/services/project_service.dart';
 import 'util/flutter_util.dart';
 import 'util/internationalization.dart';
 import 'index.dart';
@@ -34,9 +34,15 @@ class _MyAppState extends State<MyApp> {
 
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
-  bool displaySplashImage = false;
+  bool displaySplashImage = true;
 
-  _asyncMethod() async {}
+  _asyncMethod() {
+    ProjectService.fetchFirebase();
+    CatalogueService.fetchFirebase();
+
+    Future.delayed(Duration(milliseconds: 4000),
+        () => setState(() => displaySplashImage = false));
+  }
 
   @override
   void initState() {
@@ -74,6 +80,8 @@ class _MyAppState extends State<MyApp> {
         ],
         theme: ThemeData(brightness: Brightness.light),
         themeMode: _themeMode,
-        home: HomePageWidget());
+        home: displaySplashImage
+            ? LoaderSpinner(h: 200, w: 200)
+            : HomePageWidget());
   }
 }

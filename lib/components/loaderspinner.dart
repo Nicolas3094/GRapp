@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class LoaderSpinner extends StatefulWidget {
   final Color color;
@@ -13,6 +14,24 @@ class LoaderSpinner extends StatefulWidget {
 class _LoaderSpinner extends State<LoaderSpinner>
     with SingleTickerProviderStateMixin {
   AnimationController animationController;
+  Timer _timer;
+  final List<String> names = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13"
+  ];
+
+  int currentName = 0;
   @override
   void initState() {
     super.initState();
@@ -20,36 +39,54 @@ class _LoaderSpinner extends State<LoaderSpinner>
       vsync: this,
       duration: new Duration(seconds: 2),
     );
-    animationController.repeat();
+    //animationController.repeat();
+
+    _timer = Timer.periodic(Duration(milliseconds: 100), (_timer) {
+      setState(() {
+        currentName = currentName == names.length - 1 ? 0 : currentName + 1;
+      });
+    });
   }
 
   @override
   void dispose() {
+    _timer.cancel();
     animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return sunSpinnerLoader(names[currentName]);
+  }
+
+  Widget sunSpinnerLoader(String name) => Container(
       alignment: Alignment.center,
       color: Colors.white,
-      child: AnimatedBuilder(
-        animation: animationController,
-        child: Container(
-          height: widget.h,
-          width: widget.w,
-          child: Image.asset('assets/images/GR_LOGO.png'),
+      child: Container(
+        height: widget.h,
+        width: widget.w,
+        child: Image.asset('assets/images/${name}.png'),
+      ));
+
+  Widget logoSpinnerLoader() => Container(
+        alignment: Alignment.center,
+        color: Colors.white,
+        child: AnimatedBuilder(
+          animation: animationController,
+          child: Container(
+            height: widget.h,
+            width: widget.w,
+            child: Image.asset('assets/images/GR_LOGO.png'),
+          ),
+          builder: (BuildContext context, Widget _widget) {
+            return Transform.rotate(
+              angle: (-1) * animationController.value * 6.3,
+              child: _widget,
+            );
+          },
         ),
-        builder: (BuildContext context, Widget _widget) {
-          return Transform.rotate(
-            angle: (-1) * animationController.value * 6.3,
-            child: _widget,
-          );
-        },
-      ),
-    );
-  }
+      );
 
   Widget spinnerLoader() => Container(
           child: Center(

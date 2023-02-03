@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.1.2+12
+version: 2.1.6+16
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -48,6 +48,9 @@ dependencies:
   cloud_firestore: ^4.3.1
   firebase_storage: ^11.0.10
   flutter_staggered_grid_view: ^0.4.0
+  extended_image: ^6.2.1
+  auto_size_text: ^3.0.0
+  rxdart: ^0.27.7
 dev_dependencies:
   build_runner: ^2.0.0
   json_serializable: ^6.0.0
@@ -69,8 +72,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/fonts/Heading_pro/
-    - assets/fonts/QuattrocentoSans/
     - assets/fonts/Ingram/
     - assets/fonts/Neue-haas-grotesk/
 
@@ -81,59 +82,6 @@ flutter:
 
     - jsonfile/
   fonts:
-    
-    - family: QuattrocentroSans
-      fonts:
-        - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-Regular.ttf
-          weight: 500
-        - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-Italic.ttf
-          style: italic
-        - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-BoldItalic.ttf
-          weight: 700
-          style: italic
-    - family: Headingpro
-      fonts:
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Thin-trial.ttf
-          weight: 100
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Thin-Italic-trial.ttf
-          weight: 100
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-ExtraLight-trial.ttf
-          weight: 200
-        - asset: assets/fonts/Heading_pro/Heading-Pro-ExtraLight-Italic-trial.ttf
-          weight: 200
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Light-trial.ttf
-          weight: 300
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Light-Italic-trial.ttf
-          weight: 300
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Italic-trial.ttf
-          weight: 500
-          style: italic    
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Book-trial.ttf
-          weight: 600
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Book-Italic-trial.ttf
-          weight: 600
-          style: italic       
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Bold-trial.ttf
-          weight: 700
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Bold-Italic-trial.ttf
-          weight: 700
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-ExtraBold-trial.ttf
-          weight: 800
-        - asset: assets/fonts/Heading_pro/Heading-Pro-ExtraBold-Italic-trial.ttf
-          weight: 800
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Heavy-trial.ttf
-          weight: 900
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Heavy-Italic-trial.ttf
-          weight: 900
-          style: italic
-
     - family: Neue Haas Grotesk
       fonts:
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-15UltTh.ttf

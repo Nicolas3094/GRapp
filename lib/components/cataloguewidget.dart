@@ -1,12 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:g_mcp/Models/infostructure.dart';
 import 'package:g_mcp/components/projectwidget%20.dart';
 import 'package:g_mcp/components/swipeimage_widget.dart';
-import '../Models/imagen.dart';
 import '../util/flutter_util.dart';
 import 'data_category_widget.dart';
-import 'loaderspinner.dart';
 
 class CatalogueWidget extends StatefulWidget {
   final bool showDescription;
@@ -19,7 +16,6 @@ class CatalogueWidget extends StatefulWidget {
 }
 
 class _CatalogueWidget extends State<CatalogueWidget> {
-  bool _loading = true;
   int lenimgs;
   String _name;
   @override
@@ -74,13 +70,4 @@ class _CatalogueWidget extends State<CatalogueWidget> {
       ],
     );
   }
-
-  Widget assetImg(BuildContext context, String path) {
-    return Image.asset(path);
-  }
-
-  Widget cachedImg(String path) => CachedNetworkImage(
-      imageUrl: path,
-      fit: BoxFit.cover,
-      placeholder: (context, url) => LoaderSpinner());
 }

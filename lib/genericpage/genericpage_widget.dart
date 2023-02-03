@@ -1,5 +1,4 @@
 import 'package:g_mcp/util/flutter_util.dart';
-import '../Models/menus.dart';
 import '../components/appbar.dart';
 
 import '../components/backbtn.dart';
@@ -67,19 +66,19 @@ class _GenericPageWidget extends State<GenericPageWidget>
                     tablet || tabletland //top
                         ? 20
                         : phone
-                            ? 40
+                            ? 10
                             : 20,
                     tablet //end
                         ? 20
                         : tabletland
                             ? 40
-                            : 40,
+                            : 14,
                     tablet //bottom
                         ? 0
                         : tabletland
                             ? 20
                             : phone || phoneland
-                                ? 14
+                                ? 0
                                 : 20),
                 child: widget.widg),
           ),

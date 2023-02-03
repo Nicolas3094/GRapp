@@ -27,8 +27,9 @@ class _DataCategoryWidgetState extends State<DataCategoryWidget> {
         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 40, 0),
         child: Text(
           "${widget.actualCatg.year}",
-          style: FlutterTheme.of(context).bodyText1.override(
-              fontStyle: FontStyle.italic, fontWeight: FontWeight.normal),
+          style: FlutterTheme.of(context)
+              .bodyText2
+              .override(fontWeight: FontWeight.normal),
           textAlign: TextAlign.left,
         ),
       ),
@@ -39,16 +40,16 @@ class _DataCategoryWidgetState extends State<DataCategoryWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            (widget.index + 1).toString() + ". " + "${widget.actualCatg.title}",
+            "${widget.index < 9 ? '0' : ''}${(widget.index + 1).toString()}. ${widget.actualCatg.title}",
             overflow: TextOverflow.clip,
-            style: FlutterTheme.of(context).bodyText1,
+            style: FlutterTheme.of(context).bodyText2,
             textAlign: TextAlign.left,
           ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
             child: Text(
               "${FFLocalizations.of(context).locale.languageCode == "es" ? widget.actualCatg.dataESP.replaceAll("\\n", "\n") : widget.actualCatg.dataESP.replaceAll("\\n", "\n")}",
-              style: FlutterTheme.of(context).bodyText1,
+              style: FlutterTheme.of(context).bodyText2,
             ),
           )
         ],

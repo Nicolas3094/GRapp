@@ -34,11 +34,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               widget.scaffoldKey.currentState.closeDrawer(),
                           child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                               child: Icon(
                                 Icons.close,
                                 color: Colors.black,
-                                size: 34.0,
+                                size: 50.0,
                               ))),
                       MenuW.Home(context),
                       MenuW.Projects(context),

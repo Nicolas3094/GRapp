@@ -14,14 +14,6 @@ class _BiopageWidgetState extends State<BiopageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    bool phone = responsiveVisibility(context: context, phone: true);
-    bool phoneland =
-        responsiveVisibility(context: context, phoneLanspace: true);
-
-    double ln = phone || phoneland ? 250 : 375;
-    String _PATH = phone || phoneland
-        ? "assets/images/GR_ipad.png"
-        : "assets/images/GR_ipad.png";
     return SafeArea(
       child: SingleChildScrollView(
         primary: true,
@@ -32,7 +24,7 @@ class _BiopageWidgetState extends State<BiopageWidget> {
             Container(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
               width: MediaQuery.of(context).size.width,
-              child: Image.asset("assets/images/fotoGR.jpeg"),
+              child: Image.asset(FFAppState.getBio().img),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
@@ -42,18 +34,10 @@ class _BiopageWidgetState extends State<BiopageWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    FFAppState.getBio().info1 +
-                        FFAppState.getBio().list1[0].toString() +
-                        FFAppState.getBio().list1[1].toString() +
-                        FFAppState.getBio().list1[2].toString() +
-                        FFAppState.getBio().list1[3].toString() +
-                        FFAppState.getBio().list1[4].toString() +
-                        FFAppState.getBio().info2 +
-                        FFAppState.getBio().list2[0].toString() +
-                        FFAppState.getBio().list2[1].toString() +
-                        FFAppState.getBio().list2[2].toString() +
-                        FFAppState.getBio().list2[3].toString(),
-                    textAlign: TextAlign.justify,
+                    FFLocalizations.of(context).locale.languageCode == "es"
+                        ? FFAppState.getBio().descriptionESP
+                        : FFAppState.getBio().descriptionENG,
+                    textAlign: TextAlign.left,
                     style: FlutterTheme.of(context).bodyText3,
                   ),
                 ],

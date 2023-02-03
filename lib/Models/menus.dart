@@ -18,27 +18,24 @@ class MenuW {
   MenuW._internal();
 
   static Widget actBtn(String name, Function fn, BuildContext context) =>
-      TextButton(
-        style: ButtonStyle(),
-        onPressed: fn,
+      InkWell(
+        onTap: fn,
         child: Text(
           name,
           textAlign: TextAlign.left,
           style: FlutterTheme.of(context).navBar,
         ),
       );
-  static Widget navBtn(String name, Widget fn, BuildContext context) =>
-      TextButton(
-        onPressed: (() => Navigator.push(
+  static Widget navBtn(String name, Widget fn, BuildContext context) => InkWell(
+        onTap: (() => Navigator.push(
             context, MaterialPageRoute(builder: ((context) => fn)))),
         child: Text(name,
             textAlign: TextAlign.left, style: FlutterTheme.of(context).navBar),
       );
 
   static Widget navBtnLink(String name, String url, BuildContext context) =>
-      TextButton(
-        onPressed: (() => launchURL(url).then((value) => null)),
-        style: ButtonStyle(),
+      InkWell(
+        onTap: (() => launchURL(url).then((value) => null)),
         child: Text(
           name,
           textAlign: TextAlign.left,

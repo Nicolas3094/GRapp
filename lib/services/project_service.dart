@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:g_mcp/Models/project.dart';
 import 'firebase_api.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ProjectService {
   static List<Project> _projects = <Project>[];
@@ -10,6 +11,8 @@ class ProjectService {
   static final String _name = "projects";
 
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
+
+  static final subject = BehaviorSubject<bool>();
 
   factory ProjectService() {
     return _instance;
@@ -30,18 +33,14 @@ class ProjectService {
 
   static List<Project> getProjects() {
     _projects.sort((a, b) {
-      var idxA = a.dir.substring(0, 2);
-      var splittedA = idxA.split(".");
-      var indexA = int.parse(splittedA[0]);
-
-      var idxB = b.dir.substring(0, 2);
-      var splittedB = idxB.split(".");
-      var indexB = int.parse(splittedB[0]);
-
-      return indexA.compareTo(indexB);
+      return a.order.compareTo(b.order);
     });
 
-    return _projects.reversed.toList();
+    return _projects;
+  }
+
+  static Future<bool> isLoading() {
+    return subject.first;
   }
 
   static Future<void> fetchFirebase() async {
@@ -49,9 +48,10 @@ class ProjectService {
     for (var doc in collection.docs) {
       final dat = doc.data();
       var project = Project.fromJson(dat);
-      final list_images = await FirebaseApi.listAll(_name + "/" + project.dir);
+      final list_images = await FirebaseApi.listAll("${_name}/${project.dir}");
       project.images = list_images;
       _projects.add(project);
     }
+    subject.add(false);
   }
 }

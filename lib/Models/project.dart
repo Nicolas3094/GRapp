@@ -6,8 +6,16 @@ class Project implements InfoStructure {
   @override
   String idStructure = "PROJECTS";
 
-  Project(this.title, this.year, this.dataENG, this.dataESP,
-      this.descriptionENG, this.descriptionESP, this.dir, this.year_place);
+  Project(
+      this.title,
+      this.year,
+      this.dataENG,
+      this.dataESP,
+      this.descriptionENG,
+      this.descriptionESP,
+      this.dir,
+      this.year_place,
+      this.order);
 
   factory Project.fromJson(Map<String, dynamic> json) => Project(
       json["title"],
@@ -17,18 +25,10 @@ class Project implements InfoStructure {
       json["descriptionENG"],
       json["descriptionESP"],
       json["dir"],
-      json["year_place"]);
+      json["year_place"],
+      json["order"]);
 
-  Map<String, dynamic> toJson() => {
-        "title": title,
-        "year": year,
-        "dataENG": dataENG,
-        "dataESP": dataESP,
-        "descriptionENG": descriptionENG,
-        "descriptionESP": descriptionESP,
-        "year_place": year_place,
-        "images": images
-      };
+  Map<String, dynamic> toJson() => {};
 
   @override
   String dataENG;
@@ -53,4 +53,7 @@ class Project implements InfoStructure {
 
   @override
   int year;
+
+  @override
+  int order;
 }

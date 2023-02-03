@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 abstract class InfoStructure {
   String idStructure;
   String title;
@@ -9,5 +7,6 @@ abstract class InfoStructure {
   String dataESP;
   String descriptionENG;
   String descriptionESP;
+  int order;
   List<String> images;
 }
