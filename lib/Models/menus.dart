@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:g_mcp/CollectorsPage/collectorsPage.dart';
 
 import '../biopage/biopage_widget.dart';
 import '../components/proyects_list_widget.dart';
@@ -16,7 +17,6 @@ class MenuW {
     return _singleton;
   }
   MenuW._internal();
-
   static Widget actBtn(String name, Function fn, BuildContext context) =>
       InkWell(
         onTap: fn,
@@ -54,6 +54,7 @@ class MenuW {
             isProject: true,
           )),
       context);
+
   static Widget Catalogue(BuildContext context) => navBtn(
       "02 " + FFLocalizations.of(context).getText("w1j9xq7t"),
       GenericPageWidget(
@@ -80,21 +81,55 @@ class MenuW {
       context);
   static Widget Collectors(BuildContext context) => navBtn(
       "06 " + FFLocalizations.of(context).getText("ozkeslzw"),
-      HomePageWidget(),
+      GenericPageWidget(
+        widg: CollectorsPage(),
+      ),
       context);
   static Widget Press(BuildContext context) => navBtn(
       "07 " + FFLocalizations.of(context).getText("7qqisvlq"),
       HomePageWidget(),
       context);
-  static Widget Lang(BuildContext context) => actBtn(
-      "ESP/ENG",
-      () => MyApp.of(context).setLocale(Locale.fromSubtags(
-          languageCode: FFLocalizations.of(context).locale.languageCode == "es"
-              ? "en"
-              : "es")),
-      context);
-  static Widget Instagram(BuildContext context) => navBtnLink("Instagram",
-      "https://www.instagram.com/galerieperrotin/?hl=es-la", context);
+  static Widget Lang(BuildContext context) => InkWell(
+      onTap: () {
+        MyApp.of(context).setLocale(Locale.fromSubtags(
+            languageCode:
+                FFLocalizations.of(context).locale.languageCode == "es"
+                    ? "en"
+                    : "es"));
+      },
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "ESP",
+              textAlign: TextAlign.left,
+              style: FlutterTheme.of(context).navBar.override(
+                  fontStyle:
+                      FFLocalizations.of(context).locale.languageCode == "es"
+                          ? FontStyle.italic
+                          : FontStyle.normal),
+            ),
+            Text(
+              "/",
+              textAlign: TextAlign.left,
+              style: FlutterTheme.of(context).navBar,
+            ),
+            Text(
+              "ENG",
+              textAlign: TextAlign.left,
+              style: FlutterTheme.of(context).navBar.override(
+                  fontStyle:
+                      FFLocalizations.of(context).locale.languageCode == "es"
+                          ? FontStyle.normal
+                          : FontStyle.italic),
+            ),
+          ]));
+
+  static Widget Instagram(BuildContext context) => navBtnLink(
+      "Instagram", "https://www.instagram.com/gabrielricoestudio/", context);
   static Widget Contact(BuildContext context) => actBtn(
-      FFLocalizations.of(context).getText("a7yefkbw"), () => null, context);
+      FFLocalizations.of(context).getText("a7yefkbw"),
+      () => launEmail("gabrielricoestudio@gmail.com", "GRS", ""),
+      context);
 }

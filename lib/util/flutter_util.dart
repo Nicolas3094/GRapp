@@ -38,6 +38,14 @@ Future launchURL(String url) async {
   }
 }
 
+Future launEmail(String email, String subject, String body) async {
+  final String EMAIL = Uri.encodeComponent(email);
+  final String SUBJECT = Uri.encodeComponent(subject);
+  final String BODY = Uri.encodeComponent(body);
+  final Uri MAIL = Uri.parse("mailto:$EMAIL?subject=$SUBJECT&body=$BODY");
+  await launch(MAIL.toString());
+}
+
 enum FormatType {
   decimal,
   percent,

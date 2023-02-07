@@ -2,10 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/rendering.dart';
 import 'package:g_mcp/Models/catalogue.dart';
 import 'package:flutter/material.dart';
-
 import '../Models/project.dart';
 import '../util/flutter_util.dart';
-import '../util/internationalization.dart';
 import 'body_text.dart';
 import 'loaderspinner.dart';
 
@@ -63,14 +61,14 @@ class _SwipeImagesState extends State<SwipeImagesWidget> {
         ? widget.project.images.length
         : widget.catalogue.images.length;
     return ListView.builder(
-        itemCount: len,
+        itemCount: len + 1,
         scrollDirection: Axis.vertical,
         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
         addAutomaticKeepAlives: false,
         addRepaintBoundaries: false,
         cacheExtent: 2000,
         itemBuilder: (context, index) {
-          if (index == len - 1) {
+          if (index == len) {
             return Container(
                 child:
                     widget.project != null ? projectText() : catalogueText());
@@ -105,7 +103,7 @@ class _SwipeImagesState extends State<SwipeImagesWidget> {
         fit: BoxFit.cover,
         memCacheHeight: tablet || tabletland ? 900 : 700,
         maxHeightDiskCache: tablet || tabletland ? 900 : 700,
-        maxWidthDiskCache: tablet || tabletland ? 900 : 700,
+        maxWidthDiskCache: tablet || tabletland ? 900 : 1000,
         placeholder: (context, url) => Container(
             height: 50,
             width: 50,

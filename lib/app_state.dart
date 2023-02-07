@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/services.dart';
 import 'package:g_mcp/Models/bio.dart';
 import 'package:g_mcp/Models/catalogue.dart';
@@ -12,6 +14,8 @@ import 'package:rxdart/rxdart.dart';
 import 'Models/Description.dart';
 
 class FFAppState {
+  static final queueIndex = Queue<int>();
+
   static final subject = BehaviorSubject<String>();
 
   static const String _PROJECTPATH = "jsonfile/projects.json";
@@ -65,10 +69,19 @@ class FFAppState {
   }
 
   static void setIDx(int i) {
-    _indx = i;
+    queueIndex.add(i);
   }
 
-  static int getIDx() => _indx;
+  static int getIDx() {
+    if (queueIndex.isEmpty) return 0;
+    return queueIndex.last;
+  }
+
+  static void popIdx() {
+    if (queueIndex.isEmpty) return;
+    queueIndex.removeLast();
+  }
+
   static void setFirstSplash() {
     _firstSplash = true;
   }

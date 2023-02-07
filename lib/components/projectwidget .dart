@@ -17,11 +17,6 @@ class ProjectWidget extends StatefulWidget {
 class _ProjectWidget extends State<ProjectWidget> {
   final String name = "PROJECTS & EXHIBITIONS";
 
-  final double fontitle = 32;
-  final double fontitle2 = 26;
-
-  final double fontsz = 18;
-
   @override
   Widget build(BuildContext context) {
     return widget.numText == 0
@@ -39,7 +34,7 @@ class _ProjectWidget extends State<ProjectWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 60, 0),
           child: Text(
             "${project.year}",
-            style: FlutterTheme.of(context).bodyText2.override(
+            style: FlutterTheme.of(context).bodyText1.override(
                 fontStyle: FontStyle.normal,
                 fontWeight: bold ? FontWeight.bold : FontWeight.normal),
             textAlign: TextAlign.left,
@@ -55,13 +50,13 @@ class _ProjectWidget extends State<ProjectWidget> {
                     Text(
                       "${widget.index < 9 ? '0' : ''}${widget.index + 1}. ${project.title}",
                       overflow: TextOverflow.clip,
-                      style: FlutterTheme.of(context).bodyText2,
+                      style: FlutterTheme.of(context).bodyText1,
                       textAlign: TextAlign.left,
                     ),
                     Text(
                       "${project.year_place.replaceAll("\\n", "\n")}",
                       overflow: TextOverflow.clip,
-                      style: FlutterTheme.of(context).bodyText2,
+                      style: FlutterTheme.of(context).bodyText1,
                       textAlign: TextAlign.left,
                     ),
                     Padding(
@@ -69,7 +64,7 @@ class _ProjectWidget extends State<ProjectWidget> {
                         child: Text(
                           "${FFLocalizations.of(context).locale.languageCode == "es" ? project.dataESP.replaceAll("\\n", "\n") : project.dataENG.replaceAll("\\n", "\n")}",
                           overflow: TextOverflow.clip,
-                          style: FlutterTheme.of(context).bodyText2,
+                          style: FlutterTheme.of(context).bodyText1,
                           textAlign: TextAlign.left,
                         )),
                   ],

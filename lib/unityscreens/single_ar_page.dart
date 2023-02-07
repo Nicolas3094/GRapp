@@ -37,7 +37,8 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
   }
 
   Widget verticalView(BuildContext context, InfoStructure struct) {
-    return Column(
+    return SingleChildScrollView(
+        child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -47,14 +48,13 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
           child: principalInfo(context, struct, false),
         ),
         Container(
-          height: 260,
+          height: 320,
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
           child: Text(
-            FFLocalizations.of(context).locale.languageCode == "es"
-                ? struct.dataESP
-                : struct.dataENG,
-            style: FlutterTheme.of(context).bodyText3,
-          ),
+              FFLocalizations.of(context).locale.languageCode == "es"
+                  ? struct.dataESP
+                  : struct.dataENG,
+              style: FlutterTheme.of(context).bodyText3),
         ),
         Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
@@ -73,11 +73,12 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
               ],
             )),
         Expanded(
+            flex: 4,
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 child: Image.asset(struct.dir + "1.jpg"))),
       ],
-    );
+    ));
   }
 
   Widget navBtn(String name, Widget fn, BuildContext context) => TextButton(
@@ -106,9 +107,9 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 40, 0),
           child: Text(
-            "${project.year.toString()}",
+            "${project.year}",
             style: FlutterTheme.of(context).bodyText1.override(
-                fontStyle: bold ? FontStyle.normal : FontStyle.italic,
+                fontStyle: FontStyle.normal,
                 fontWeight: bold ? FontWeight.bold : FontWeight.normal),
             textAlign: TextAlign.left,
           ),

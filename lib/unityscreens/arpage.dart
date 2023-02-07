@@ -133,7 +133,7 @@ class _ARPageWidget extends State<ARPageWidget> {
                           : tabletland
                               ? 0.4
                               : phone
-                                  ? 0.3
+                                  ? 0.28
                                   : 0.6),
                   child: InkWell(
                       onTap: () async {
@@ -165,7 +165,7 @@ class _ARPageWidget extends State<ARPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),
                               child: Row(
                                 children: [
-                                  Text("0${i + 1}",
+                                  Text("0${i + 1}.",
                                       style:
                                           FlutterTheme.of(context).bodyText2),
                                   Text("(${_arprojects[i].year.toString()})",

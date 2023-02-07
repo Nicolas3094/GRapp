@@ -98,4 +98,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Contacto',
     },
   },
+  // UnusedSection
+  {
+    'z9jlpsmq': {
+      'en':
+          'This section will host collectible artworks that combine the real with the virtual.',
+      'es':
+          'Esta sección albergará piezas coleccionables que conjuntan lo real con lo virtual.',
+    },
+  },
 ].reduce((a, b) => a..addAll(b));

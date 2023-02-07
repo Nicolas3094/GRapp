@@ -46,13 +46,15 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
   }
 
   double phone_project_condition(int index) {
-    return (index == 4 ||
-            index == 5 ||
+    return (index == 2 ||
+            index == 3 ||
+            index == 6 ||
+            index == 7 ||
             index == 12 ||
             index == 13 ||
             index == 14)
         ? 1
-        : 1.7;
+        : 1.8;
   }
 
   double phone_catalogue_condition(int index) {

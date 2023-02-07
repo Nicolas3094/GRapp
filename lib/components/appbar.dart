@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:g_mcp/CollectorsPage/collectorsPage.dart';
 
 import 'package:g_mcp/components/proyects_list_widget.dart';
-import 'package:g_mcp/main.dart';
 
+import '../Models/menus.dart';
 import '../biopage/biopage_widget.dart';
 import '../genericpage/genericpage_widget.dart';
 import '../home_page/home_page_widget.dart';
@@ -73,6 +74,7 @@ class _BarApp extends State<BarApp> {
                   : FontStyle.italic),
         ),
       );
+  String _uri = "gabrielricoestudio@gmail.com";
   @override
   Widget build(BuildContext context) {
     bool tablet = responsiveVisibility(context: context, tablet: true);
@@ -94,11 +96,13 @@ class _BarApp extends State<BarApp> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  //HOME
                   navBtn(
                       "00 " + FFLocalizations.of(context).getText("4vb80p5u"),
                       HomePageWidget(),
                       context,
                       0),
+                  //PROJECTS
                   navBtn(
                       "01 " + FFLocalizations.of(context).getText("Projects"),
                       GenericPageWidget(
@@ -108,6 +112,7 @@ class _BarApp extends State<BarApp> {
                           )),
                       context,
                       1),
+                  //WORTKS
                   navBtn(
                       "02 " + FFLocalizations.of(context).getText("w1j9xq7t"),
                       GenericPageWidget(
@@ -117,6 +122,7 @@ class _BarApp extends State<BarApp> {
                           )),
                       context,
                       2),
+                  //BIO
                   navBtn(
                       "03 " + FFLocalizations.of(context).getText("rx0220np"),
                       GenericPageWidget(
@@ -125,7 +131,10 @@ class _BarApp extends State<BarApp> {
                       ),
                       context,
                       3),
+                  //WEB
                   navBtnLink("04 Web", "https://gabrielrico.com/", context, 4),
+
+                  //AR
                   navBtn(
                       "05 AR",
                       GenericPageWidget(
@@ -134,11 +143,15 @@ class _BarApp extends State<BarApp> {
                       ),
                       context,
                       5),
+                  //COLLECTORS
                   navBtn(
                       "06 " + FFLocalizations.of(context).getText("ozkeslzw"),
-                      HomePageWidget(),
+                      GenericPageWidget(
+                        widg: CollectorsPage(),
+                      ),
                       context,
                       6),
+                  //PRESS
                   navBtn(
                       "07 " + FFLocalizations.of(context).getText("7qqisvlq"),
                       HomePageWidget(),
@@ -157,26 +170,17 @@ class _BarApp extends State<BarApp> {
                 ],
               )),
       actions: [
+        if (tablet || tabletland) MenuW.Lang(context),
         if (tablet || tabletland)
-          actBtn(
-              "ESP/ENG",
-              () => MyApp.of(context).setLocale(Locale.fromSubtags(
-                  languageCode:
-                      FFLocalizations.of(context).locale.languageCode == "es"
-                          ? "en"
-                          : "es")),
-              context),
-        if (tablet || tabletland)
-          navBtnLink(
-              "Instagram",
-              "https://www.instagram.com/galerieperrotin/?hl=es-la",
-              context,
-              8),
+          navBtnLink("Instagram",
+              "https://www.instagram.com/gabrielricoestudio/", context, 8),
         if (tablet || tabletland)
           Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-              child: actBtn(FFLocalizations.of(context).getText("a7yefkbw"),
-                  () => null, context))
+              child: actBtn(
+                  FFLocalizations.of(context).getText("a7yefkbw"),
+                  () => launEmail(_uri, "Contact Gabriel Rico", "Contex: "),
+                  context))
       ],
     );
   }

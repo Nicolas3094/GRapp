@@ -1,3 +1,4 @@
+import 'package:g_mcp/CollectorsPage/collectorsPage.dart';
 import 'package:g_mcp/components/appbar.dart';
 import 'package:g_mcp/components/loaderspinner.dart';
 import 'package:g_mcp/index.dart';
@@ -72,7 +73,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         fit: phone ? BoxFit.fitWidth : BoxFit.fitHeight)),
                 child: Stack(
                   children: [
+                    //PROJECTS
                     CreatBtn(
+                        1,
                         phone ? 0.2 : 0.03, //top
                         phone ? 0.1 : 0.42, //left
                         "",
@@ -84,7 +87,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             widg: ProyectsListWidget(
                               isProject: true,
                             ))),
+
+                    //BIO
                     CreatBtn(
+                        3,
                         phone ? 0.55 : 0.335, //top
                         phone ? 0.12 : 0.44, //left
                         "",
@@ -95,15 +101,21 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           title: "BIO",
                           widg: BiopageWidget(),
                         )),
+                    //COLLECTORS
                     CreatBtn(
+                        0,
                         phone ? 1.2 : 0.8, //top
                         phone ? 0.379 : 0.475, //left
                         "Collectors",
                         phone ? 120 : 50, //width
                         phone ? 120 : 50, //height
                         100,
-                        HomePageWidget()),
+                        GenericPageWidget(
+                          widg: CollectorsPage(),
+                        )),
+                    //WEB
                     CreatBtn(
+                        4,
                         phone ? 0.71 : 0.5, //top
                         phone ? 0.47 : 0.5, //left
                         "WEB",
@@ -111,7 +123,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         phone ? 370 : 105, //left
                         100,
                         BiopageWidget()),
+                    //CATALOGUE (WORKS)
                     createDownBtn(
+                        2,
                         phone ? 0.36 : 0.18, //top
                         phone ? 0.53 : 0.505, //left
                         "",
@@ -123,7 +137,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             widg: ProyectsListWidget(
                               isProject: false,
                             ))),
+                    //AR
                     createDownBtn(
+                        5,
                         phone ? 1.01 : 0.64, //top
                         phoneland ? 0.435 : 0.12, //left
                         "",
@@ -154,7 +170,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         fit: BoxFit.fitHeight)),
                 child: Stack(
                   children: [
+                    //PROJECTS
                     CreatBtn(
+                        1,
                         tablet ? 0.164 : 0.16, //top
                         tablet ? 0.1 : 0.27, //left
                         "",
@@ -166,7 +184,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             widg: ProyectsListWidget(
                               isProject: true,
                             ))),
+                    //BIO
                     CreatBtn(
+                        3,
                         tablet ? 0.38 : 0.35, //top
                         tablet ? 0.36 : 0.435, //left
                         "",
@@ -177,7 +197,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           title: "BIO",
                           widg: BiopageWidget(),
                         )),
+                    //COLLECTORS
                     CreatBtn(
+                        0,
                         tablet ? 0.69 : 0.69, //top
                         tablet ? 0.37 : 0.44, //left
                         "Collectors",
@@ -185,7 +207,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         tablet ? 250 : 180, //height
                         100,
                         HomePageWidget()),
+                    //WEB
                     CreatBtn(
+                        4,
                         tablet ? 0.55 : 0.47 //top
                         ,
                         tablet ? 0.68 : 0.58, //left
@@ -194,7 +218,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         400, //height
                         100,
                         BiopageWidget()),
+                    //WORKS
                     createDownBtn(
+                        2,
                         tablet ? 0.21 : 0.2, //top
                         tablet ? 0.625 : 0.57, //left
                         "",
@@ -206,7 +232,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             widg: ProyectsListWidget(
                               isProject: false,
                             ))),
+                    //AR
                     createDownBtn(
+                        5,
                         tablet ? 0.6 : 0.56, //top
                         tablet ? 0.1 : 0.25, //left
                         "",
@@ -221,8 +249,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                 ),
               ),
       ));
-  Widget CreatBtn(double top, double left, String txt, double w, double h,
-          double botpad, Widget widg) =>
+  Widget CreatBtn(int i, double top, double left, String txt, double w,
+          double h, double botpad, Widget widg) =>
       Positioned(
         top: MediaQuery.of(context).size.height * top,
         left: (MediaQuery.of(context).size.width * left),
@@ -232,12 +260,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
             style: FlutterTheme.of(context).title1,
           ),
           FFButtonWidget(
-              onPressed: () async => txt == "WEB"
-                  ? await launchURL('https://gabrielrico.com/')
-                  : txt == "INSTAGRAM"
-                      ? await launchURL('https://gabrielrico.com/')
-                      : await Navigator.push(context,
-                          MaterialPageRoute(builder: ((context) => widg))),
+              onPressed: () async {
+                FFAppState.setIDx(i);
+                txt == "WEB"
+                    ? await launchURL('https://gabrielrico.com/')
+                    : txt == "INSTAGRAM"
+                        ? await launchURL(
+                            'https://www.instagram.com/gabrielricoestudio/')
+                        : await Navigator.push(context,
+                            MaterialPageRoute(builder: ((context) => widg)));
+              },
               options: FFButtonOptions(
                   color: Color.fromARGB(0, 255, 255, 255),
                   height: h,
@@ -249,15 +281,18 @@ class _HomePageWidgetState extends State<HomePageWidget>
               showLoadingIndicator: true)
         ]),
       );
-  Widget createDownBtn(double top, double left, String txt, double w, double h,
-          double botpad, Widget widg) =>
+  Widget createDownBtn(int i, double top, double left, String txt, double w,
+          double h, double botpad, Widget widg) =>
       Positioned(
         top: MediaQuery.of(context).size.height * top,
         left: (MediaQuery.of(context).size.width * left),
         child: Column(children: [
           FFButtonWidget(
-              onPressed: () async => await Navigator.push(
-                  context, MaterialPageRoute(builder: ((context) => widg))),
+              onPressed: () async {
+                FFAppState.setIDx(i);
+                await Navigator.push(
+                    context, MaterialPageRoute(builder: ((context) => widg)));
+              },
               options: FFButtonOptions(
                   color: Color.fromARGB(0, 255, 255, 255),
                   height: h,

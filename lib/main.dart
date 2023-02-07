@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:g_mcp/app_state.dart';
 import 'package:g_mcp/components/loaderspinner.dart';
 import 'package:g_mcp/services/catalogue_service.dart';
 import 'package:g_mcp/services/project_service.dart';
@@ -16,7 +17,7 @@ void main() async {
   );
 
   FFAppState(); // Initialize FFAppState
-
+  FFAppState.queueIndex.add(0);
   runApp(MyApp());
 }
 

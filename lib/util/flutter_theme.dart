@@ -37,7 +37,7 @@ abstract class FlutterTheme {
         fontFamily: 'Neue Haas Grotesk',
         color: primaryText,
         fontWeight: FontWeight.w400,
-        fontSize: _tablet || _tabletland ? 12 : 40,
+        fontSize: _tablet || _tabletland ? 12 : 60,
       );
   TextStyle get title2 => TextStyle(
         fontFamily: 'Neue Haas Grotesk',
@@ -68,13 +68,13 @@ abstract class FlutterTheme {
         fontFamily: 'Ingram',
         color: Colors.black,
         fontWeight: FontWeight.normal,
-        fontSize: _tablet || _tabletland ? 10 : 10,
+        fontSize: _tablet || _tabletland ? 10 : 8,
       );
   TextStyle get bodyText3 => TextStyle(
         fontFamily: 'Neue Haas Grotesk',
         color: Colors.black,
         fontWeight: FontWeight.w400,
-        fontSize: _tablet || _tabletland ? 10 : 12,
+        fontSize: _tablet || _tabletland ? 20 : 16,
       );
 }
 
