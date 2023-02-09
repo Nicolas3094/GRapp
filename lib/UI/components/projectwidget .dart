@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:g_mcp/Models/project.dart';
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
+
+import '../../util/flutter_theme.dart';
+import '../../util/flutter_util.dart';
+import '../../util/internationalization.dart';
 
 class ProjectWidget extends StatefulWidget {
   final Project project;
@@ -62,7 +64,7 @@ class _ProjectWidget extends State<ProjectWidget> {
                     Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                         child: Text(
-                          "${FFLocalizations.of(context).locale.languageCode == "es" ? project.dataESP.replaceAll("\\n", "\n") : project.dataENG.replaceAll("\\n", "\n")}",
+                          "${FLocalizations.of(context).locale.languageCode == "es" ? project.dataESP.replaceAll("\\n", "\n") : project.dataENG.replaceAll("\\n", "\n")}",
                           overflow: TextOverflow.clip,
                           style: FlutterTheme.of(context).bodyText1,
                           textAlign: TextAlign.left,
@@ -129,7 +131,7 @@ class _ProjectWidget extends State<ProjectWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                 child: boldTitle(project.title)),
             boldTitle(project.title),
-            bodyInf(FFLocalizations.of(context).locale.languageCode == "es"
+            bodyInf(FLocalizations.of(context).locale.languageCode == "es"
                 ? project.descriptionESP
                 : project.descriptionENG),
           ],

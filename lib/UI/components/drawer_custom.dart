@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Models/menus.dart';
-import '../util/flutter_util.dart';
+import '../../Models/menus.dart';
+import '../../util/flutter_util.dart';
 
 class DrawerWidget extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;

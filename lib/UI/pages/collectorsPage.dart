@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../util/internationalization.dart';
+import '../../util/internationalization.dart';
 
 class CollectorsPage extends StatefulWidget {
   @override
@@ -10,6 +10,6 @@ class CollectorsPage extends StatefulWidget {
 class _CollectorsPage extends State<CollectorsPage> {
   @override
   Widget build(BuildContext context) => Center(
-        child: Text(FFLocalizations.of(context).getText("z9jlpsmq")),
+        child: Text(FLocalizations.of(context).getText("z9jlpsmq")),
       );
 }

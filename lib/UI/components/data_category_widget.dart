@@ -1,7 +1,9 @@
 import 'package:g_mcp/Models/catalogue.dart';
 import 'package:flutter/material.dart';
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
+
+import '../../util/flutter_theme.dart';
+import '../../util/flutter_util.dart';
+import '../../util/internationalization.dart';
 
 class DataCategoryWidget extends StatefulWidget {
   final Catalogue actualCatg;
@@ -48,7 +50,7 @@ class _DataCategoryWidgetState extends State<DataCategoryWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
             child: Text(
-              "${FFLocalizations.of(context).locale.languageCode == "es" ? widget.actualCatg.dataESP.replaceAll("\\n", "\n") : widget.actualCatg.dataESP.replaceAll("\\n", "\n")}",
+              "${FLocalizations.of(context).locale.languageCode == "es" ? widget.actualCatg.dataESP.replaceAll("\\n", "\n") : widget.actualCatg.dataESP.replaceAll("\\n", "\n")}",
               style: FlutterTheme.of(context).bodyText1,
             ),
           )

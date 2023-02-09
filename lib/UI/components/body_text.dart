@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../util/flutter_theme.dart';
+import '../../util/flutter_theme.dart';
 
 class BodyText extends StatelessWidget {
   final String data;

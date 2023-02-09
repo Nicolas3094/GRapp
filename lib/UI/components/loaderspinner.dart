@@ -66,7 +66,7 @@ class _LoaderSpinner extends State<LoaderSpinner>
       child: Container(
         height: widget.h,
         width: widget.w,
-        child: Image.asset('assets/images/${name}.png'),
+        child: Image.asset('assets/images/spinner/${name}.png'),
       ));
 
   Widget logoSpinnerLoader() => Container(

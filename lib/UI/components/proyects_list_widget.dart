@@ -1,15 +1,16 @@
 import 'package:g_mcp/Models/infostructure.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
-import 'package:g_mcp/components/loaderspinner.dart';
 import 'package:g_mcp/index.dart';
 import 'package:g_mcp/services/catalogue_service.dart';
 
-import '../services/project_service.dart';
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
+import '../../services/project_service.dart';
+import '../../util/flutter_theme.dart';
+import '../../util/flutter_util.dart';
+
 import 'cacheImage.dart';
 import 'cataloguewidget.dart';
+import 'loaderspinner.dart';
 
 class ProyectsListWidget extends StatefulWidget {
   final bool isProject;

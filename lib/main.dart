@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:g_mcp/app_state.dart';
-import 'package:g_mcp/components/loaderspinner.dart';
+import 'package:g_mcp/services/arProjects_service.dart';
 import 'package:g_mcp/services/catalogue_service.dart';
 import 'package:g_mcp/services/project_service.dart';
+import 'UI/components/loaderspinner.dart';
 import 'util/flutter_util.dart';
 import 'util/internationalization.dart';
 import 'index.dart';
@@ -40,7 +41,6 @@ class _MyAppState extends State<MyApp> {
   _asyncMethod() {
     ProjectService.fetchFirebase();
     CatalogueService.fetchFirebase();
-
     Future.delayed(Duration(milliseconds: 4000),
         () => setState(() => displaySplashImage = false));
   }
@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
     _asyncMethod();
     super.initState();
     _locale = Locale.fromSubtags(languageCode: "en");
+    setState(() => FFAppState.setIDx(0));
   }
 
   @override
@@ -62,14 +63,14 @@ class _MyAppState extends State<MyApp> {
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
       });
-
+  void setIndexMenu(int i) => setState(() => FFAppState.setIDx(i));
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Gabriel Rico Estudio',
+        title: 'Gabriel Rico Studio',
         localizationsDelegates: [
-          FFLocalizationsDelegate(),
+          FLocalizationsDelegate(),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,

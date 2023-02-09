@@ -1,14 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:g_mcp/Models/DescriptionAR.dart';
 import 'package:g_mcp/Models/infostructure.dart';
-import 'package:g_mcp/Models/project.dart';
+import 'package:g_mcp/UI/components/cacheImage.dart';
 import 'package:g_mcp/index.dart';
-import '../components/loaderspinner.dart';
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
+
+import '../../../util/flutter_theme.dart';
+import '../../../util/flutter_util.dart';
+import '../../../util/internationalization.dart';
+import '../../components/loaderspinner.dart';
 
 class SingleARPageWidget extends StatefulWidget {
-  final InfoStructure structt;
+  final DescriptionAR structt;
   final int initIndex;
   SingleARPageWidget({this.structt, this.initIndex = 0});
   @override
@@ -36,7 +39,7 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
     return verticalView(context, widget.structt);
   }
 
-  Widget verticalView(BuildContext context, InfoStructure struct) {
+  Widget verticalView(BuildContext context, DescriptionAR struct) {
     return SingleChildScrollView(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -51,9 +54,9 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
           height: 320,
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
           child: Text(
-              FFLocalizations.of(context).locale.languageCode == "es"
-                  ? struct.dataESP
-                  : struct.dataENG,
+              FLocalizations.of(context).locale.languageCode == "es"
+                  ? struct.dataESP.replaceAll("\\n", "\n")
+                  : struct.dataENG.replaceAll("\\n", "\n"),
               style: FlutterTheme.of(context).bodyText3),
         ),
         Padding(
@@ -63,20 +66,20 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 navBtn(
-                    FFLocalizations.of(context).locale.languageCode == "es"
+                    FLocalizations.of(context).locale.languageCode == "es"
                         ? "EXPERIENCIA"
                         : "EXPERIENCE",
                     SimpleScreen(
-                      sceneID: widget.initIndex,
+                      sceneID: 3 - widget.initIndex,
                     ),
                     context)
               ],
             )),
-        Expanded(
-            flex: 4,
-            child: Container(
-                width: MediaQuery.of(context).size.width,
-                child: Image.asset(struct.dir + "1.jpg"))),
+        Container(
+            width: MediaQuery.of(context).size.width,
+            child: ImageCached(
+              image_url: struct.images[0],
+            )),
       ],
     ));
   }
@@ -100,7 +103,7 @@ class _SingleARPageWidget extends State<SingleARPageWidget> {
     return Image.asset(path);
   }
 
-  Widget principalInfo(BuildContext context, Project project, bool bold) {
+  Widget principalInfo(BuildContext context, DescriptionAR project, bool bold) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

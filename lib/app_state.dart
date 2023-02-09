@@ -7,11 +7,11 @@ import 'package:g_mcp/Models/imagen.dart';
 import 'package:g_mcp/Models/project.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-import 'package:g_mcp/transformer/transformers.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'Models/Description.dart';
+import 'UI/transformer/transformers.dart';
 
 class FFAppState {
   static final queueIndex = Queue<int>();
@@ -34,8 +34,6 @@ class FFAppState {
   static Description _arDescription;
 
   static bool _firstSplash = false;
-
-  static int _indx = 0;
 
   static final _transformers = [
     AccordionTransformer(),

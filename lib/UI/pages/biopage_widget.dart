@@ -1,6 +1,8 @@
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
 import 'package:flutter/material.dart';
+
+import '../../app_state.dart';
+import '../../util/flutter_theme.dart';
+import '../../util/internationalization.dart';
 
 class BiopageWidget extends StatefulWidget {
   const BiopageWidget({Key key}) : super(key: key);
@@ -34,7 +36,7 @@ class _BiopageWidgetState extends State<BiopageWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    FFLocalizations.of(context).locale.languageCode == "es"
+                    FLocalizations.of(context).locale.languageCode == "es"
                         ? FFAppState.getBio().descriptionESP
                         : FFAppState.getBio().descriptionENG,
                     textAlign: TextAlign.left,

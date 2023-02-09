@@ -1,12 +1,15 @@
-abstract class InfoStructure {
+abstract class InfoStructure extends InfoStructureAR {
   String idStructure;
+  String descriptionENG;
+  String descriptionESP;
+}
+
+abstract class InfoStructureAR {
   String title;
   int year;
   String dir;
   String dataENG;
   String dataESP;
-  String descriptionENG;
-  String descriptionESP;
   int order;
   List<String> images;
 }

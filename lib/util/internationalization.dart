@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-class FFLocalizations {
-  FFLocalizations(this.locale);
+class FLocalizations {
+  FLocalizations(this.locale);
 
   final Locale locale;
 
-  static FFLocalizations of(BuildContext context) =>
-      Localizations.of<FFLocalizations>(context, FFLocalizations);
+  static FLocalizations of(BuildContext context) =>
+      Localizations.of<FLocalizations>(context, FLocalizations);
 
   static List<String> languages() => ['en', 'es'];
 
@@ -26,19 +26,19 @@ class FFLocalizations {
       [enText, esText][languageIndex] ?? '';
 }
 
-class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
-  const FFLocalizationsDelegate();
+class FLocalizationsDelegate extends LocalizationsDelegate<FLocalizations> {
+  const FLocalizationsDelegate();
 
   @override
   bool isSupported(Locale locale) =>
-      FFLocalizations.languages().contains(locale.languageCode);
+      FLocalizations.languages().contains(locale.languageCode);
 
   @override
-  Future<FFLocalizations> load(Locale locale) =>
-      SynchronousFuture<FFLocalizations>(FFLocalizations(locale));
+  Future<FLocalizations> load(Locale locale) =>
+      SynchronousFuture<FLocalizations>(FLocalizations(locale));
 
   @override
-  bool shouldReload(FFLocalizationsDelegate old) => false;
+  bool shouldReload(FLocalizationsDelegate old) => false;
 }
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[

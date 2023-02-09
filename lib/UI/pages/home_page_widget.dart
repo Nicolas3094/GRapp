@@ -1,16 +1,13 @@
-import 'package:g_mcp/CollectorsPage/collectorsPage.dart';
-import 'package:g_mcp/components/appbar.dart';
-import 'package:g_mcp/components/loaderspinner.dart';
 import 'package:g_mcp/index.dart';
+import '../../util/flutter_theme.dart';
+import '../../util/flutter_util.dart';
+import '../../util/flutter_widgets.dart';
 import '../components/drawer_custom.dart';
-import '../components/proyects_list_widget.dart';
-import '../unityscreens/arpage.dart';
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
+import '../components/loaderspinner.dart';
+
 import 'package:flutter/material.dart';
 import '../components/appbar.dart';
-
-import '../util/flutter_widgets.dart';
+import '../constants/widget_constants.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key key}) : super(key: key);
@@ -82,11 +79,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         phone ? 140 : 70, //width
                         phone ? 250 : 120, //height
                         100,
-                        GenericPageWidget(
-                            title: "PROJECTS & EXHIBITIONS",
-                            widg: ProyectsListWidget(
-                              isProject: true,
-                            ))),
+                        MenusWidgets.PROJECTS(context).widgets),
 
                     //BIO
                     CreatBtn(
@@ -97,10 +90,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         phoneland ? 50 : 140, //width
                         phoneland ? 60 : 170, //height
                         100,
-                        GenericPageWidget(
-                          title: "BIO",
-                          widg: BiopageWidget(),
-                        )),
+                        MenusWidgets.BIO(context).widgets),
                     //COLLECTORS
                     CreatBtn(
                         0,
@@ -110,9 +100,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         phone ? 120 : 50, //width
                         phone ? 120 : 50, //height
                         100,
-                        GenericPageWidget(
-                          widg: CollectorsPage(),
-                        )),
+                        MenusWidgets.COLLECTORS(context).widgets),
                     //WEB
                     CreatBtn(
                         4,
@@ -132,11 +120,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         phone ? 150 : 200, //width
                         phoneland ? 70 : 200, //height
                         100,
-                        GenericPageWidget(
-                            title: "CATALOGUE",
-                            widg: ProyectsListWidget(
-                              isProject: false,
-                            ))),
+                        MenusWidgets.CATALOGUE(context).widgets),
                     //AR
                     createDownBtn(
                         5,
@@ -146,10 +130,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         phone ? 130 : 50, //width
                         phone ? 150 : 60, //height
                         100,
-                        GenericPageWidget(
-                          title: "AR EXPERIENCES",
-                          widg: ARPageWidget(),
-                        ))
+                        MenusWidgets.AR(context).widgets)
                   ],
                 ),
               ),
@@ -172,18 +153,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   children: [
                     //PROJECTS
                     CreatBtn(
-                        1,
-                        tablet ? 0.164 : 0.16, //top
-                        tablet ? 0.1 : 0.27, //left
-                        "",
-                        tablet ? 210 : 190, //width
-                        tablet ? 400 : 40, //height
-                        100,
-                        GenericPageWidget(
-                            title: "PROJECTS & EXHIBITIONS",
-                            widg: ProyectsListWidget(
-                              isProject: true,
-                            ))),
+                      1,
+                      tablet ? 0.164 : 0.16, //top
+                      tablet ? 0.1 : 0.27, //left
+                      "",
+                      tablet ? 210 : 190, //width
+                      tablet ? 400 : 40, //height
+                      100,
+                      MenusWidgets.PROJECTS(context).widgets,
+                    ),
                     //BIO
                     CreatBtn(
                         3,
@@ -193,10 +171,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         tablet ? 200 : 140, //width
                         tablet ? 230 : 220, //heigth
                         100,
-                        GenericPageWidget(
-                          title: "BIO",
-                          widg: BiopageWidget(),
-                        )),
+                        MenusWidgets.BIO(context).widgets),
                     //COLLECTORS
                     CreatBtn(
                         0,
@@ -206,7 +181,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         tablet ? 210 : 50, //width
                         tablet ? 250 : 180, //height
                         100,
-                        HomePageWidget()),
+                        MenusWidgets.COLLECTORS(context).widgets),
                     //WEB
                     CreatBtn(
                         4,
@@ -227,11 +202,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         200, //height
                         tablet ? 300 : 240, //width
                         100,
-                        GenericPageWidget(
-                            title: "CATALOGUE",
-                            widg: ProyectsListWidget(
-                              isProject: false,
-                            ))),
+                        MenusWidgets.CATALOGUE(context).widgets),
                     //AR
                     createDownBtn(
                         5,
@@ -241,10 +212,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         220, //heigth
                         tablet ? 250 : 230, //width
                         100,
-                        GenericPageWidget(
-                          title: "AR EXPERIENCES",
-                          widg: ARPageWidget(),
-                        ))
+                        MenusWidgets.AR(context).widgets)
                   ],
                 ),
               ),
