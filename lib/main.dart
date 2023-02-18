@@ -9,6 +9,7 @@ import 'util/flutter_util.dart';
 import 'index.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+//jjj
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
