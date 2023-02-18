@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../Models/menus.dart';
-import '../../util/flutter_theme.dart';
-import '../../util/flutter_util.dart';
+import '../models/menus.dart';
+import '../util/flutter_util.dart';
 
 class BarApp extends StatefulWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;

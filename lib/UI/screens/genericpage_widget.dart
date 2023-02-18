@@ -1,10 +1,11 @@
-import 'package:g_mcp/util/flutter_util.dart';
 import '../components/appbar.dart';
 
 import '../components/backbtn.dart';
 import '../components/drawer_custom.dart';
-import '../../util/flutter_theme.dart';
 import 'package:flutter/material.dart';
+
+import '../util/flutter_theme.dart';
+import '../util/flutter_util.dart';
 
 class GenericPageWidget extends StatefulWidget {
   final String title;

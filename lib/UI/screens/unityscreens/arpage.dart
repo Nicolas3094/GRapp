@@ -1,16 +1,17 @@
-import 'package:g_mcp/Models/Description.dart';
-import 'package:g_mcp/Models/DescriptionAR.dart';
-
 import 'package:flutter/material.dart';
-import 'package:g_mcp/UI/pages/unityscreens/single_ar_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:g_mcp/UI/components/loaderspinner.dart';
+import 'package:g_mcp/UI/screens/unityscreens/single_ar_page.dart';
 import 'package:g_mcp/index.dart';
-import 'package:g_mcp/services/arProjects_service.dart';
+import 'package:g_mcp/logic/blocs/arProjects/arproject_bloc.dart';
 
-import '../../../util/flutter_theme.dart';
-import '../../../util/flutter_util.dart';
-import '../../../util/internationalization.dart';
+import '../../../data/Models/Description.dart';
+
+import '../../../data/Models/DescriptionAR.dart';
 import '../../components/cacheImage.dart';
-import '../../components/loaderspinner.dart';
+import '../../util/flutter_theme.dart';
+import '../../util/flutter_util.dart';
+import '../../util/internationalization.dart';
 
 class ARPageWidget extends StatefulWidget {
   const ARPageWidget({Key key}) : super(key: key);
@@ -19,7 +20,6 @@ class ARPageWidget extends StatefulWidget {
 }
 
 class _ARPageWidget extends State<ARPageWidget> {
-  List<DescriptionAR> _arprojects;
   Description _descriptionAR = null;
   bool phone;
   bool tablet;
@@ -33,10 +33,9 @@ class _ARPageWidget extends State<ARPageWidget> {
 
   _asyncMethod() async {
     _descriptionAR = await FFAppState.readJsonARDescription();
-    if (ARProjectService.getProjects().length != 3)
-      await ARProjectService.fetchFirebase();
-    _arprojects = ARProjectService.getProjects();
-    setState(() => load = false);
+    setState(() {
+      load = false;
+    });
   }
 
   @override
@@ -44,14 +43,25 @@ class _ARPageWidget extends State<ARPageWidget> {
     phone = responsiveVisibility(context: context, phone: true);
     tabletland = responsiveVisibility(context: context, tabletLandscape: true);
     tablet = responsiveVisibility(context: context, tablet: true);
-    return load
-        ? LoaderSpinner()
-        : phone || tablet
-            ? verticalView()
-            : horizontalView();
+    return BlocBuilder<ARProjectBloc, ARProjectStates>(
+      builder: (context, state) {
+        if (state is ARProjectLoadingSate && load) {
+          return LoaderSpinner();
+        } else if (state is ARProjectLoadedState) {
+          return phone || tablet
+              ? verticalView(state.projects)
+              : horizontalView(state.projects);
+        } else {
+          return Center(
+            child: Text("Error"),
+          );
+        }
+      },
+    );
   }
 
-  Widget horizontalView() => SingleChildScrollView(
+  Widget horizontalView(List<DescriptionAR> arprojects) =>
+      SingleChildScrollView(
           child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -69,10 +79,10 @@ class _ARPageWidget extends State<ARPageWidget> {
             Container(
                 width: (MediaQuery.of(context).size.width / 2),
                 height: MediaQuery.of(context).size.height,
-                child: BuilderImages())
+                child: BuilderImages(arprojects))
           ]));
 
-  Widget verticalView() => SingleChildScrollView(
+  Widget verticalView(List<DescriptionAR> arprojects) => SingleChildScrollView(
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -89,10 +99,10 @@ class _ARPageWidget extends State<ARPageWidget> {
                   )),
             Container(
                 width: phone ? MediaQuery.of(context).size.width : 632,
-                child: BuilderImages())
+                child: BuilderImages(arprojects))
           ]));
 
-  Widget BuilderImages() {
+  Widget BuilderImages(List<DescriptionAR> arprojects) {
     return Wrap(
       spacing: tablet
           ? 10
@@ -105,7 +115,7 @@ class _ARPageWidget extends State<ARPageWidget> {
       direction: Axis.horizontal,
       alignment: WrapAlignment.start,
       children: [
-        for (var i = 0; i < _arprojects.length; i++)
+        for (var i = 0; i < arprojects.length; i++)
           Container(
             width: MediaQuery.of(context).size.width *
                 (tablet
@@ -133,7 +143,7 @@ class _ARPageWidget extends State<ARPageWidget> {
                         child: GenericPageWidget(
                           title: "AR",
                           widg: SingleARPageWidget(
-                            structt: _arprojects[i],
+                            structt: arprojects[i],
                             initIndex: i,
                           ),
                         )),
@@ -146,7 +156,7 @@ class _ARPageWidget extends State<ARPageWidget> {
                     Container(
                         height: i == 0 || i == 2 ? 202 : 144,
                         child: ImageCached(
-                          image_url: _arprojects[i].images[0],
+                          image_url: arprojects[i].images[0],
                         )),
                     Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),
@@ -154,13 +164,13 @@ class _ARPageWidget extends State<ARPageWidget> {
                           children: [
                             Text("0${i + 1}.",
                                 style: FlutterTheme.of(context).bodyText2),
-                            Text("(${_arprojects[i].year.toString()})",
+                            Text("(${arprojects[i].year.toString()})",
                                 style: FlutterTheme.of(context).bodyText2),
                           ],
                         )),
                     Flexible(
                         child: Text(
-                      "${_arprojects[i].title}",
+                      "${arprojects[i].title}",
                       style: FlutterTheme.of(context).bodyText2,
                       overflow: TextOverflow.fade,
                     )),

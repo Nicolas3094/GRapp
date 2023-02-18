@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:g_mcp/Models/infostructure.dart';
 import 'package:g_mcp/UI/components/projectwidget%20.dart';
 import 'package:g_mcp/UI/components/swipeimage_widget.dart';
 
-import '../../util/flutter_util.dart';
+import '../../data/Models/infostructure.dart';
+import '../util/flutter_util.dart';
 import 'data_category_widget.dart';
 
 class CatalogueWidget extends StatefulWidget {

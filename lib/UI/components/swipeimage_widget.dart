@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:g_mcp/Models/catalogue.dart';
 import 'package:flutter/material.dart';
-import '../../Models/project.dart';
-import '../../util/flutter_util.dart';
-import '../../util/internationalization.dart';
+
+import '../../data/Models/catalogue.dart';
+import '../../data/Models/project.dart';
+import '../util/flutter_util.dart';
+import '../util/internationalization.dart';
 import 'body_text.dart';
 import 'loaderspinner.dart';
 

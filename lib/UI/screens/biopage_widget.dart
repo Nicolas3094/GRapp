@@ -1,8 +1,8 @@
-import '../../util/flutter_theme.dart';
-import '../../util/flutter_util.dart';
 import 'package:flutter/material.dart';
 
-import '../../util/internationalization.dart';
+import '../app_state.dart';
+import '../util/flutter_theme.dart';
+import '../util/internationalization.dart';
 
 class BiopageWidget extends StatefulWidget {
   const BiopageWidget({Key key}) : super(key: key);

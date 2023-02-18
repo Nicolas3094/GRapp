@@ -1,9 +1,9 @@
-import 'package:g_mcp/Models/catalogue.dart';
 import 'package:flutter/material.dart';
 
-import '../../util/flutter_theme.dart';
-import '../../util/flutter_util.dart';
-import '../../util/internationalization.dart';
+import '../../data/Models/catalogue.dart';
+import '../util/flutter_theme.dart';
+import '../util/flutter_util.dart';
+import '../util/internationalization.dart';
 
 class DataCategoryWidget extends StatefulWidget {
   final Catalogue actualCatg;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:g_mcp/UI/constants/widget_constants.dart';
-import '../UI/constants/constants.dart';
-import '../main.dart';
+import '../constants/constants.dart';
+import '../../main.dart';
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
 import '../util/internationalization.dart';

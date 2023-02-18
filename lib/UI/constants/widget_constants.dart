@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:g_mcp/UI/pages/biopage_widget.dart';
 
-import '../../util/internationalization.dart';
 import '../components/proyects_list_widget.dart';
-import '../pages/collectorsPage.dart';
-import '../pages/genericpage_widget.dart';
-import '../pages/home_page_widget.dart';
-import '../pages/unityscreens/arpage.dart';
+import '../screens/biopage_widget.dart';
+import '../screens/collectorsPage.dart';
+import '../screens/genericpage_widget.dart';
+import '../screens/home_page_widget.dart';
+import '../screens/unityscreens/arpage.dart';
+import '../util/internationalization.dart';
 
 class MenuWidget {
   String name;

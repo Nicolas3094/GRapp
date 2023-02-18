@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:g_mcp/util/internationalization.dart';
+
+import '../util/internationalization.dart';
 
 class CollectorsPage extends StatefulWidget {
   @override

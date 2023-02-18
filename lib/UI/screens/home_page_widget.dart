@@ -1,13 +1,15 @@
+import 'package:g_mcp/UI/constants/constants.dart';
 import 'package:g_mcp/index.dart';
-import '../../util/flutter_theme.dart';
-import '../../util/flutter_util.dart';
-import '../../util/flutter_widgets.dart';
+
 import '../components/drawer_custom.dart';
 import '../components/loaderspinner.dart';
 
 import 'package:flutter/material.dart';
 import '../components/appbar.dart';
 import '../constants/widget_constants.dart';
+import '../util/flutter_theme.dart';
+import '../util/flutter_util.dart';
+import '../util/flutter_widgets.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key key}) : super(key: key);
@@ -231,10 +233,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
               onPressed: () async {
                 FFAppState.setIDx(i);
                 txt == "WEB"
-                    ? await launchURL('https://gabrielrico.com/')
+                    ? await launchURL(Constants.WEB)
                     : txt == "INSTAGRAM"
-                        ? await launchURL(
-                            'https://www.instagram.com/gabrielricoestudio/')
+                        ? await launchURL(Constants.INSTAGRAM)
                         : await Navigator.push(context,
                             MaterialPageRoute(builder: ((context) => widg)));
               },

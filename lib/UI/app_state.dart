@@ -1,17 +1,17 @@
 import 'dart:collection';
 
 import 'package:flutter/services.dart';
-import 'package:g_mcp/Models/bio.dart';
-import 'package:g_mcp/Models/catalogue.dart';
-import 'package:g_mcp/Models/imagen.dart';
-import 'package:g_mcp/Models/project.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:g_mcp/UI/transformer/transformers.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'Models/Description.dart';
+import '../data/Models/Description.dart';
+import '../data/Models/bio.dart';
+import '../data/Models/catalogue.dart';
+import '../data/Models/imagen.dart';
+import '../data/Models/project.dart';
 
 class FFAppState {
   static final queueIndex = Queue<int>();
