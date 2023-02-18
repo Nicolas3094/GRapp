@@ -27,8 +27,4 @@ class ProjectRepository implements IDocRepository<Project> {
     var item = _service.getProjects()[id];
     return item;
   }
-
-  Future<bool> isLoading() async {
-    return await _service.subject.first;
-  }
 }

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Models/project.dart';
 import 'firebase_api.dart';
-import 'package:rxdart/rxdart.dart';
 
 class ProjectService {
   List<Project> _projects = <Project>[];
@@ -11,8 +10,6 @@ class ProjectService {
   final String _name = "projects";
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-
-  final subject = BehaviorSubject<bool>();
 
   factory ProjectService() {
     return _instance;
@@ -39,10 +36,6 @@ class ProjectService {
     return _projects;
   }
 
-  Future<bool> isLoading() {
-    return subject.first;
-  }
-
   Future<void> fetchFirebase() async {
     final collection = await _getCollection();
     for (var doc in collection.docs) {
@@ -52,6 +45,5 @@ class ProjectService {
       project.images = list_images;
       _projects.add(project);
     }
-    subject.add(false);
   }
 }

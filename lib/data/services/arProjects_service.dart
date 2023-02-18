@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Models/DescriptionAR.dart';
 import 'firebase_api.dart';
-import 'package:rxdart/rxdart.dart';
 
 class ARProjectService {
   List<DescriptionAR> _arprojects = <DescriptionAR>[];
@@ -11,8 +10,6 @@ class ARProjectService {
   final String _name = "ar_projects";
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-  final subject = BehaviorSubject<bool>();
-  Future<bool> isLoading() async => subject.first;
 
   factory ARProjectService() {
     return _instance;
@@ -46,6 +43,5 @@ class ARProjectService {
       arproject.images = list_images;
       _arprojects.add(arproject);
     }
-    subject.add(false);
   }
 }

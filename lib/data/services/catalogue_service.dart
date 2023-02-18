@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Models/catalogue.dart';
 import 'firebase_api.dart';
-import 'package:rxdart/rxdart.dart';
 
 class CatalogueService {
   List<Catalogue> _catalogues = <Catalogue>[];
@@ -11,8 +10,6 @@ class CatalogueService {
   final String _name = "catalogues";
 
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
-  final subject = BehaviorSubject<bool>();
-  Future<bool> isLoading() async => subject.first;
 
   factory CatalogueService() {
     return _instance;
@@ -42,6 +39,5 @@ class CatalogueService {
       catalogue.images = list_images;
       _catalogues.add(catalogue);
     }
-    subject.add(false);
   }
 }

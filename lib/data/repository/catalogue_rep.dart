@@ -28,8 +28,4 @@ class CatalogueRepository implements IDocRepository<Catalogue> {
     var item = _service.getCatalogues()[id];
     return item;
   }
-
-  Future<bool> isLoading() async {
-    return await _service.subject.first;
-  }
 }
