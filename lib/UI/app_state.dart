@@ -18,16 +18,10 @@ class FFAppState {
 
   static final subject = BehaviorSubject<String>();
 
-  static const String _PROJECTPATH = "jsonfile/projects.json";
-  static const String _PROJECTARPATH = "jsonfile/arprojects.json";
-
-  static const String _CATALOGUETPATH = "jsonfile/catginfo.json";
   static const String _BIOTPATH = "jsonfile/bioinfo.json";
   static const String _ARPATH = "jsonfile/ar_description.json";
 
   static final FFAppState _instance = FFAppState._internal();
-  static List<Project> _projects = <Project>[];
-  static List<Catalogue> _catalogues = <Catalogue>[];
   static List<Project> _projectsar;
 
   static BioInfo _bio;
@@ -90,44 +84,13 @@ class FFAppState {
     return _firstSplash;
   }
 
-  static Future<List<Project>> readJsonProjects() async {
-    final jsondata = await rootBundle.loadString(_PROJECTPATH);
-    final list = json.decode(jsondata) as List<dynamic>;
-    return list.map((e) => Project.fromJson(e)).toList();
-  }
-
-  static Future<List<Project>> readJsonARProjects() async {
-    final jsondata = await rootBundle.loadString(_PROJECTARPATH);
-    final list = json.decode(jsondata) as List<dynamic>;
-    return list.map((e) => Project.fromJson(e)).toList();
-  }
-
   static Future<List<Imagen>> getImgsProject(List<dynamic> jsondata) async =>
       jsondata.map((e) => Imagen.fromJson(e)).toList();
 
-  static List<Project> getProjects() => _projects;
   static List<Project> getARProjects() => _projectsar;
-
-  static void setProjects(List<Project> futurePorject) {
-    _projects = futurePorject;
-  }
-
-  static void addProject(Project obj) {
-    _projects.add(obj);
-  }
-
-  static void addCatalogue(Catalogue obj) {
-    _catalogues.add(obj);
-  }
 
   static void setARProjects(List<Project> futurePorject) {
     _projectsar = futurePorject;
-  }
-
-  static Future<List<Catalogue>> readJsonCatalogues() async {
-    final jsondata = await rootBundle.loadString(_CATALOGUETPATH);
-    final list = json.decode(jsondata) as List<dynamic>;
-    return list.map((e) => Catalogue.fromJson(e)).toList();
   }
 
   static Future<BioInfo> readJsonBio() async {
@@ -142,12 +105,6 @@ class FFAppState {
     return Description.fromJson(dat);
   }
 
-  static List<Catalogue> getCatalogues() => _catalogues;
-
-  static void setCatalogues(List<Catalogue> futureCatalogues) {
-    _catalogues = futureCatalogues;
-  }
-
   static void setBio(BioInfo bio) {
     _bio = bio;
   }
@@ -158,16 +115,6 @@ class FFAppState {
   static PageTransformer getTransformer(int index) => _transformers[index];
 
   static List<PageTransformer> getTransformers() => _transformers;
-
-  static Future<bool> compileJSON() async {
-    var listprj = await readJsonProjects();
-    setProjects(listprj);
-    var listcat = await readJsonCatalogues();
-    setCatalogues(listcat);
-    var bioi = await readJsonBio();
-    setBio(bioi);
-    return true;
-  }
 
   static getMenu() {
     return;
