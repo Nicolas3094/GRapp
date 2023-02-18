@@ -1,6 +1,6 @@
 # Gabriel Rico Estudio App
 
-Aplicación de Gabriel Rico version 1.0.
+Aplicación de Gabriel Rico version 2.
 
 
 ## IMPORTANTE:

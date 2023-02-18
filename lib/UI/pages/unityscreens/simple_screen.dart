@@ -126,7 +126,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
 
       senToUnityScene("loader");
     } else {
-      //FFAppState.setFirstSplash();
+      FFAppState.setFirstSplash();
     }
     Future.delayed(const Duration(milliseconds: 100), () {
       _unityWidgetController.postMessage(

@@ -33,7 +33,8 @@ class _ARPageWidget extends State<ARPageWidget> {
 
   _asyncMethod() async {
     _descriptionAR = await FFAppState.readJsonARDescription();
-    await ARProjectService.fetchFirebase();
+    if (ARProjectService.getProjects().length != 3)
+      await ARProjectService.fetchFirebase();
     _arprojects = ARProjectService.getProjects();
     setState(() => load = false);
   }
