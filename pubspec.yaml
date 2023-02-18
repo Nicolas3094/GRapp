@@ -44,6 +44,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
   pointer_interceptor: ^0.9.3+2
+  firebase_core: ^2.4.1
+  cloud_firestore: ^4.3.1
+  firebase_storage: ^11.0.10
+  flutter_staggered_grid_view: ^0.4.0
+  extended_image: ^6.2.1
+  rxdart: ^0.27.7
 
 dev_dependencies:
   build_runner: ^2.0.0
@@ -72,129 +78,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/fonts/Heading_pro/
-    - assets/fonts/QuattrocentoSans/
+ 
     - assets/fonts/Ingram/
     - assets/fonts/Neue-haas-grotesk/
 
     - assets/images/
-    - assets/images/proyectosar/1/
-    - assets/images/proyectosar/2/
-    - assets/images/proyectosar/3/
-
-
-    - assets/images/catalogo/CAN YOU SMELL MATHS/golden arrow/
-    - assets/images/catalogo/CAN YOU SMELL MATHS/pink deer/
-    - assets/images/catalogo/CAN YOU SMELL MATHS/watermelon oryx/
-
-
-    - assets/images/catalogo/Changetheobvious/
-    - assets/images/catalogo/Crudelitatem/
-    - assets/images/catalogo/DEMOCRITUS/
-    - assets/images/catalogo/EXCESSIVEBUTTER/X/
-    - assets/images/catalogo/EXCESSIVEBUTTER/Gallery Proof/
-
-    - assets/images/catalogo/IHAVEANTICIPATEDYOUII/II/
-    - assets/images/catalogo/IHAVEANTICIPATEDYOUII/III/
-    - assets/images/catalogo/IHAVEANTICIPATEDYOUII/V/
-
-    - assets/images/catalogo/NIMBLE/I/
-    - assets/images/catalogo/NIMBLE/IV/
-    - assets/images/catalogo/NIMBLE/VIII/
-    - assets/images/catalogo/NIMBLE/X/
-    - assets/images/catalogo/NIMBLE/XI/
-
-    - assets/images/catalogo/REDUCCIIONMURALIV/IV/
-    - assets/images/catalogo/REDUCCIIONMURALIV/X/
-
-    - assets/images/catalogo/THATTHATISIS/I/
-    - assets/images/catalogo/THATTHATISIS/II/
-    - assets/images/catalogo/THATTHATISIS/III/
-
-    - assets/images/catalogo/Because_nothing/
-    - assets/images/catalogo/TO BE PRESERVED/
-    - assets/images/catalogo/SECCION AUREA/
-    - assets/images/catalogo/MUTILS UTILE/
-    - assets/images/catalogo/LAS COSAS QUE NOS PERTENECEN/CANDLE/
-    - assets/images/catalogo/LAS COSAS QUE NOS PERTENECEN/PARACHUTE/
-
-    - assets/images/catalogo/JUDICIS/
-    - assets/images/catalogo/THE SUN HAS BEEN REDUCED IN SIZE/
-    - assets/images/catalogo/FROM PITAGORAS TO PENROSE/
-    - assets/images/catalogo/FISH BEGIN TO STINK BY THE HEAD/Mirror sphere/
-    - assets/images/catalogo/FISH BEGIN TO STINK BY THE HEAD/Tsar Bomb/
-
-    - assets/images/proyectos/1. COUP DE VILLE/
-    - assets/images/proyectos/2. LA CUCHARA Y EL LADRILLO/
-    - assets/images/proyectos/3. VIS VIVA/
-    - assets/images/proyectos/4. DEAD DEAD LIVE DEAD/
-    - assets/images/proyectos/5. PROXIMIDAD/
-    - assets/images/proyectos/6. ROOFTOP PLAYGROUND/
-    - assets/images/proyectos/7. CYCLES OF COLLAPSING/
-    - assets/images/proyectos/8. GOLDEN HOUR/
-    - assets/images/proyectos/9. THE DISCIPLINE OF THE CAVE/
-    - assets/images/proyectos/10. NO SIGNALS CAN TRAVEL/
-    - assets/images/proyectos/11. I MAY USE AN ELECTRIC DRILL/
-    - assets/images/proyectos/12. Unity in Variety/
-    - assets/images/proyectos/13. HEY LOOK AT ME/
-    - assets/images/proyectos/14. La inclusion de mi raza/
-    - assets/images/proyectos/15. AN ANIMAL I AM/
 
     - jsonfile/
   fonts:
     
-    - family: QuattrocentroSans
-      fonts:
-        - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-Regular.ttf
-          weight: 500
-        - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-Italic.ttf
-          style: italic
-        - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/QuattrocentoSans/QuattrocentoSans-BoldItalic.ttf
-          weight: 700
-          style: italic
-    - family: Headingpro
-      fonts:
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Thin-trial.ttf
-          weight: 100
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Thin-Italic-trial.ttf
-          weight: 100
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-ExtraLight-trial.ttf
-          weight: 200
-        - asset: assets/fonts/Heading_pro/Heading-Pro-ExtraLight-Italic-trial.ttf
-          weight: 200
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Light-trial.ttf
-          weight: 300
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Light-Italic-trial.ttf
-          weight: 300
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Italic-trial.ttf
-          weight: 500
-          style: italic    
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Book-trial.ttf
-          weight: 600
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Book-Italic-trial.ttf
-          weight: 600
-          style: italic       
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Bold-trial.ttf
-          weight: 700
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Bold-Italic-trial.ttf
-          weight: 700
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-ExtraBold-trial.ttf
-          weight: 800
-        - asset: assets/fonts/Heading_pro/Heading-Pro-ExtraBold-Italic-trial.ttf
-          weight: 800
-          style: italic
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Heavy-trial.ttf
-          weight: 900
-        - asset: assets/fonts/Heading_pro/Heading-Pro-Heavy-Italic-trial.ttf
-          weight: 900
-          style: italic
-
     - family: Neue Haas Grotesk
       fonts:
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-15UltTh.ttf
@@ -213,24 +105,24 @@ flutter:
           weight: 300
           style: italic
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-45Lt.ttf
-          weight: 500
+          weight: 400
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-46LtIt.ttf
-          weight: 500
+          weight: 400
           style: italic    
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-55Rg.ttf
-          weight: 600
+          weight: 500
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-56It.ttf
-          weight: 600
+          weight: 500
           style: italic       
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-65Md.ttf
-          weight: 700
+          weight: 600
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-66MdIt.ttf
-          weight: 700
+          weight: 600
           style: italic
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-75Bd.ttf
-          weight: 800
+          weight: 700
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-76BdIt.ttf
-          weight: 800
+          weight: 700
           style: italic
         - asset: assets/fonts/Neue-haas-grotesk/NHaasGroteskDSPro-95Blk.ttf
           weight: 900

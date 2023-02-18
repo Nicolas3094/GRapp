@@ -2,10 +2,10 @@
     {
         "title": "Dessert Flood",
         "dir":"assets/images/proyectosar/3/",
-        "year":"2023",
+        "year":2023,
         "year_place":"OMR Gallery\nCDMX, Mexico",
-        "dataENG":"This AR experience can be initiate in any place, just follow the next steps:\n\n1. Stand still\n2. Direct the device’s camera to the ground\n3. Slowly rotate the camera so it can identify the ground\n4. Once the AR experience starts, you can walk through the space\n\nDo not turn the device from vertical to horizontal (or visceversa) once the AR experience has began. It may affect the floor reading",
-        "dataESP":"Esta experiencia de realidad aumentada se puede iniciar en cualquier lugar, solo siga estos pasos:\n\n1. Manténgase fijo en un sitio\n2. Dirija la cámara del dispositivo hacia el suelo\n3. Gire lentamente el dispositivo para que pueda escanear el suelo\n4. Una vez iniciada la experiencia AR, puede caminar por el espacio\nNo gire el dispositivo de vertical a horizontal (o visceversa) una vez iniciada la experiencia AR. Podría afectar a la lectura del suelo",
+        "dataENG":"This AR experience works best if you keep at least 2-meter distance from artworks and  walls.\n\nTo initiate the experience, identify the QR code on the ground and follow the next steps:\n\n1. Stand still\n2. Direct the device’s camera to the ground\n3. Slowly rotate the camera so it can identify the ground\n4. Once the AR experience starts, you can walk through the space\n\nDo not turn the device from vertical to horizontal (or visceversa) once the AR experience has began. It may affect the floor reading",
+        "dataESP":"Esta experiencia de RA funciona mejor si se mantiene una distancia mínima de 2 metros tanto de las piezas, como de los muros.\n\nPara iniciar la experiencia, identifique el código QR en el suelo y siga los pasos a continuación:\n\n1. Manténgase fijo en un sitio\n2. Dirija la cámara del dispositivo hacia el suelo\n3. Gire lentamente el dispositivo para que pueda escanear el suelo\n4. Una vez iniciada la experiencia AR, puede caminar por el espacio\n\nNo gire el dispositivo de vertical a horizontal (o visceversa) una vez iniciada la experiencia AR. Podría afectar a la lectura del suelo",
         "descriptionENG":" ",
         "descriptionESP":" ",   
         "images": [
@@ -19,14 +19,13 @@
 {
             "title": "When there were more donkeys than icosahedrons",
             "dir":"assets/images/proyectosar/1/",
-            "year":"2022",
+            "year":2022,
             "year_place":"Tail Tracks Plaza\nDenver, USA\n\nPresented by the Biennal of the Americas with artistic direction by Black Cube Nomadic Art Museum",
-            "dataENG":"This AR experience can be initiate in any place, just follow the next steps:\n\n1. Stand still\n2. Direct the device’s camera to the ground\n3. Slowly rotate the camera so it can identify the ground\n4. Once the AR experience starts, you can walk through the space\n\nDo not turn the device from vertical to horizontal (or visceversa) once the AR experience has began. It may affect the floor reading",
-            "dataESP":"Esta experiencia de realidad aumentada se puede iniciar en cualquier lugar, solo siga estos pasos:\n\n1. Manténgase fijo en un sitio\n2. Dirija la cámara del dispositivo hacia el suelo\n3. Gire lentamente el dispositivo para que pueda escanear el suelo\n4. Una vez iniciada la experiencia AR, puede caminar por el espacio\nNo gire el dispositivo de vertical a horizontal (o visceversa) una vez iniciada la experiencia AR. Podría afectar a la lectura del suelo",
+            "dataENG":"This AR experience works best if you keep at least 2-meter distance from artworks and  walls.\n\nTo initiate the experience, identify the QR code on the ground and follow the next steps:\n\n1. Stand still\n2. Direct the device’s camera to the QR code\n3. Make coincide the red dot on the camera with the red dot above the QR so the experience initiates with the correct direction\n4. Once the AR experience starts, you can walk through the space\n\nDo not turn the device from vertical to horizontal (or visce-versa) once the AR experience has begun, it may affect the floor reading",
+            "dataESP":"Esta experiencia de RA funciona mejor si se mantiene una distancia mínima de 2 metros tanto de las piezas, como de los muros.\n\nPara iniciar la experiencia, identifique el código QR en el suelo y siga los pasos a continuación:\n\n1. Manténgase fijo en un sitio\n2. Dirija la cámara del dispositivo hacia el código QR\n3. Haga coincidir el punto rojo en la cámara con el punto rojo sobre el código QR, así la experiencia iniciará con la dirección correcta\n4. Una vez iniciada la experiencia AR, puede caminar por el espacio\n\nNo gire el dispositivo de vertical a horizontal (o visceversa) una vez iniciada la experiencia AR, podría afectar a la lectura del suelo",
             "descriptionENG":" ",
             "descriptionESP":" ",        
             "images": [
-
                 {
                     "url":"1.jpeg"
                 }
@@ -35,19 +34,16 @@
         {
             "title": "La inclusión de mi raza",
             "dir":"assets/images/proyectosar/2/",
-            "year":"2022",
+            "year":2022,
             "year_place":"Max Goelitz Gallery\nMunich, Germany",
             "dataENG":"This AR experience can be initiate in any place, just follow the next steps:\n\n1. Stand still\n2. Direct the device’s camera to the ground\n3. Slowly rotate the camera so it can identify the ground\n4. Once the AR experience starts, you can walk through the space\n\nDo not turn the device from vertical to horizontal (or visceversa) once the AR experience has began. It may affect the floor reading",
-            "dataESP":"Esta experiencia de realidad aumentada se puede iniciar en cualquier lugar, solo siga estos pasos:\n\n1. Manténgase fijo en un sitio\n2. Dirija la cámara del dispositivo hacia el suelo\n3. Gire lentamente el dispositivo para que pueda escanear el suelo\n4. Una vez iniciada la experiencia AR, puede caminar por el espacio\nNo gire el dispositivo de vertical a horizontal (o visceversa) una vez iniciada la experiencia AR. Podría afectar a la lectura del suelo",
+            "dataESP":"Esta experiencia de realidad aumentada se puede iniciar en cualquier lugar, solo siga estos pasos:\n\n1. Manténgase fijo en un sitio\n2. Dirija la cámara del dispositivo hacia el suelo\n3. Gire lentamente el dispositivo para que pueda escanear el suelo\n4. Una vez iniciada la experiencia AR, puede caminar por el espacio\n\nNo gire el dispositivo de vertical a horizontal (o visceversa) una vez iniciada la experiencia AR. Podría afectar a la lectura del suelo",
             "descriptionENG":" ",
             "descriptionESP":" ",   
             "images": [
-
                 {
                     "url":"1.png"
                 }
-               
             ]
         }
-   
-]
+    ]

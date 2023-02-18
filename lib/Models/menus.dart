@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../biopage/biopage_widget.dart';
-import '../components/proyects_list_widget.dart';
-import '../genericpage/genericpage_widget.dart';
-import '../home_page/home_page_widget.dart';
+import 'package:g_mcp/UI/constants/widget_constants.dart';
+import '../UI/constants/constants.dart';
 import '../main.dart';
-import '../unityscreens/arpage.dart';
 import '../util/flutter_theme.dart';
 import '../util/flutter_util.dart';
+import '../util/internationalization.dart';
 
 class MenuW {
   static final MenuW _singleton = MenuW._internal();
@@ -16,94 +13,127 @@ class MenuW {
     return _singleton;
   }
   MenuW._internal();
-
   static Widget actBtn(String name, Function fn, BuildContext context) =>
-      TextButton(
-        style: ButtonStyle(),
-        onPressed: fn,
-        child: Text(
-          name,
-          textAlign: TextAlign.left,
-          style: FlutterTheme.of(context).title1,
-        ),
+      InkWell(
+        onTap: fn,
+        child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              name,
+              textAlign: TextAlign.left,
+              style: FlutterTheme.of(context).navBar,
+            )),
       );
-  static Widget navBtn(String name, Widget fn, BuildContext context) =>
-      TextButton(
-        onPressed: (() => Navigator.push(
-            context, MaterialPageRoute(builder: ((context) => fn)))),
+  static Widget navBtn(String name, Widget fn, BuildContext context, int i) =>
+      InkWell(
+        onTap: () {
+          MyApp.of(context).setIndexMenu(i);
+
+          Navigator.push(
+              context, MaterialPageRoute(builder: ((context) => fn)));
+        },
         child: Text(name,
-            textAlign: TextAlign.left, style: FlutterTheme.of(context).title1),
+            textAlign: TextAlign.left,
+            style: FlutterTheme.of(context).navBar.override(
+                fontStyle: FFAppState.getIDx() != i
+                    ? FontStyle.normal
+                    : FontStyle.italic)),
       );
 
-  static Widget navBtnLink(String name, String url, BuildContext context) =>
-      TextButton(
-        onPressed: (() => launchURL(url).then((value) => null)),
-        style: ButtonStyle(
-          padding: MaterialStateProperty.all(
-              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0)),
-          textStyle: MaterialStateProperty.all(
-            const TextStyle(),
-          ),
-        ),
-        child: Text(
-          name,
-          textAlign: TextAlign.left,
-          style: FlutterTheme.of(context).title1,
-        ),
+  static Widget navBtnLink(
+          String name, String url, BuildContext context, int i) =>
+      InkWell(
+        onTap: () async {
+          FFAppState.setIDx(i);
+
+          await launchURL(url);
+        },
+        child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              name,
+              textAlign: TextAlign.left,
+              style: FlutterTheme.of(context).navBar,
+            )),
       );
   static Widget Home(BuildContext context) => navBtn(
-      "00 " + FFLocalizations.of(context).getText("4vb80p5u"),
-      HomePageWidget(),
-      context);
+      MenusWidgets.HOME(context).name,
+      MenusWidgets.HOME(context).widgets,
+      context,
+      0);
   static Widget Projects(BuildContext context) => navBtn(
-      "01 " + FFLocalizations.of(context).getText("Projects"),
-      GenericPageWidget(
-          title: "PROJECTS & EXHIBITIONS",
-          widg: ProyectsListWidget(
-            isProject: true,
-          )),
-      context);
+      MenusWidgets.PROJECTS(context).name,
+      MenusWidgets.PROJECTS(context).widgets,
+      context,
+      1);
+
   static Widget Catalogue(BuildContext context) => navBtn(
-      "02 " + FFLocalizations.of(context).getText("w1j9xq7t"),
-      GenericPageWidget(
-          title: "CATALOGUE",
-          widg: ProyectsListWidget(
-            isProject: false,
-          )),
-      context);
+      MenusWidgets.CATALOGUE(context).name,
+      MenusWidgets.CATALOGUE(context).widgets,
+      context,
+      2);
   static Widget Bio(BuildContext context) => navBtn(
-      "03 Bio",
-      GenericPageWidget(
-        title: "BIO",
-        widg: BiopageWidget(),
-      ),
-      context);
+      MenusWidgets.BIO(context).name,
+      MenusWidgets.BIO(context).widgets,
+      context,
+      3);
   static Widget Web(BuildContext context) =>
-      navBtnLink("04 Web", "https://gabrielrico.com/", context);
+      navBtnLink("04 Web", Constants.WEB, context, 4);
   static Widget AR(BuildContext context) => navBtn(
-      "05 AR",
-      GenericPageWidget(
-        title: "AR EXPERIENCES",
-        widg: ARPageWidget(),
-      ),
-      context);
+      MenusWidgets.AR(context).name,
+      MenusWidgets.AR(context).widgets,
+      context,
+      5);
   static Widget Collectors(BuildContext context) => navBtn(
-      "06 " + FFLocalizations.of(context).getText("ozkeslzw"),
-      HomePageWidget(),
-      context);
+      MenusWidgets.COLLECTORS(context).name,
+      MenusWidgets.COLLECTORS(context).widgets,
+      context,
+      6);
   static Widget Press(BuildContext context) => navBtn(
-      "07 " + FFLocalizations.of(context).getText("7qqisvlq"),
-      HomePageWidget(),
-      context);
-  static Widget Lang(BuildContext context) => actBtn(
-      "ESP/ENG",
-      () => MyApp.of(context).setLocale(Locale.fromSubtags(
-          languageCode: FFLocalizations.of(context).locale.languageCode == "es"
-              ? "en"
-              : "es")),
-      context);
-  static Widget Instagram(BuildContext context) => navBtnLink("   Instagram",
-      "https://www.instagram.com/galerieperrotin/?hl=es-la", context);
+      MenusWidgets.PRESS(context).name,
+      MenusWidgets.PRESS(context).widgets,
+      context,
+      7);
+  static Widget Lang(BuildContext context) => InkWell(
+      onTap: () {
+        MyApp.of(context).setLocale(Locale.fromSubtags(
+            languageCode: FLocalizations.of(context).locale.languageCode == "es"
+                ? "en"
+                : "es"));
+      },
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "ESP",
+              textAlign: TextAlign.left,
+              style: FlutterTheme.of(context).navBar.override(
+                  fontStyle:
+                      FLocalizations.of(context).locale.languageCode == "es"
+                          ? FontStyle.italic
+                          : FontStyle.normal),
+            ),
+            Text(
+              "/",
+              textAlign: TextAlign.left,
+              style: FlutterTheme.of(context).navBar,
+            ),
+            Text(
+              "ENG",
+              textAlign: TextAlign.left,
+              style: FlutterTheme.of(context).navBar.override(
+                  fontStyle:
+                      FLocalizations.of(context).locale.languageCode == "es"
+                          ? FontStyle.normal
+                          : FontStyle.italic),
+            ),
+          ]));
+
+  static Widget Instagram(BuildContext context) =>
+      navBtnLink("Instagram", Constants.INSTAGRAM, context, 8);
   static Widget Contact(BuildContext context) => actBtn(
-      FFLocalizations.of(context).getText("a7yefkbw"), () => null, context);
+      FLocalizations.of(context).getText("a7yefkbw"),
+      () => launchEmail(Constants.EMAIL, "GRS", ""),
+      context);
 }

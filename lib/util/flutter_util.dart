@@ -38,6 +38,11 @@ Future launchURL(String url) async {
   }
 }
 
+Future launchEmail(String email, String subject, String body) async {
+  var uri = Uri.parse("mailto:$email?subject=$subject&body=$body").toString();
+  await launch(uri);
+}
+
 enum FormatType {
   decimal,
   percent,

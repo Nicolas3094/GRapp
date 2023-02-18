@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:g_mcp/app_state.dart';
+import 'package:g_mcp/services/catalogue_service.dart';
+import 'package:g_mcp/services/project_service.dart';
+import 'package:g_mcp/util/internationalization.dart';
+import 'UI/components/loaderspinner.dart';
 import 'util/flutter_util.dart';
-import 'util/internationalization.dart';
 import 'index.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FFAppState(); // Initialize FFAppState
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
+  FFAppState(); // Initialize FFAppState
+  FFAppState.queueIndex.add(0);
   runApp(MyApp());
 }
 
@@ -21,15 +31,26 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Future<List<String>> futureFiles;
+
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
-  bool displaySplashImage = false;
+  bool displaySplashImage = true;
+
+  _asyncMethod() {
+    ProjectService.fetchFirebase();
+    CatalogueService.fetchFirebase();
+    Future.delayed(Duration(milliseconds: 4000),
+        () => setState(() => displaySplashImage = false));
+  }
+
   @override
   void initState() {
     FFAppState.readJsonBio().then((value) => FFAppState.setBio(value));
+    _asyncMethod();
     super.initState();
-
     _locale = Locale.fromSubtags(languageCode: "en");
+    setState(() => FFAppState.setIDx(0));
   }
 
   @override
@@ -41,14 +62,14 @@ class _MyAppState extends State<MyApp> {
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
       });
-
+  void setIndexMenu(int i) => setState(() => FFAppState.setIDx(i));
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Gabriel Rico Estudio',
+        title: 'Gabriel Rico Studio',
         localizationsDelegates: [
-          FFLocalizationsDelegate(),
+          FLocalizationsDelegate(),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
@@ -60,6 +81,8 @@ class _MyAppState extends State<MyApp> {
         ],
         theme: ThemeData(brightness: Brightness.light),
         themeMode: _themeMode,
-        home: HomePageWidget());
+        home: displaySplashImage
+            ? LoaderSpinner(h: 200, w: 200)
+            : HomePageWidget());
   }
 }

@@ -14,8 +14,8 @@ class Project implements InfoStructure {
       this.descriptionENG,
       this.descriptionESP,
       this.dir,
-      this.images,
-      this.year_place);
+      this.year_place,
+      this.order);
 
   factory Project.fromJson(Map<String, dynamic> json) => Project(
       json["title"],
@@ -25,8 +25,8 @@ class Project implements InfoStructure {
       json["descriptionENG"],
       json["descriptionESP"],
       json["dir"],
-      json["images"],
-      json["year_place"]);
+      json["year_place"],
+      json["order"]);
 
   Map<String, dynamic> toJson() => {};
 
@@ -46,11 +46,14 @@ class Project implements InfoStructure {
   String dir;
 
   @override
-  List images;
+  List<String> images;
 
   @override
   String title;
 
   @override
-  String year;
+  int year;
+
+  @override
+  int order;
 }
