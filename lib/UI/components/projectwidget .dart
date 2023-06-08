@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../data/Models/project.dart';
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
-import '../util/internationalization.dart';
+import '../../logic/util/flutter_theme.dart';
+import '../../logic/util/flutter_util.dart';
+import '../../logic/util/internationalization.dart';
 
 class ProjectWidget extends StatefulWidget {
   final Project project;

@@ -1,15 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:g_mcp/data/Models/infostructure.dart';
 import 'package:g_mcp/index.dart';
 import 'package:g_mcp/logic/blocs/catalogue/catalogue_bloc.dart';
 import 'package:g_mcp/logic/blocs/projects/project_bloc.dart';
-import 'package:g_mcp/main.dart';
-
-import '../../data/Models/infostructure.dart';
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
-import 'cacheImage.dart';
+import '../../logic/util/flutter_theme.dart';
+import '../../logic/util/flutter_util.dart';
 import 'cataloguewidget.dart';
 import 'loaderspinner.dart';
 
@@ -22,67 +20,48 @@ class ProyectsListWidget extends StatefulWidget {
 }
 
 class _ProyectsListWidget extends State<ProyectsListWidget> {
-  bool displaySplashImage = true;
-  int len = 0;
-
-  _asyncMethod() async {}
-
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _asyncMethod();
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
     super.initState();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    imageCache.clear();
+  }
+
   double phone_project_condition(int index) {
-    return (index == 2 ||
-            index == 3 ||
-            index == 6 ||
-            index == 7 ||
-            index == 12 ||
-            index == 13 ||
-            index == 14)
-        ? 1
-        : 1.8;
+    return 1.1;
   }
 
   double phone_catalogue_condition(int index) {
-    return (index == 2 ||
-            index == 3 ||
-            index == 4 ||
-            index == 5 ||
-            index == 8 ||
-            index == 9 ||
+    return (index == 6 ||
+            index == 7 ||
+            index == 10 ||
+            index == 11 ||
             index == 14 ||
             index == 15 ||
             index == 17 ||
             index == 16 ||
             index == 19 ||
-            index == 18 ||
-            index == 22 ||
-            index == 23 ||
-            index == 24 ||
-            index == 25 ||
-            index == 26 ||
-            index == 27 ||
-            index == 28 ||
-            index == 29)
-        ? 2
+            index == 18)
+        ? 1.9
         : 1.1;
   }
 
   double tablet_project_condition(int index) {
-    return (index == 12 || index == 13 || index == 14) ? 1 : 1.8;
+    return (index <= 3) ? 1.5 : 1.2;
   }
 
   double tablet_catalogue_condition(int index) {
-    return (index == 25) ? 1 : 2;
+    return (index <= 3 || (index <= 30 && index >= 20)) ? 1.1 : 2;
   }
 
   bool phone;
-
   bool tablet;
   bool phoneland;
+
   @override
   Widget build(BuildContext context) {
     phone = responsiveVisibility(context: context, phone: true);
@@ -119,48 +98,12 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
         addAutomaticKeepAlives: false,
         addRepaintBoundaries: false,
         itemBuilder: (_, i) {
-          return InkWell(
-              onTap: () async {
-                await Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      child: GenericPageWidget(
-                          title: "PROJECTS & EXHIBITIONS",
-                          widg: CatalogueWidget(
-                            showDescription: widget.isProject,
-                            structList: state.projects[i],
-                            initIndex: i,
-                          ))),
-                );
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  if (state.projects[i].images.length != 0)
-                    Container(
-                        child: ImageCached(
-                            image_url: state.projects[i].images[0])),
-                  Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),
-                      child: Row(
-                        children: [
-                          Text("${i < 9 ? '0' : ''}${state.projects[i].order}.",
-                              style: FlutterTheme.of(context).bodyText2),
-                          Text("(${state.projects[i].year.toString()})",
-                              style: FlutterTheme.of(context).bodyText2),
-                        ],
-                      )),
-                  Flexible(
-                      child: Text(
-                    "${state.projects[i].title}",
-                    style: FlutterTheme.of(context).bodyText2,
-                  )),
-                ],
-              ));
+          return goNextScreen(i, state.projects);
         },
+      );
+    } else if (state is ProjectErrorState) {
+      return Center(
+        child: Text(state.error),
       );
     } else {
       return Center(
@@ -190,49 +133,12 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
         addAutomaticKeepAlives: false,
         addRepaintBoundaries: false,
         itemBuilder: (_, i) {
-          return InkWell(
-              onTap: () async {
-                await Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                      child: GenericPageWidget(
-                          title: "PROJECTS & EXHIBITIONS",
-                          widg: CatalogueWidget(
-                            showDescription: widget.isProject,
-                            structList: state.catalogues[i],
-                            initIndex: i,
-                          ))),
-                );
-              },
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  if (state.catalogues[i].images.length != 0)
-                    Container(
-                        child: ImageCached(
-                            image_url: state.catalogues[i].images[0])),
-                  Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),
-                      child: Row(
-                        children: [
-                          Text(
-                              "${i < 9 ? '0' : ''}${state.catalogues[i].order}.",
-                              style: FlutterTheme.of(context).bodyText2),
-                          Text("(${state.catalogues[i].year.toString()})",
-                              style: FlutterTheme.of(context).bodyText2),
-                        ],
-                      )),
-                  Flexible(
-                      child: Text(
-                    "${state.catalogues[i].title}",
-                    style: FlutterTheme.of(context).bodyText2,
-                  )),
-                ],
-              ));
+          return goNextScreen(i, state.catalogues);
         },
+      );
+    } else if (state is CatalogueErrorState) {
+      return Center(
+        child: Text(state.error),
       );
     } else {
       return Center(
@@ -240,4 +146,59 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
       );
     }
   }
+
+  Widget goNextScreen(int i, List<InfoStructure> lst) => InkWell(
+      onTap: () async {
+        await Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.fade,
+              duration: Duration(milliseconds: 0),
+              child: GenericPageWidget(
+                  widg: CatalogueWidget(
+                showDescription: widget.isProject,
+                structList: lst[i],
+                initIndex: i,
+              ))),
+        );
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          if (lst[i].images.length != 0)
+            Container(
+                child: CacheNet(lst[i].frontPage != -1
+                    ? lst[i].images[lst[i].frontPage]
+                    : "https://firebasestorage.googleapis.com/v0/b/gabrielricoestudio-48ad9.appspot.com/o/projects%2F2.%20LA%20CUCHARA%20Y%20EL%20LADRILLO%2Fportada%2Fportada.jpg?alt=media&token=426ac2f4-9057-4848-b560-2bbd6d6aefca")),
+          Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 13, 0, 0),
+              child: Row(
+                children: [
+                  Text("${i < 9 ? '0' : ''}${lst[i].order}.",
+                      style: FlutterTheme.of(context).bodyText2),
+                  Text("(${lst[i].year.toString()})",
+                      style: FlutterTheme.of(context).bodyText2),
+                ],
+              )),
+          Flexible(
+              child: Text(
+            "${lst[i].title}",
+            style: FlutterTheme.of(context).bodyText2,
+          )),
+        ],
+      ));
+  Widget CacheNet(String image_url) => CachedNetworkImage(
+        useOldImageOnUrlChange: false,
+        imageUrl: image_url,
+        fit: BoxFit.cover,
+        memCacheHeight: 200,
+        memCacheWidth: tablet ? 500 : 200,
+        placeholder: (context, url) => Container(
+            height: 50,
+            width: 50,
+            child: LoaderSpinner(
+                color: Color.fromRGBO(0, 0, 0, 1), w: 50.0, h: 50.0)),
+        errorWidget: (context, error, stacTrace) => Icon(Icons.error),
+      );
 }

@@ -4,13 +4,10 @@ import 'package:g_mcp/data/services/project_service.dart';
 import '../Models/repositories/irep.dart';
 
 class ProjectRepository implements IDocRepository<Project> {
-  final ProjectService _service = ProjectService();
-  static final ProjectRepository _instance = ProjectRepository._();
-  ProjectRepository._();
+  final ProjectService _service;
 
-  factory ProjectRepository() {
-    return _instance;
-  }
+  ProjectRepository(this._service);
+
   @override
   Future<void> fetch() async {
     return await _service.fetchFirebase();

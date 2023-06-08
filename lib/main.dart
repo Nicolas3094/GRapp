@@ -1,20 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:g_mcp/data/repository/catalogue_rep.dart';
+import 'package:g_mcp/data/repository/press_repository.dart';
+import 'package:g_mcp/data/services/arProjects_service.dart';
+import 'package:g_mcp/data/services/catalogue_service.dart';
+import 'package:g_mcp/data/services/press_service.dart';
+import 'package:g_mcp/data/services/project_service.dart';
 import 'package:g_mcp/logic/blocs/arProjects/arproject_bloc.dart';
+import 'package:g_mcp/logic/blocs/press/press_bloc.dart';
 
 import 'package:g_mcp/logic/blocs/projects/project_bloc.dart';
 import 'UI/app_state.dart';
 import 'UI/components/loaderspinner.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'UI/screens/home_page_widget.dart';
-import 'UI/util/internationalization.dart';
 
 import 'data/repository/arPorjects_repository.dart';
 import 'data/repository/projects_rep.dart';
 import 'firebase_options.dart';
 import 'logic/blocs/catalogue/catalogue_bloc.dart';
+import 'logic/util/internationalization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +32,17 @@ void main() async {
 
   FFAppState(); // Initialize FFAppState
   FFAppState.queueIndex.add(0);
-  runApp(MyApp());
+  runApp(MyApp(
+    firestore: FirebaseFirestore.instance,
+    storage: FirebaseStorage.instance,
+  ));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key key}) : super(key: key);
+  final FirebaseFirestore firestore;
+  final FirebaseStorage storage;
+
+  const MyApp({Key key, this.firestore, this.storage}) : super(key: key);
   // This widget is the root of your application.
   @override
   State<MyApp> createState() => _MyAppState();
@@ -74,9 +88,18 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
         providers: [
-          RepositoryProvider(create: (context) => ProjectRepository()),
-          RepositoryProvider(create: (context) => CatalogueRepository()),
-          RepositoryProvider(create: (context) => ARProjectRepository()),
+          RepositoryProvider(
+              create: (context) => ProjectRepository(
+                  ProjectService(widget.firestore, widget.storage))),
+          RepositoryProvider(
+              create: (context) => CatalogueRepository(
+                  CatalogueService(widget.firestore, widget.storage))),
+          RepositoryProvider(
+              create: (context) => ARProjectRepository(
+                  ARProjectService(widget.firestore, widget.storage))),
+          RepositoryProvider(
+              create: (context) =>
+                  PressRepository(PressService(widget.firestore)))
         ],
         child: MultiBlocProvider(
             providers: [
@@ -91,10 +114,13 @@ class _MyAppState extends State<MyApp> {
                       RepositoryProvider.of<CatalogueRepository>(context))
                     ..add(LoadCatalogueEvent())),
               BlocProvider<ARProjectBloc>(
-                  lazy: true,
                   create: (context) => ARProjectBloc(
                       RepositoryProvider.of<ARProjectRepository>(context))
                     ..add(LoadARProjectEvent())),
+              BlocProvider<PressBloc>(
+                  create: (context) =>
+                      PressBloc(RepositoryProvider.of<PressRepository>(context))
+                        ..add(LoadPressEvent()))
             ],
             child: MaterialApp(
                 debugShowCheckedModeBanner: false,

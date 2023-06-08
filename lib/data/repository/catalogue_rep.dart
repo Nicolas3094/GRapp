@@ -3,14 +3,9 @@ import 'package:g_mcp/data/services/catalogue_service.dart';
 import '../Models/repositories/irep.dart';
 
 class CatalogueRepository implements IDocRepository<Catalogue> {
-  final CatalogueService _service = CatalogueService();
+  final CatalogueService _service;
 
-  static final CatalogueRepository _instance = CatalogueRepository._();
-  CatalogueRepository._();
-
-  factory CatalogueRepository() {
-    return _instance;
-  }
+  CatalogueRepository(this._service);
 
   @override
   Future<void> fetch() async {

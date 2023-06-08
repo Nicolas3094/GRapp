@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:g_mcp/index.dart';
 import '../../../data/Models/DescriptionAR.dart';
+import '../../../logic/util/flutter_theme.dart';
+import '../../../logic/util/flutter_util.dart';
+import '../../../logic/util/internationalization.dart';
 import '../../components/loaderspinner.dart';
-import '../../util/flutter_theme.dart';
-import '../../util/flutter_util.dart';
-import '../../util/internationalization.dart';
 
 class SingleARPageWidget extends StatefulWidget {
   final DescriptionAR structt;

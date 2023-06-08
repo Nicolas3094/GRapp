@@ -9,7 +9,6 @@ import 'package:rxdart/rxdart.dart';
 
 import '../data/Models/Description.dart';
 import '../data/Models/bio.dart';
-import '../data/Models/catalogue.dart';
 import '../data/Models/imagen.dart';
 import '../data/Models/project.dart';
 
@@ -28,8 +27,6 @@ class FFAppState {
   static Description _arDescription;
 
   static bool _firstSplash = false;
-
-  static int _indx = 0;
 
   static final _transformers = [
     AccordionTransformer(),

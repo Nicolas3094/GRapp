@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '689761636028',
     projectId: 'gabrielricoestudio-48ad9',
     storageBucket: 'gabrielricoestudio-48ad9.appspot.com',
-    iosClientId: '689761636028-ejb41f9d475722nt2ncj2q8ragd81tud.apps.googleusercontent.com',
+    iosClientId:
+        '689761636028-ejb41f9d475722nt2ncj2q8ragd81tud.apps.googleusercontent.com',
     iosBundleId: 'com.GM.GabrielRico',
   );
 }

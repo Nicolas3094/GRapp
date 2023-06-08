@@ -1,5 +1,7 @@
 // ignore_for_file: overridden_fields, annotate_overrides
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -37,7 +39,11 @@ abstract class FlutterTheme {
         fontFamily: 'Neue Haas Grotesk',
         color: primaryText,
         fontWeight: FontWeight.w400,
-        fontSize: _tablet || _tabletland ? 12 : 60,
+        fontSize: _tablet || _tabletland
+            ? 12
+            : Platform.isAndroid
+                ? 40
+                : 54,
       );
   TextStyle get title2 => TextStyle(
         fontFamily: 'Neue Haas Grotesk',
@@ -75,6 +81,12 @@ abstract class FlutterTheme {
         color: Colors.black,
         fontWeight: FontWeight.w400,
         fontSize: _tablet || _tabletland ? 20 : 16,
+      );
+  TextStyle get pressText => TextStyle(
+        fontFamily: 'Neue Haas Grotesk',
+        color: Colors.black,
+        fontWeight: FontWeight.w400,
+        fontSize: _tablet || _tabletland ? 24 : 24,
       );
 }
 

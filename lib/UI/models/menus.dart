@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:g_mcp/UI/constants/widget_constants.dart';
+import '../../logic/util/flutter_theme.dart';
+import '../../logic/util/flutter_util.dart';
+import '../../logic/util/internationalization.dart';
+import '../app_state.dart';
 import '../constants/constants.dart';
 import '../../main.dart';
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
-import '../util/internationalization.dart';
 
 class MenuW {
   static final MenuW _singleton = MenuW._internal();
@@ -17,7 +18,7 @@ class MenuW {
       InkWell(
         onTap: fn,
         child: Container(
-            alignment: Alignment.center,
+            alignment: Alignment.centerLeft,
             child: Text(
               name,
               textAlign: TextAlign.left,
@@ -49,7 +50,7 @@ class MenuW {
           await launchURL(url);
         },
         child: Container(
-            alignment: Alignment.center,
+            alignment: Alignment.centerLeft,
             child: Text(
               name,
               textAlign: TextAlign.left,
