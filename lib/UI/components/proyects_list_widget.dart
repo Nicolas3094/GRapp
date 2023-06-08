@@ -134,7 +134,6 @@ class _ProyectsListWidget extends State<ProyectsListWidget> {
         addRepaintBoundaries: false,
         itemBuilder: (_, i) {
           return goNextScreen(i, state.catalogues);
-          ;
         },
       );
     } else if (state is CatalogueErrorState) {
