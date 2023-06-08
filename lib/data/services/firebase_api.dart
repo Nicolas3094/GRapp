@@ -1,20 +1,22 @@
 import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseApi {
-  static final FirebaseStorage storage = FirebaseStorage.instance;
+  final FirebaseStorage storage;
 
-  static Future<List<String>> listAll(String path) async {
+  FirebaseApi(this.storage);
+
+  Future<List<String>> listAll(String path) async {
     final ref = storage.ref(path);
     final result = await ref.listAll();
     final urls = await _getDownloadLinks(result.items);
     return urls;
   }
 
-  static Future<List<String>> _getDownloadLinks(List<Reference> items) {
+  Future<List<String>> _getDownloadLinks(List<Reference> items) {
     return Future.wait(items.map((e) => e.getDownloadURL()).toList());
   }
 
-  static Future<String> getURL(String path) async {
+  Future<String> getURL(String path) async {
     final url = storage.ref(path).getDownloadURL();
     return url;
   }

@@ -1,8 +1,17 @@
 import 'infostructure.dart';
 
 class Catalogue implements InfoStructure {
-  Catalogue(this.title, this.year, this.dataENG, this.dataESP,
-      this.descriptionENG, this.descriptionESP, this.dir, this.order);
+  Catalogue(
+      this.title,
+      this.year,
+      this.dataENG,
+      this.dataESP,
+      this.descriptionENG,
+      this.descriptionESP,
+      this.dir,
+      this.order,
+      this.isHtml,
+      this.frontPage);
 
   factory Catalogue.fromJson(Map<String, dynamic> json) => Catalogue(
       json["title"],
@@ -12,7 +21,9 @@ class Catalogue implements InfoStructure {
       json["descriptionENG"],
       json["descriptionESP"],
       json["dir"],
-      json["order"]);
+      json["order"],
+      json["isHtml"],
+      json["frontPage"]);
 
   Map<String, dynamic> toJson() => {
         "title": title,
@@ -21,7 +32,9 @@ class Catalogue implements InfoStructure {
         "dataESP": dataESP,
         "descriptionENG": descriptionENG,
         "descriptionESP": descriptionESP,
-        "images": images
+        "images": images,
+        "isHtml": isHtml,
+        "frontPage": frontPage
       };
 
   @override
@@ -53,4 +66,10 @@ class Catalogue implements InfoStructure {
 
   @override
   int order;
+
+  @override
+  int frontPage;
+
+  @override
+  bool isHtml;
 }

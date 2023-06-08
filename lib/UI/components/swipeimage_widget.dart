@@ -1,19 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter/material.dart';
-
-import '../../data/Models/catalogue.dart';
-import '../../data/Models/project.dart';
-import '../util/flutter_util.dart';
-import '../util/internationalization.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:g_mcp/data/Models/infostructure.dart';
+import '../../logic/util/flutter_theme.dart';
+import '../../logic/util/flutter_util.dart';
+import '../../logic/util/internationalization.dart';
 import 'body_text.dart';
 import 'loaderspinner.dart';
 
 class SwipeImagesWidget extends StatefulWidget {
-  final Project project;
-  final Catalogue catalogue;
-  const SwipeImagesWidget({Key key, this.project = null, this.catalogue = null})
-      : super(key: key);
+  final InfoStructure dataStructure;
+  const SwipeImagesWidget({Key key, this.dataStructure}) : super(key: key);
   @override
   _SwipeImagesState createState() => _SwipeImagesState();
 }
@@ -22,8 +19,6 @@ class _SwipeImagesState extends State<SwipeImagesWidget> {
   int len;
   bool visible = true;
   GlobalKey<State> key = new GlobalKey();
-  static final customCacheManager = CacheManager(Config('customCacheKey',
-      stalePeriod: const Duration(days: 1), maxNrOfCacheObjects: 20));
 
   @override
   void initState() {
@@ -33,6 +28,7 @@ class _SwipeImagesState extends State<SwipeImagesWidget> {
   @override
   void dispose() {
     super.dispose();
+    imageCache.clear();
   }
 
   bool phone;
@@ -43,53 +39,54 @@ class _SwipeImagesState extends State<SwipeImagesWidget> {
     phone = responsiveVisibility(context: context, phone: true);
     tabletland = responsiveVisibility(context: context, tabletLandscape: true);
     tablet = responsiveVisibility(context: context, tablet: true);
-    len = widget.project != null
-        ? widget.project.images.length
-        : widget.catalogue.images.length;
+    len = widget.dataStructure.images.length;
     return ListView.builder(
         itemCount: len + 1,
         scrollDirection: Axis.vertical,
         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
         addAutomaticKeepAlives: false,
         addRepaintBoundaries: false,
-        cacheExtent: 2000,
-        itemBuilder: (context, index) {
-          if (index == len) {
-            return Container(
-                child:
-                    widget.project != null ? projectText() : catalogueText());
-          }
-
-          return Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-              child: CacheNet(
-                widget.project != null
-                    ? widget.project.images[index]
-                    : widget.catalogue.images[index],
-              ));
-        });
+        itemBuilder: (context, index) => index == len
+            ? Container(child: customText(widget.dataStructure))
+            : Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                child: Container(
+                    child: CacheNet(
+                  widget.dataStructure.images[index],
+                ))));
   }
 
-  Widget projectText() => BodyText(
+  Widget customText(InfoStructure data) => !data.isHtml
+      ? generalText(data)
+      : Html(
+          onLinkTap: (url, context, attributes, element) {
+            launchURL(url);
+          },
+          data: FLocalizations.of(context).locale.languageCode == "es"
+              ? data.descriptionESP
+              : data.descriptionENG,
+          style: {
+              'body': Style(
+                  fontFamily: FlutterTheme.of(context).bodyText3.fontFamily,
+                  fontSize:
+                      FontSize(FlutterTheme.of(context).bodyText3.fontSize),
+                  margin: EdgeInsets.all(0),
+                  padding: EdgeInsets.all(0),
+                  lineHeight: LineHeight(1.5)),
+              'span': Style(color: Colors.red)
+            });
+
+  Widget generalText(InfoStructure data) => BodyText(
         data: FLocalizations.of(context).locale.languageCode == "es"
-            ? widget.project.descriptionESP.replaceAll("\\n", "\n")
-            : widget.project.descriptionENG.replaceAll("\\n", "\n"),
+            ? data.descriptionESP.replaceAll("\\n", "\n")
+            : data.descriptionENG.replaceAll("\\n", "\n"),
       );
 
-  Widget catalogueText() => BodyText(
-        data: FLocalizations.of(context).locale.languageCode == "es"
-            ? widget.catalogue.descriptionESP.replaceAll("\\n", "\n")
-            : widget.catalogue.descriptionENG.replaceAll("\\n", "\n"),
-      );
   Widget CacheNet(String image_url) => CachedNetworkImage(
-        cacheManager: customCacheManager,
-        key: UniqueKey(),
-        useOldImageOnUrlChange: false,
         imageUrl: image_url,
         fit: BoxFit.cover,
-        //memCacheHeight: tablet || tabletland ? 900 : 700,
-        //maxHeightDiskCache: tablet || tabletland ? 900 : 700,
-        //maxWidthDiskCache: tablet || tabletland ? 900 : 1000,
+        memCacheHeight: tablet || tabletland ? 700 : 400,
+        memCacheWidth: tablet || tabletland ? 700 : 400,
         placeholder: (context, url) => Container(
             height: 50,
             width: 50,

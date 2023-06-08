@@ -1,24 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import '../Models/project.dart';
-import 'firebase_api.dart';
 
 class ProjectService {
   List<Project> _projects = <Project>[];
 
-  static final ProjectService _instance = ProjectService._internal();
-
   final String _name = "projects";
+  final FirebaseStorage _storage;
+  final FirebaseFirestore _db;
 
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
-
-  factory ProjectService() {
-    return _instance;
-  }
-  ProjectService._internal() {
-    initializePersistedState();
-  }
-
-  Future initializePersistedState() async {}
+  ProjectService(this._db, this._storage);
 
   Future<QuerySnapshot<Map<String, dynamic>>> _getCollection() async {
     return await _db.collection(_name).get();
@@ -41,9 +32,21 @@ class ProjectService {
     for (var doc in collection.docs) {
       final dat = doc.data();
       var project = Project.fromJson(dat);
-      final list_images = await FirebaseApi.listAll("${_name}/${project.dir}");
+      final list_images = await _listAll("${_name}/${project.dir}");
       project.images = list_images;
       _projects.add(project);
     }
+  }
+
+  Future<List<String>> _listAll(String path) async {
+    final storageRef = await _storage.ref(path);
+
+    final result = await storageRef.listAll();
+    final urls = await _getDownloadLinks(result.items);
+    return urls;
+  }
+
+  Future<List<String>> _getDownloadLinks(List<Reference> items) {
+    return Future.wait(items.map((e) => e.getDownloadURL()).toList());
   }
 }

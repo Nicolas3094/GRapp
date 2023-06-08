@@ -8,5 +8,8 @@ abstract class InfoStructure {
   String descriptionENG;
   String descriptionESP;
   int order;
+  int frontPage;
+  bool isHtml;
+
   List<String> images;
 }

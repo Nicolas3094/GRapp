@@ -80,8 +80,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Collectors
   {
     'ozkeslzw': {
-      'en': 'Collectors',
-      'es': 'Coleccionistas',
+      'en': 'Private room',
+      'es': 'Sección privada',
     },
   },
   // Press

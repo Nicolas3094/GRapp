@@ -2,7 +2,6 @@ import 'infostructure.dart';
 
 class Project implements InfoStructure {
   String year_place;
-
   @override
   String idStructure = "PROJECTS";
 
@@ -15,7 +14,9 @@ class Project implements InfoStructure {
       this.descriptionESP,
       this.dir,
       this.year_place,
-      this.order);
+      this.order,
+      this.isHtml,
+      this.frontPage);
 
   factory Project.fromJson(Map<String, dynamic> json) => Project(
       json["title"],
@@ -26,7 +27,9 @@ class Project implements InfoStructure {
       json["descriptionESP"],
       json["dir"],
       json["year_place"],
-      json["order"]);
+      json["order"],
+      json["isHtml"],
+      json["frontPage"]);
 
   Map<String, dynamic> toJson() => {};
 
@@ -56,4 +59,10 @@ class Project implements InfoStructure {
 
   @override
   int order;
+
+  @override
+  int frontPage;
+
+  @override
+  bool isHtml;
 }

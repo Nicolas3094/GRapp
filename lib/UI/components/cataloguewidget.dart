@@ -3,7 +3,7 @@ import 'package:g_mcp/UI/components/projectwidget%20.dart';
 import 'package:g_mcp/UI/components/swipeimage_widget.dart';
 
 import '../../data/Models/infostructure.dart';
-import '../util/flutter_util.dart';
+import '../../logic/util/flutter_util.dart';
 import 'data_category_widget.dart';
 
 class CatalogueWidget extends StatefulWidget {
@@ -64,9 +64,7 @@ class _CatalogueWidget extends State<CatalogueWidget> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: SwipeImagesWidget(
-                  project: this._name == "project" ? widget.structList : null,
-                  catalogue:
-                      this._name == "catalogue" ? widget.structList : null,
+                  dataStructure: widget.structList,
                 ))),
       ],
     );

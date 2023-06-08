@@ -1,20 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
 import '../Models/catalogue.dart';
-import 'firebase_api.dart';
 
 class CatalogueService {
   List<Catalogue> _catalogues = <Catalogue>[];
 
-  static final CatalogueService _instance = CatalogueService._internal();
-
   final String _name = "catalogues";
 
-  static final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final FirebaseFirestore _db;
+  final FirebaseStorage _storage;
 
-  factory CatalogueService() {
-    return _instance;
-  }
-  CatalogueService._internal();
+  CatalogueService(this._db, this._storage);
 
   Future<QuerySnapshot<Map<String, dynamic>>> _getCollection() async {
     return await _db.collection(_name).get();
@@ -34,10 +31,20 @@ class CatalogueService {
     for (var doc in collection.docs) {
       final dat = doc.data();
       var catalogue = Catalogue.fromJson(dat);
-      final list_images =
-          await FirebaseApi.listAll("${_name}/${catalogue.dir}");
+      final list_images = await _listAll("${_name}/${catalogue.dir}");
       catalogue.images = list_images;
       _catalogues.add(catalogue);
     }
+  }
+
+  Future<List<String>> _listAll(String path) async {
+    final ref = _storage.ref(path);
+    final result = await ref.listAll();
+    final urls = await _getDownloadLinks(result.items);
+    return urls;
+  }
+
+  Future<List<String>> _getDownloadLinks(List<Reference> items) {
+    return Future.wait(items.map((e) => e.getDownloadURL()).toList());
   }
 }

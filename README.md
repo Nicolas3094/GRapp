@@ -50,3 +50,10 @@ En ios/
 pod install
 pod update
 ```
+
+
+Crashes Android:
+- Permission:
+```
+-keep class com.unity3d.plugin.UnityAndroidPermissions** { *; }
+```

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:g_mcp/UI/components/loaderspinner.dart';
 import 'package:g_mcp/UI/screens/unityscreens/single_ar_page.dart';
 import 'package:g_mcp/index.dart';
@@ -8,10 +9,11 @@ import 'package:g_mcp/logic/blocs/arProjects/arproject_bloc.dart';
 import '../../../data/Models/Description.dart';
 
 import '../../../data/Models/DescriptionAR.dart';
+import '../../../logic/util/flutter_theme.dart';
+import '../../../logic/util/flutter_util.dart';
+import '../../../logic/util/internationalization.dart';
+import '../../app_state.dart';
 import '../../components/cacheImage.dart';
-import '../../util/flutter_theme.dart';
-import '../../util/flutter_util.dart';
-import '../../util/internationalization.dart';
 
 class ARPageWidget extends StatefulWidget {
   const ARPageWidget({Key key}) : super(key: key);
@@ -53,7 +55,7 @@ class _ARPageWidget extends State<ARPageWidget> {
               : horizontalView(state.projects);
         } else {
           return Center(
-            child: Text("Error"),
+            child: Text(""),
           );
         }
       },
@@ -70,11 +72,17 @@ class _ARPageWidget extends State<ARPageWidget> {
               Container(
                   width: MediaQuery.of(context).size.width / 3,
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                  child: Text(
-                    FLocalizations.of(context).locale.languageCode == "es"
+                  child: Html(
+                    data: FLocalizations.of(context).locale.languageCode == "es"
                         ? _descriptionAR.descriptionESP
                         : _descriptionAR.descriptionENG,
-                    style: FlutterTheme.of(context).bodyText2,
+                    style: {
+                      'body': Style(
+                          fontFamily: 'Ingram',
+                          fontSize: FontSize(tablet || tabletland ? 12 : 8),
+                          margin: EdgeInsets.all(0),
+                          padding: EdgeInsets.all(0))
+                    },
                   )),
             Container(
                 width: (MediaQuery.of(context).size.width / 2),
@@ -89,13 +97,21 @@ class _ARPageWidget extends State<ARPageWidget> {
               children: [
             if (_descriptionAR != null)
               Container(
-                  width: phone ? MediaQuery.of(context).size.width : 632,
+                  width: phone
+                      ? MediaQuery.of(context).size.width
+                      : MediaQuery.of(context).size.width * 0.84,
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                  child: Text(
-                    FLocalizations.of(context).locale.languageCode == "es"
+                  child: Html(
+                    data: FLocalizations.of(context).locale.languageCode == "es"
                         ? _descriptionAR.descriptionESP
                         : _descriptionAR.descriptionENG,
-                    style: FlutterTheme.of(context).bodyText2,
+                    style: {
+                      'body': Style(
+                          fontFamily: 'Ingram',
+                          fontSize: FontSize(tablet || tabletland ? 10 : 8),
+                          margin: EdgeInsets.all(0),
+                          padding: EdgeInsets.all(0))
+                    },
                   )),
             Container(
                 width: phone ? MediaQuery.of(context).size.width : 632,
@@ -141,7 +157,6 @@ class _ARPageWidget extends State<ARPageWidget> {
                         type: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
                         child: GenericPageWidget(
-                          title: "AR",
                           widg: SingleARPageWidget(
                             structt: arprojects[i],
                             initIndex: i,
@@ -179,6 +194,5 @@ class _ARPageWidget extends State<ARPageWidget> {
           ),
       ],
     );
-    ;
   }
 }

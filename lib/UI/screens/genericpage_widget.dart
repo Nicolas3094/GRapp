@@ -1,16 +1,14 @@
+import '../../logic/util/flutter_theme.dart';
+import '../../logic/util/flutter_util.dart';
 import '../components/appbar.dart';
 
 import '../components/backbtn.dart';
 import '../components/drawer_custom.dart';
 import 'package:flutter/material.dart';
 
-import '../util/flutter_theme.dart';
-import '../util/flutter_util.dart';
-
 class GenericPageWidget extends StatefulWidget {
-  final String title;
   final Widget widg;
-  const GenericPageWidget({Key key, this.title, this.widg}) : super(key: key);
+  const GenericPageWidget({Key key, this.widg}) : super(key: key);
 
   @override
   _GenericPageWidget createState() => _GenericPageWidget();

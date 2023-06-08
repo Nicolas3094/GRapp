@@ -4,14 +4,9 @@ import 'package:g_mcp/data/services/arProjects_service.dart';
 import '../Models/repositories/irep.dart';
 
 class ARProjectRepository implements IDocRepository<DescriptionAR> {
-  final ARProjectService _service = ARProjectService();
+  final ARProjectService _service;
 
-  static final ARProjectRepository _instance = ARProjectRepository._();
-  ARProjectRepository._();
-
-  factory ARProjectRepository() {
-    return _instance;
-  }
+  ARProjectRepository(this._service);
 
   @override
   Future<void> fetch() async {
