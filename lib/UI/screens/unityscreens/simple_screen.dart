@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import '../../app_state.dart';
 import '../../components/backbtn.dart';
 import '../../components/loaderspinner.dart';
 
@@ -16,6 +18,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
   static final GlobalKey<ScaffoldState> _scaffoldKey =
       GlobalKey<ScaffoldState>();
 
+  UnityWidgetController _unityWidgetController;
   bool loading = true;
   @override
   void initState() {
@@ -29,6 +32,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
 
   @override
   void dispose() {
+    _unityWidgetController.dispose();
     super.dispose();
   }
 
@@ -38,6 +42,18 @@ class _SimpleScreenState extends State<SimpleScreen> {
         key: _scaffoldKey,
         body: Stack(
           children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: UnityWidget(
+                onUnityCreated: _onUnityCreated,
+                onUnityMessage: onUnityMessage,
+                onUnitySceneLoaded: onUnitySceneLoaded,
+                useAndroidViewSurface: false,
+                borderRadius: BorderRadius.all(Radius.circular(70)),
+                placeholder: LoaderSpinner(),
+              ),
+            ),
             PointerInterceptor(
                 child: Positioned(
               top: 0,
@@ -52,6 +68,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
                     children: <Widget>[
                       InkWell(
                         onTap: () {
+                          senToUnityScene("pause");
                           Navigator.pop(context, true);
                         },
                         child: BackBtn(),
@@ -72,7 +89,16 @@ class _SimpleScreenState extends State<SimpleScreen> {
                               Text("Reset")
                             ],
                           ),
-                          onTap: () {}),
+                          onTap: () {
+                            senToUnityScene("loader");
+                            Future.delayed(const Duration(milliseconds: 500),
+                                () {
+                              _unityWidgetController.postMessage(
+                                  "ExitController",
+                                  "SetScene",
+                                  widget.sceneID.toString());
+                            });
+                          }),
                     ],
                   )),
             )),
@@ -91,4 +117,27 @@ class _SimpleScreenState extends State<SimpleScreen> {
   void onUnityMessage(message) {}
 
   void onUnitySceneLoaded(scene) {}
+
+  void _onUnityCreated(UnityWidgetController controller) {
+    this._unityWidgetController = controller;
+    if (FFAppState.getFirstSplash()) {
+      senToUnityScene("resume");
+
+      senToUnityScene("loader");
+    } else {
+      FFAppState.setFirstSplash();
+    }
+    Future.delayed(const Duration(milliseconds: 100), () {
+      _unityWidgetController.postMessage(
+          "ExitController", "SetScene", widget.sceneID.toString());
+    });
+  }
+
+  void senToUnityScene(String key) {
+    _unityWidgetController.postMessage(
+      'ExitController',
+      'ReloadGame',
+      key,
+    );
+  }
 }
