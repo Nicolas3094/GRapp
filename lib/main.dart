@@ -24,6 +24,7 @@ import 'firebase_options.dart';
 import 'logic/blocs/catalogue/catalogue_bloc.dart';
 import 'logic/util/internationalization.dart';
 
+//testig
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
