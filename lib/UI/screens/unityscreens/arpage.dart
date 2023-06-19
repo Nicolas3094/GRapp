@@ -28,6 +28,7 @@ class _ARPageWidget extends State<ARPageWidget> {
   bool tabletland;
   bool load = true;
   double pad;
+  double shortest;
   void initState() {
     _asyncMethod();
     super.initState();
@@ -45,6 +46,7 @@ class _ARPageWidget extends State<ARPageWidget> {
     phone = responsiveVisibility(context: context, phone: true);
     tabletland = responsiveVisibility(context: context, tabletLandscape: true);
     tablet = responsiveVisibility(context: context, tablet: true);
+    shortest = MediaQuery.of(context).size.shortestSide;
     return BlocBuilder<ARProjectBloc, ARProjectStates>(
       builder: (context, state) {
         if (state is ARProjectLoadingSate && load) {
@@ -147,7 +149,7 @@ class _ARPageWidget extends State<ARPageWidget> {
                     : tabletland
                         ? 0.4
                         : phone
-                            ? 0.28
+                            ? (shortest < 400 ? 0.32 : 0.28)
                             : 0.6),
             child: InkWell(
                 onTap: () async {
