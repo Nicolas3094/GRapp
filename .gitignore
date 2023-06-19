@@ -33,8 +33,8 @@
 /build/
 /vscode/
 /ios/UnityLibrary/
-/android/
-unity/*
+/android/UnityLibrary/
+/unity/
 
 # Firebase – this is necessary if you use Firebase since it could otherwise 
 # lead to leaking of private certificates to your repository, which is no bueno.

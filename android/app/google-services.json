@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "689761636028",
+    "project_id": "gabrielricoestudio-48ad9",
+    "storage_bucket": "gabrielricoestudio-48ad9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689761636028:android:ab58eba21b64319ffd4ab9",
+        "android_client_info": {
+          "package_name": "com.vorticevr.gabrielrico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689761636028-edlmqkcvtavpchukt8dec5kpudivngv4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChJNnuisfFbVN2bx-sq5MhcwhPyaVRaxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689761636028-edlmqkcvtavpchukt8dec5kpudivngv4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "689761636028-ejb41f9d475722nt2ncj2q8ragd81tud.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.GM.GabrielRico"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
